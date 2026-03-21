@@ -111,7 +111,11 @@
     <p class="contact-label">// get in touch</p>
     <div class="contact-links">
       {{ range . }}
-      <a class="contact-link{{ if .primary }} primary{{ end }}" href="{{ .url }}"{{ if not .primary }} rel="noopener noreferrer"{{ end }}>{{ .label }}</a>
+        {{- if hasPrefix .url "mailto:" }}
+      {{ partial "email-link.html" (dict "class" (cond (.primary) "contact-link primary" "contact-link") "label" .label) }}
+        {{- else }}
+      <a class="contact-link{{ if .primary }} primary{{ end }}" href="{{ .url }}" rel="noopener noreferrer">{{ .label }}</a>
+        {{- end }}
       {{ end }}
     </div>
   </div>

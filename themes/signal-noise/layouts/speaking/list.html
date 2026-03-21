@@ -52,9 +52,7 @@
       <p class="upcoming-invite">
         <span>if you have a room worth the problem</span>
         <span class="arr" aria-hidden="true">&rarr;</span>
-        {{ with .Params.email }}
-        <a href="mailto:{{ . }}" aria-label="Send an invitation by email">{{ . }}</a>
-        {{ end }}
+        {{ partial "email-link.html" (dict "class" "" "label" "get in touch") }}
       </p>
     </div>
     {{ end }}
@@ -117,7 +115,7 @@
       I speak on search, AI, language and the security angles where they intersect.
       Talks are always written from scratch.
       If the topic fits and the audience is curious,
-      {{ with $.Params.email }}<a href="mailto:{{ . }}">send a note</a>{{ end }}.
+      {{ partial "email-link.html" (dict "class" "" "label" "send a note") }}.
       {{ end }}
     </p>
   </div>

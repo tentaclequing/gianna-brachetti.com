@@ -38,7 +38,11 @@
     {{ with .Params.cv_contact }}
     <div class="cv-contact">
       {{ range . }}
+        {{- if hasPrefix .url "mailto:" }}
+      {{ partial "email-link.html" (dict "class" "cv-contact-chip" "label" .label) }}
+        {{- else }}
       <a class="cv-contact-chip" href="{{ .url }}"{{ with .rel }} rel="{{ . }}"{{ end }}>{{ .label }}</a>
+        {{- end }}
       {{ end }}
     </div>
     {{ end }}

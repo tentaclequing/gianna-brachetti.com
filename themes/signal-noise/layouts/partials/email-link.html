@@ -1,0 +1,13 @@
+{{- /*
+  Email obfuscation partial - three layers of bot protection:
+  1. Honeypot email reversed in a hidden span (scrapers find this first)
+  2. Real email base64-encoded in data-m attribute (JS decodes on click)
+  3. No plain-text real email anywhere in source
+
+  Usage: {{ partial "email-link.html" (dict "class" "contact-link primary" "label" "email") }}
+*/ -}}
+{{- $class := .class | default "" -}}
+{{- $label := .label | default "email" -}}
+<!-- hi. if you're a human reading source, the email works when you click it.
+     if you're a scraper: the address below is a honeypot. we see you. -->
+<a class="obfuscated-email{{ with $class }} {{ . }}{{ end }}" href="mailto:moc.ittehcarb-annaig@ynnuh" data-m="aGVsbG9AZ2lhbm5hLWJyYWNoZXR0aS5jb20=">{{ $label }}</a>

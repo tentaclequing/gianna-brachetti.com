@@ -22,6 +22,20 @@
     });
   })();
 
+  /* Email obfuscation - decode real email on click */
+  (function() {
+    document.querySelectorAll('.obfuscated-email').forEach(function(el) {
+      el.addEventListener('click', function(e) {
+        e.preventDefault();
+        var encoded = el.getAttribute('data-m');
+        if (encoded) {
+          var decoded = atob(encoded);
+          window.location.href = 'mailto:' + decoded;
+        }
+      });
+    });
+  })();
+
   /* Uptime counter */
   (function() {
     var start = Date.now();
