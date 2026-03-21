@@ -326,6 +326,26 @@
 }
 .post-nav-item:hover .pnav-title { color: var(--accent); }
 
+/* --- Author bio --- */
+.author-bio {
+  margin-top: 64px;
+  padding: 24px 0;
+  border-top: 1px solid var(--border);
+}
+.bio-label {
+  font-size: 9px; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 12px;
+}
+.bio-text {
+  font-size: 12px; color: var(--muted); line-height: 1.85; max-width: 520px;
+}
+.bio-text strong { color: var(--white); font-weight: 400; }
+.bio-text a {
+  color: var(--accent); text-decoration: none;
+  border-bottom: 1px solid rgba(0,170,255,.25); transition: border-color .2s;
+}
+.bio-text a:hover { border-bottom-color: var(--accent); }
+
 /* --- Responsive --- */
 @media (max-width: 899px) {
   .page-header { padding: 100px 28px 48px; }

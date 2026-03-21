@@ -1,5 +1,6 @@
 ---
 title: "How to Audit Internal Linking at Scale Without Losing Your Mind"
+slug: "audit-internal-linking-at-scale"
 date: 2025-01-30
 type_label: guide
 tags: [seo, technical-seo]

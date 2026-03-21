@@ -1,5 +1,6 @@
 ---
 title: "Why I keep returning to this piece on AI and epistemic cowardice"
+slug: "ai-epistemic-cowardice"
 date: 2025-03-12
 lastmod: 2025-03-12
 status: fresh

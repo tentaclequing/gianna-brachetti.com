@@ -1,5 +1,6 @@
 ---
 title: "LLM Poisoning as an Attack Vector: What SEOs Got Wrong First"
+slug: "llm-poisoning-attack-vector"
 date: 2025-02-22
 type_label: essay
 tags: [ai, security, seo]

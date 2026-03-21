@@ -4,7 +4,7 @@
 
 {{- $title := .Title -}}
 {{- if .IsHome -}}
-  <title>~/gianna - signal / noise</title>
+  <title>Gianna Brachetti-Truskawa - SEO, AI &amp; Security Writing</title>
 {{- else -}}
   <title>{{ $title }} · ~/gianna</title>
 {{- end -}}
@@ -13,7 +13,7 @@
 <meta name="description" content="{{ . }}">
 {{- end }}
 
-{{- if or (.Params.noindex) (eq .Section "notes") }}
+{{- if or (.Params.noindex) (eq .Section "notes") (eq .Kind "term") (eq .Kind "taxonomy") }}
 <meta name="robots" content="noindex, follow">
 {{- end }}
 
@@ -28,16 +28,14 @@
 {{- if eq .Section "writing" }}
 <meta property="og:type" content="article">
 <meta property="article:published_time" content="{{ .Date.Format "2006-01-02" }}">
+<meta property="article:author" content="{{ .Site.Params.author }}">
 {{- else }}
 <meta property="og:type" content="website">
 {{- end }}
 
-{{- /* Fonts */ -}}
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
 
-{{- /* CSS bundle via Hugo Pipes */ -}}
+{{- /* CSS bundle via Hugo Pipes (fonts self-hosted via _fonts.css) */ -}}
+{{- $fonts := resources.Get "css/_fonts.css" -}}
 {{- $vars := resources.Get "css/_variables.css" -}}
 {{- $reset := resources.Get "css/_reset.css" -}}
 {{- $typo := resources.Get "css/_typography.css" -}}
@@ -50,7 +48,7 @@
 {{- $note := resources.Get "css/_note.css" -}}
 {{- $page := resources.Get "css/_page.css" -}}
 {{- $four04 := resources.Get "css/_404.css" -}}
-{{- $css := slice $vars $reset $typo $grain $cursor $nav $footer $home $post $note $page $four04 | resources.Concat "css/main.css" | minify | fingerprint -}}
+{{- $css := slice $fonts $vars $reset $typo $grain $cursor $nav $footer $home $post $note $page $four04 | resources.Concat "css/main.css" | minify | fingerprint -}}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
 
 {{- /* RSS */ -}}

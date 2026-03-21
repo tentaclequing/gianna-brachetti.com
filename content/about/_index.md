@@ -1,39 +1,41 @@
 ---
-title: "About"
-description: "SEO strategist, language nerd, cephalopod enthusiast."
+title: "About Gianna"
+description: "Gianna Brachetti-Truskawa - SEO strategist, AI researcher, language nerd, cephalopod enthusiast."
 layout: list
-identity_label: "signal source"
-identity_name: "Gianna Brachetti-Truskawa"
-identity_role: "SEO strategist / AI researcher / language nerd"
-fact_grid:
+roles:
+  - "SEO strategist"
+  - "AI researcher"
+  - "language nerd"
+facts:
   - label: "based"
     value: "somewhere with good internet"
   - label: "working at"
     value: "an AI company, since 2020"
-    class: "accent"
+    colour: "accent"
   - label: "primary tools"
     value: "Obsidian / terminal / browser devtools"
   - label: "favourite organism"
     value: "octopus vulgaris"
-    class: "red"
+    colour: "red"
 currently:
   - "Reading about cephalopod cognition and prompt injection simultaneously, finding more overlap than expected"
   - "Thinking about what \"organic growth\" means when AI answers don't have URLs to click"
   - "Growing a monstera that has opinions about being moved"
   - "Learning to sit with unfinished notes instead of abandoning them"
-work_status: "not taking on new clients"
-work_headline: "I work best on problems other people have stopped finding interesting."
-work_body: |
-  My consultancy days are behind me. I'm not available for projects, retainers, or the kind of engagement that starts with a discovery call and ends with a slide deck.
+work:
+  status: "not taking on new clients"
+  headline: "I work best on problems<br>*other people have stopped finding interesting.*"
+  body: |
+    My consultancy days are behind me. I'm not available for projects, retainers, or the kind of engagement that starts with a discovery call and ends with a slide deck.
 
-  What I do have is a fairly unusual combination of things - deep SEO infrastructure knowledge, genuine security instincts, a working understanding of how language models read the web, and the patience to think carefully before saying anything. That combination doesn't come up often. When it does, it tends to matter.
-work_offer: "If you have something that genuinely couldn't be solved by anyone with a standard toolset - the kind of problem that's been sitting in a drawer because it's too weird to brief properly - that's the one worth sending. No guarantees, but those are the ones I read twice."
-contact_links:
+    What I do have is a fairly unusual combination of things - deep SEO infrastructure knowledge, genuine security instincts, a working understanding of how language models read the web, and the patience to think carefully before saying anything. That combination doesn't come up often. When it does, it tends to matter.
+  offer: "If you have something that genuinely couldn't be solved by anyone with a standard toolset - **the kind of problem that's been sitting in a drawer because it's too weird to brief properly** - that's the one worth sending. No guarantees, but those are the ones I read twice."
+contact:
   - label: "email"
     url: "mailto:hello@gianna-brachetti.com"
     primary: true
   - label: "linkedin"
-    url: "https://linkedin.com/in/gianna-brachetti"
+    url: "https://www.linkedin.com/in/gianna-brachetti-truskawa/"
   - label: "github"
     url: "https://github.com/tentaclequing"
 ---

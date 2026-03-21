@@ -26,7 +26,7 @@
       </div>
       <div class="identity-text">
         <p class="identity-label">signal source</p>
-        <h1 class="identity-name">{{ .Title }}</h1>
+        <h1 class="identity-name">Gianna Brachetti-Truskawa</h1>
         <p class="identity-role">
           {{ with .Params.roles }}
             {{ range $i, $r := . }}{{ if $i }}<span class="sep">/</span>{{ end }}{{ $r }}{{ end }}
@@ -68,7 +68,7 @@
 
   {{/* Work with me */}}
   {{ with .Params.work }}
-  <section class="work-block" aria-labelledby="work-heading">
+  <section class="work-block" id="work-with-me" aria-labelledby="work-heading">
     <p class="work-label" id="work-heading">work with me</p>
 
     <p class="work-status">{{ .status | default "not taking on new clients" }}</p>
@@ -93,6 +93,13 @@
       <span class="cv-nudge-text">Curious about the background?</span>
       <a class="cv-nudge-link" href="{{ "about/cv/" | relURL }}">
         view full CV <span class="arr">&rarr;</span>
+      </a>
+    </div>
+
+    <div class="cv-nudge" style="margin-top: 12px;">
+      <span class="cv-nudge-text">Prefer to hear me talk?</span>
+      <a class="cv-nudge-link" href="{{ "speaking/" | relURL }}">
+        see me speak <span class="arr">&rarr;</span>
       </a>
     </div>
   </section>
