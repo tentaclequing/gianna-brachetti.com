@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="A working note on prompt injection as an attack vector through search result snippets.">
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#000000">
+  <title>Prompt injection through search snippets · ~/yourname</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black:       #000000;
+      --white:       #E4E4DC;
+      --accent:      #00AAFF;
+      --accent-red:  #FF1F3D;
+      --dim:         #1E1E1C;
+      --muted:       #565650;
+      --border:      #161614;
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+      --col:         640px;
+
+      /* Status colors */
+      --fresh:     #4DCCFF;
+      --spreading: #FF1F3D;
+      --settled:   #565650;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    .skip-link {
+      position: absolute; top: -999px; left: -999px;
+      background: var(--accent); color: var(--black);
+      padding: 8px 16px; font-family: 'Fira Code', monospace; font-size: 12px; z-index: 99999;
+    }
+    .skip-link:focus { top: 16px; left: 16px; }
+
+    body {
+      background: var(--black); color: var(--white);
+      font-family: 'Fira Code', monospace; font-size: 13px; line-height: 1.75;
+      -webkit-font-smoothing: antialiased; overflow-x: hidden;
+      padding-bottom: calc(68px + var(--safe-bottom));
+    }
+
+    body::after {
+      content: ''; position: fixed; inset: -50%; width: 200%; height: 200%;
+      pointer-events: none; z-index: 9998; opacity: .028;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)'/%3E%3C/svg%3E");
+      animation: grain 8s steps(2) infinite;
+    }
+    @keyframes grain {
+      0%{transform:translate(0,0)} 20%{transform:translate(-5%,3%)}
+      40%{transform:translate(3%,-4%)} 60%{transform:translate(-4%,5%)}
+      80%{transform:translate(5%,-2%)} 100%{transform:translate(-2%,4%)}
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      *, *::before, *::after { cursor: none; }
+      .cursor {
+        position: fixed; top: 0; left: 0; width: 20px; height: 20px;
+        pointer-events: none; z-index: 10000; transform: translate(-50%,-50%);
+      }
+      .cursor::before {
+        content: ''; position: absolute; width: 1px; height: 100%; left: 50%; top: 0;
+        background: rgba(228,228,220,.6);
+      }
+      .cursor::after {
+        content: ''; position: absolute; height: 1px; width: 100%; top: 50%; left: 0;
+        background: rgba(228,228,220,.6);
+      }
+      .cursor.on-link::before, .cursor.on-link::after { background: var(--accent); }
+      .cursor-dot {
+        position: fixed; width: 4px; height: 4px; border-radius: 50%;
+        background: var(--accent); top: 0; left: 0; pointer-events: none;
+        z-index: 10001; transform: translate(-50%,-50%); box-shadow: 0 0 8px var(--accent);
+      }
+    }
+
+    .top-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 28px 56px;
+      background: linear-gradient(to bottom, rgba(0,0,0,.92) 0%, transparent 100%);
+    }
+    .nav-name {
+      font-family: 'Fira Code', monospace; font-size: 12px;
+      font-weight: 300; letter-spacing: .12em; color: var(--white); text-decoration: none;
+    }
+    .nav-name .prompt { color: var(--accent); }
+    .nav-links { display: flex; gap: 40px; list-style: none; }
+    .nav-links a {
+      font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none; position: relative; transition: color .25s;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 1px; background: var(--accent); transition: width .3s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .bottom-nav {
+      display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 500;
+      background: rgba(4,4,4,.96);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid var(--border);
+      padding: 10px 0 calc(10px + var(--safe-bottom));
+    }
+    .bottom-nav-inner { display: flex; justify-content: space-around; align-items: center; }
+    .bnav-item {
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+      text-decoration: none; color: var(--muted);
+      min-width: 64px; min-height: 44px; padding: 6px 12px;
+      transition: color .2s; -webkit-tap-highlight-color: transparent;
+    }
+    .bnav-item:hover, .bnav-item.active { color: var(--accent); }
+    .bnav-item svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .bnav-label { font-family: 'Fira Code', monospace; font-size: 9px; letter-spacing: .14em; text-transform: uppercase; }
+
+    /* Note layout */
+    .note-wrap {
+      max-width: var(--col);
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    .back-bar {
+      padding-top: 116px;
+      margin-bottom: 48px;
+    }
+    .back-link {
+      font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 10px; transition: color .2s;
+    }
+    .back-link .arrow { font-size: 13px; transition: transform .2s; }
+    .back-link:hover { color: var(--accent); }
+    .back-link:hover .arrow { transform: translateX(-3px); }
+
+    /* Status badge */
+    .note-status {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 9px; letter-spacing: .22em; text-transform: uppercase;
+      margin-bottom: 20px;
+      padding: 7px 14px;
+      border: 1px solid currentColor;
+    }
+    .note-status::before {
+      content: ''; width: 5px; height: 5px; border-radius: 50%; background: currentColor;
+    }
+    .note-status.fresh     { color: var(--fresh); }
+    .note-status.spreading { color: var(--spreading); animation: pulse-red 3s ease-in-out infinite; }
+    .note-status.settled   { color: var(--settled); }
+
+    @keyframes pulse-red {
+      0%, 100% { box-shadow: none; }
+      50%       { box-shadow: 0 0 12px rgba(255,31,61,.15); }
+    }
+
+    .note-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(32px, 5.5vw, 56px);
+      line-height: 1.08;
+      letter-spacing: -.02em;
+      margin-bottom: 28px;
+    }
+
+    /* Note meta — lighter than post */
+    .note-meta {
+      display: flex; gap: 28px; flex-wrap: wrap;
+      padding: 16px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 48px;
+    }
+    .note-meta-item {
+      display: flex; flex-direction: column; gap: 3px;
+    }
+    .nmeta-label {
+      font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted);
+    }
+    .nmeta-value { font-size: 11px; color: var(--white); }
+
+    /* Note body — intentionally rougher than post body */
+    .note-body {
+      font-size: 13px;
+      line-height: 1.9;
+      color: #B8B8B0;
+    }
+
+    .note-body p { margin-bottom: 1.6em; }
+
+    .note-body h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(20px, 3vw, 26px); font-weight: 400; font-style: italic;
+      color: var(--white); margin: 2em 0 .7em;
+    }
+
+    .note-body a {
+      color: var(--accent); text-decoration: none;
+      border-bottom: 1px solid rgba(0,170,255,.25); transition: border-color .2s;
+    }
+    .note-body a:hover { border-bottom-color: var(--accent); }
+
+    .note-body code {
+      font-family: 'Fira Code', monospace; font-size: .88em;
+      background: var(--dim); color: var(--accent); padding: 2px 7px;
+    }
+
+    .note-body strong { color: var(--white); font-weight: 500; }
+
+    /* Working note callout */
+    .wip-block {
+      border: 1px solid var(--dim);
+      border-left: 2px solid var(--accent-red);
+      padding: 18px 22px;
+      margin: 2em 0;
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+    .wip-block .wip-label {
+      font-size: 9px; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--accent-red); display: block; margin-bottom: 8px;
+    }
+
+    /* Inline todo / open question */
+    .open-q {
+      font-size: 11px; color: var(--muted);
+      padding-left: 20px; border-left: 1px solid var(--dim);
+      margin: .8em 0 .8em 0;
+      font-style: italic;
+    }
+    .open-q::before { content: '?  '; color: var(--accent-red); font-style: normal; }
+
+    /* ── Source block — link notes only ──────────────
+       Rendered when page.source_url is defined in frontmatter.
+       Sits between note-meta and note-body.
+    ───────────────────────────────────────────────── */
+    .source-block {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      padding: 16px 20px;
+      border: 1px solid var(--border);
+      border-left: 2px solid var(--accent);
+      margin-bottom: 40px;
+      text-decoration: none;
+      transition: border-color .25s, background .25s;
+      position: relative;
+    }
+    .source-block:hover {
+      background: rgba(0,170,255,.03);
+      border-color: rgba(0,170,255,.35);
+      border-left-color: var(--accent);
+    }
+
+    /* the arrow — sits right, always visible */
+    .source-block::after {
+      content: '↗';
+      position: absolute;
+      top: 16px; right: 16px;
+      font-size: 11px;
+      color: var(--muted);
+      transition: color .25s;
+    }
+    .source-block:hover::after { color: var(--accent); }
+
+    .source-label {
+      font-size: 9px; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--accent); flex-shrink: 0;
+      padding-top: 2px;
+    }
+    .source-label::after { content: '→'; margin-left: 6px; opacity: .6; }
+
+    .source-body {}
+    .source-publication {
+      font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--muted); display: block; margin-bottom: 3px;
+    }
+    .source-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px; font-weight: 400;
+      color: var(--white); line-height: 1.25;
+      /* leave room for the arrow */
+      padding-right: 28px; display: block;
+    }
+    .source-block:hover .source-title { color: var(--accent); }
+
+    /* ── Tags ─────────────────────────────────────── */
+    .tag-list {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 56px;
+    }
+    .tag {
+      font-size: 9px; letter-spacing: .16em; text-transform: uppercase;
+      border: 1px solid var(--dim); padding: 5px 12px; color: var(--muted);
+      text-decoration: none; transition: border-color .25s, color .25s;
+    }
+    .tag:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* Backlinks — unique to notes */
+    .backlinks {
+      border-top: 1px solid var(--border);
+      padding-top: 36px;
+      margin-bottom: 64px;
+    }
+    .backlinks-label {
+      font-size: 9px; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .backlinks-label::before {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+    .backlink-item {
+      display: flex; align-items: baseline; gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .backlink-item:hover .bl-title { color: var(--accent); }
+    .bl-arrow { font-size: 11px; color: var(--muted); flex-shrink: 0; }
+    .bl-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px; font-weight: 400; color: var(--white);
+      line-height: 1.2; transition: color .2s;
+    }
+    .bl-type {
+      font-size: 9px; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--muted); margin-left: auto; flex-shrink: 0;
+    }
+
+    footer {
+      padding: 28px 56px calc(28px + var(--safe-bottom));
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-left { font-size: 11px; color: var(--muted); }
+    .footer-left .name { color: var(--white); }
+    .footer-right { font-size: 10px; color: var(--dim); letter-spacing: .1em; }
+    .footer-right .uptime-val { color: var(--accent); }
+
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb { background: var(--dim); }
+
+    @media (max-width: 899px) {
+      .top-nav { padding: 24px 28px; }
+      .top-nav .nav-links { display: none; }
+      .bottom-nav { display: block; }
+      .note-wrap { padding: 0 20px; }
+      .back-bar { padding-top: 88px; }
+      footer { padding: 24px 20px; flex-direction: column; gap: 8px; align-items: flex-start; }
+    }
+    @media (min-width: 900px) {
+      body { padding-bottom: 0; }
+      .bottom-nav { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+<div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+
+<nav class="top-nav" aria-label="Primary navigation">
+  <a class="nav-name" href="/"><span class="prompt">~/</span>yourname</a>
+  <ul class="nav-links">
+    <li><a href="/writing">writing</a></li>
+    <li><a href="/notes" aria-current="page">notes</a></li>
+    <li><a href="/about">about</a></li>
+  </ul>
+</nav>
+
+<nav class="bottom-nav" aria-label="Mobile navigation">
+  <div class="bottom-nav-inner">
+    <a href="/" class="bnav-item" aria-label="Home">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12L12 3l9 9"/><path d="M5 10v9a1 1 0 001 1h4v-4h4v4h4a1 1 0 001-1v-9"/></svg>
+      <span class="bnav-label">home</span>
+    </a>
+    <a href="/writing" class="bnav-item" aria-label="Writing">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      <span class="bnav-label">writing</span>
+    </a>
+    <a href="/notes" class="bnav-item active" aria-label="Notes" aria-current="page">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+      <span class="bnav-label">notes</span>
+    </a>
+    <a href="/about" class="bnav-item" aria-label="About">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.58-7 8-7s8 3 8 7"/></svg>
+      <span class="bnav-label">about</span>
+    </a>
+  </div>
+</nav>
+
+<main id="main-content">
+  <div class="note-wrap">
+
+    <div class="back-bar">
+      <a class="back-link" href="/notes">
+        <span class="arrow">←</span> signal fragments
+      </a>
+    </div>
+
+    <header>
+      <div class="note-status fresh" aria-label="Status: fresh ink">fresh ink</div>
+      <h1 class="note-title">Why I keep returning to this piece on AI and epistemic cowardice</h1>
+      <div class="note-meta">
+        <div class="note-meta-item">
+          <span class="nmeta-label">planted</span>
+          <time class="nmeta-value" datetime="2025-03-12">2025-03-12</time>
+        </div>
+        <div class="note-meta-item">
+          <span class="nmeta-label">last tended</span>
+          <time class="nmeta-value" datetime="2025-03-12">2025-03-12</time>
+        </div>
+        <div class="note-meta-item">
+          <span class="nmeta-label">type</span>
+          <span class="nmeta-value">link note</span>
+        </div>
+      </div>
+
+      <!--
+        Jekyll: {% if page.source_url %}
+        Render this block only when source_url is defined in frontmatter:
+
+        ---
+        type: link
+        source_url: https://example.com/article
+        source_name: "Publication Name"
+        source_title: "Article title as published"
+        ---
+      -->
+      <a class="source-block"
+         href="https://example.com/article-on-ai-and-epistemic-cowardice"
+         target="_blank"
+         rel="noopener noreferrer"
+         aria-label="Read the source article: The Epistemic Cowardice of Safe AI Answers, by The Atlantic">
+        <span class="source-label" aria-hidden="true">source</span>
+        <span class="source-body">
+          <span class="source-publication">The Atlantic</span>
+          <span class="source-title">The Epistemic Cowardice of Safe AI Answers</span>
+        </span>
+      </a>
+      <!-- Jekyll: {% endif %} -->
+
+    </header>
+
+    <div class="note-body" id="note-body">
+
+      <p>The argument is simple and worth stating plainly: AI systems trained to avoid controversy don't just avoid controversy — they actively model a kind of intellectual cowardice that normalises hedging as default behaviour. Every "on the one hand / on the other hand" non-answer teaches readers that ambiguity is acceptable where clarity is possible.</p>
+
+      <p>What I find interesting is the SEO parallel. <strong>Hedged content ranks.</strong> It ranks because it matches the intent signals of users who are themselves uncertain. We've been inadvertently training search systems to reward exactly the same epistemic posture the author is criticising in AI.</p>
+
+      <div class="open-q">Is the "helpful, harmless, honest" framing fundamentally in tension with itself? If honesty sometimes means saying something uncomfortable, does harmlessness win by default?</div>
+
+      <p>The piece doesn't go here — it's more focused on the user experience of AI hedging — but I think the structural problem is the same. Optimising for the absence of harm is not the same as optimising for the presence of value. And both search and AI have quietly confused the two.</p>
+
+    </div>
+
+    <div style="border-top: 1px solid var(--border); padding-top: 36px; margin-top: 48px;">
+      <nav class="tag-list" aria-label="Tags">
+        <a class="tag" href="/tags/ai">ai</a>
+        <a class="tag" href="/tags/epistemics">epistemics</a>
+        <a class="tag" href="/tags/seo">seo</a>
+        <a class="tag" href="/tags/writing">writing</a>
+      </nav>
+    </div>
+
+    <!-- Backlinks — the digital garden superpower -->
+    <section class="backlinks" aria-labelledby="backlinks-label">
+      <p class="backlinks-label" id="backlinks-label">referenced by</p>
+      <a class="backlink-item" href="#">
+        <span class="bl-arrow">↩</span>
+        <span class="bl-title">On writing about things you can't fully explain</span>
+        <span class="bl-type">note</span>
+      </a>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-left">
+    <span class="name">~/yourname</span>&nbsp;&nbsp;
+    <span>built with jekyll &middot; obsidian &middot; patience</span>
+  </div>
+  <div class="footer-right">
+    UPTIME&nbsp;&nbsp;<span class="uptime-val" id="uptime">00:00:00</span>
+  </div>
+</footer>
+
+<script>
+  const isPointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (isPointer) {
+    const cursor = document.getElementById('cursor');
+    const dot    = document.getElementById('cursor-dot');
+    document.addEventListener('mousemove', e => {
+      cursor.style.transform = `translate(${e.clientX-10}px,${e.clientY-10}px)`;
+      dot.style.transform    = `translate(${e.clientX-2}px,${e.clientY-2}px)`;
+    });
+    document.querySelectorAll('a').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('on-link'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('on-link'));
+    });
+  }
+  const start = Date.now();
+  setInterval(() => {
+    const s = Math.floor((Date.now()-start)/1000);
+    document.getElementById('uptime').textContent =
+      [Math.floor(s/3600), Math.floor((s%3600)/60), s%60].map(n=>String(n).padStart(2,'0')).join(':');
+  }, 1000);
+</script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+{{ define "main" }}
+
+<div class="about-wrap">
+
+  <div class="about-header">
+    <div class="identity">
+      <div class="hair-swatch" aria-label="Colour palette: henna red and electric blue">
+        <div class="swatch-red" title="henna red"></div>
+        <div class="swatch-blue" title="electric blue"></div>
+        <p class="swatch-label">colour<br>palette</p>
+      </div>
+      <div class="identity-text">
+        <p class="identity-label">signal source</p>
+        <h1 class="identity-name">{{ .Title }}</h1>
+        <p class="identity-role">
+          {{ with .Params.roles }}
+            {{ range $i, $r := . }}{{ if $i }}<span class="sep">/</span>{{ end }}{{ $r }}{{ end }}
+          {{ end }}
+        </p>
+      </div>
+    </div>
+
+    <div class="about-body">
+      {{ .Content }}
+    </div>
+  </div>
+
+  {{ with .Params.facts }}
+  <div class="fact-grid">
+    {{ range . }}
+    <div class="fact-cell">
+      <p class="fact-label">{{ .label }}</p>
+      <p class="fact-value{{ with .colour }} {{ . }}{{ end }}">{{ .value }}</p>
+    </div>
+    {{ end }}
+  </div>
+  {{ end }}
+
+  {{ with .Params.body_extra }}
+  <div class="about-body">
+    {{ . | markdownify }}
+  </div>
+  {{ end }}
+
+  {{ with .Params.currently }}
+  <div class="currently" aria-label="Currently section">
+    <p class="currently-label">// currently</p>
+    {{ range . }}
+    <p class="currently-item">{{ . }}</p>
+    {{ end }}
+  </div>
+  {{ end }}
+
+  {{/* Work with me */}}
+  {{ with .Params.work }}
+  <section class="work-block" aria-labelledby="work-heading">
+    <p class="work-label" id="work-heading">work with me</p>
+
+    <p class="work-status">{{ .status | default "not taking on new clients" }}</p>
+
+    {{ with .headline }}
+    <h2 class="work-headline">{{ . | markdownify }}</h2>
+    {{ end }}
+
+    {{ with .body }}
+    <div class="work-body">
+      {{ . | markdownify }}
+    </div>
+    {{ end }}
+
+    {{ with .offer }}
+    <div class="work-offer" role="note">
+      {{ . | markdownify }}
+    </div>
+    {{ end }}
+
+    <div class="cv-nudge">
+      <span class="cv-nudge-text">Curious about the background?</span>
+      <a class="cv-nudge-link" href="{{ "about/cv/" | relURL }}">
+        view full CV <span class="arr">&rarr;</span>
+      </a>
+    </div>
+  </section>
+  {{ end }}
+
+  {{/* Contact */}}
+  {{ with .Params.contact }}
+  <div class="contact-block">
+    <p class="contact-label">// get in touch</p>
+    <div class="contact-links">
+      {{ range . }}
+      <a class="contact-link{{ if .primary }} primary{{ end }}" href="{{ .url }}"{{ if not .primary }} rel="noopener noreferrer"{{ end }}>{{ .label }}</a>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
+
+</div>
+
+{{ end }}

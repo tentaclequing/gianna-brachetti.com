@@ -1,0 +1,63 @@
+/* Top nav (desktop) */
+.top-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 28px 56px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, .92) 0%, transparent 100%);
+}
+.nav-name {
+  font-family: 'Fira Code', monospace; font-size: 12px;
+  font-weight: 300; letter-spacing: .12em; color: var(--white); text-decoration: none;
+}
+.nav-name .prompt { color: var(--accent); }
+.nav-links { display: flex; gap: 40px; list-style: none; }
+.nav-links a {
+  font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none; position: relative; transition: color .25s;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0;
+  width: 0; height: 1px; background: var(--accent); transition: width .3s;
+}
+.nav-links a:hover,
+.nav-links a:focus-visible,
+.nav-links a[aria-current] { color: var(--white); outline: none; }
+.nav-links a:hover::after,
+.nav-links a:focus-visible::after,
+.nav-links a[aria-current]::after { width: 100%; }
+
+/* Bottom nav (mobile) */
+.bottom-nav {
+  display: none;
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 500;
+  background: rgba(4, 4, 4, .96);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid var(--border);
+  padding: 10px 0 calc(10px + var(--safe-bottom));
+}
+.bottom-nav-inner { display: flex; justify-content: space-around; align-items: center; }
+.bnav-item {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  text-decoration: none; color: var(--muted);
+  min-width: 64px; min-height: 44px; padding: 6px 12px;
+  transition: color .2s; -webkit-tap-highlight-color: transparent;
+}
+.bnav-item:hover,
+.bnav-item.active { color: var(--accent); }
+.bnav-item svg {
+  width: 18px; height: 18px; stroke: currentColor; fill: none;
+  stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+}
+.bnav-label {
+  font-family: 'Fira Code', monospace; font-size: 9px;
+  letter-spacing: .14em; text-transform: uppercase;
+}
+
+@media (max-width: 899px) {
+  .top-nav { padding: 24px 28px; }
+  .top-nav .nav-links { display: none; }
+  .bottom-nav { display: block; }
+}
+@media (min-width: 900px) {
+  .bottom-nav { display: none !important; }
+}

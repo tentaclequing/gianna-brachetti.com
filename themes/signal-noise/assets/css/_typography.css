@@ -1,0 +1,8 @@
+/* Fonts loaded via Google Fonts link in head partial */
+
+a { color: var(--accent); text-decoration: none; }
+
+::selection {
+  background: rgba(0, 170, 255, .15);
+  color: var(--white);
+}

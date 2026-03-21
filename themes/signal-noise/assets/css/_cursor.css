@@ -1,0 +1,36 @@
+@media (hover: hover) and (pointer: fine) {
+  *, *::before, *::after { cursor: none; }
+
+  .cursor {
+    position: fixed; top: 0; left: 0; width: 20px; height: 20px;
+    pointer-events: none; z-index: 10000; transform: translate(-50%, -50%);
+  }
+  .cursor::before {
+    content: ''; position: absolute;
+    width: 1px; height: 100%; left: 50%; top: 0;
+    background: rgba(228, 228, 220, .6); transition: background .2s;
+  }
+  .cursor::after {
+    content: ''; position: absolute;
+    height: 1px; width: 100%; top: 50%; left: 0;
+    background: rgba(228, 228, 220, .6); transition: background .2s;
+  }
+  .cursor.on-link::before,
+  .cursor.on-link::after { background: var(--accent); }
+
+  .cursor-dot {
+    position: fixed; width: 4px; height: 4px; border-radius: 50%;
+    background: var(--accent); top: 0; left: 0;
+    pointer-events: none; z-index: 10001; transform: translate(-50%, -50%);
+    box-shadow: 0 0 8px var(--accent);
+    transition: background .2s, box-shadow .2s;
+  }
+  .cursor-dot.red {
+    background: var(--accent-red);
+    box-shadow: 0 0 8px var(--accent-red);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-dot { transition: none; }
+}

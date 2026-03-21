@@ -1,0 +1,127 @@
+{{ define "main" }}
+
+<div class="page-wrap speaking-wrap">
+
+  {{/* Page header */}}
+  <header class="page-header">
+    <p class="page-label">on the record</p>
+    <h1 class="page-title">Hear me <em>speak</em></h1>
+    {{ with .Description }}
+    <p class="page-desc">{{ . }}</p>
+    {{ end }}
+  </header>
+
+  {{/* Upcoming */}}
+  <section aria-labelledby="upcoming-label">
+    <div class="section-rule">
+      <span class="section-rule-label" id="upcoming-label">transmission pending</span>
+      <div class="section-rule-line" aria-hidden="true"></div>
+    </div>
+
+    {{ $upcoming := where (.Params.talks | default slice) "upcoming" true }}
+    {{ if $upcoming }}
+    <div class="upcoming-live">
+      {{ range $upcoming }}
+      <article class="talk-entry">
+        <div class="talk-event">
+          <p class="talk-conf">{{ .conference }}</p>
+          <p class="talk-location">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            {{ .location }}
+          </p>
+          <span class="talk-date-chip">{{ .date }}</span>
+        </div>
+        <div class="talk-content">
+          <h2 class="talk-title">{{ .title }}</h2>
+          {{ with .description }}<p class="talk-desc">{{ . }}</p>{{ end }}
+          {{ with .tags }}
+          <div class="talk-tags">
+            {{ range . }}<span class="talk-tag">{{ . }}</span>{{ end }}
+          </div>
+          {{ end }}
+        </div>
+      </article>
+      {{ end }}
+    </div>
+    {{ else }}
+    <div class="upcoming-empty" aria-label="No upcoming events">
+      <span class="upcoming-year" aria-hidden="true">{{ now.Year }}</span>
+      <p class="upcoming-empty-text">
+        {{ .Params.empty_state | default "the monstera is taller.<br>the calendar is open." | safeHTML }}
+      </p>
+      <p class="upcoming-invite">
+        <span>if you have a room worth the problem</span>
+        <span class="arr" aria-hidden="true">&rarr;</span>
+        {{ with .Params.email }}
+        <a href="mailto:{{ . }}" aria-label="Send an invitation by email">{{ . }}</a>
+        {{ end }}
+      </p>
+    </div>
+    {{ end }}
+  </section>
+
+  {{/* Past talks - grouped by year */}}
+  {{ $past := where (.Params.talks | default slice) "upcoming" "ne" true }}
+  {{ if $past }}
+  <section aria-labelledby="past-label">
+    <div class="section-rule">
+      <span class="section-rule-label" id="past-label">past transmissions</span>
+      <div class="section-rule-line" aria-hidden="true"></div>
+    </div>
+
+    {{ $years := slice }}
+    {{ range $past }}
+      {{ $y := .year | default "Unknown" }}
+      {{ if not (in $years $y) }}
+        {{ $years = $years | append $y }}
+      {{ end }}
+    {{ end }}
+
+    {{ range $year := $years }}
+    <div class="year-group">
+      <p class="year-stamp" aria-label="Year {{ $year }}">{{ $year }}</p>
+
+      {{ range $past }}
+        {{ if eq (.year | default "Unknown") $year }}
+        <article class="talk-entry">
+          <div class="talk-event">
+            <p class="talk-conf">{{ .conference }}</p>
+            <p class="talk-location">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              {{ .location }}
+            </p>
+            <span class="talk-date-chip">{{ .date }}</span>
+          </div>
+          <div class="talk-content">
+            <h2 class="talk-title">{{ .title }}</h2>
+            {{ with .description }}<p class="talk-desc">{{ . }}</p>{{ end }}
+            {{ with .tags }}
+            <div class="talk-tags">
+              {{ range . }}<span class="talk-tag">{{ . }}</span>{{ end }}
+            </div>
+            {{ end }}
+          </div>
+        </article>
+        {{ end }}
+      {{ end }}
+    </div>
+    {{ end }}
+  </section>
+  {{ end }}
+
+  {{/* Invite footer */}}
+  <div class="speaking-footer">
+    <p class="sf-label">// invite</p>
+    <p class="sf-text">
+      {{ with .Params.invite_text }}{{ . | markdownify }}{{ else }}
+      I speak on search, AI, language and the security angles where they intersect.
+      Talks are always written from scratch.
+      If the topic fits and the audience is curious,
+      {{ with $.Params.email }}<a href="mailto:{{ . }}">send a note</a>{{ end }}.
+      {{ end }}
+    </p>
+  </div>
+
+</div>
+
+{{ end }}

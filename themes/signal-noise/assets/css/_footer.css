@@ -1,0 +1,16 @@
+footer {
+  padding: 28px 56px calc(28px + var(--safe-bottom));
+  border-top: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.footer-left { font-size: 11px; color: var(--muted); }
+.footer-left .name { color: var(--white); }
+.footer-right { font-size: 10px; color: var(--dim); letter-spacing: .1em; }
+.footer-right .uptime-val { color: var(--accent); }
+
+@media (max-width: 899px) {
+  footer {
+    padding: 24px 20px;
+    flex-direction: column; gap: 8px; align-items: flex-start;
+  }
+}

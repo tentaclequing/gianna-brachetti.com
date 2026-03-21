@@ -1,0 +1,18 @@
+{{- $page := . -}}
+{{- $status := $page.Params.status | default "settled" -}}
+<div class="fragment-card">
+  <span class="fragment-status {{ $status }}">
+    {{- if eq $status "fresh" }}fresh ink
+    {{- else if eq $status "spreading" }}spreading
+    {{- else }}settled
+    {{- end -}}
+  </span>
+  <a class="fragment-title" href="{{ $page.Permalink }}">{{ $page.Title }}</a>
+  <p class="fragment-body">
+    {{- if $page.Params.description -}}
+      {{ $page.Params.description }}
+    {{- else -}}
+      {{ $page.Plain | truncate 160 }}
+    {{- end -}}
+  </p>
+</div>

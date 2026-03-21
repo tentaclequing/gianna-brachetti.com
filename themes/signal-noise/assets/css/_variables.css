@@ -1,0 +1,14 @@
+:root {
+  --black:       #000000;
+  --white:       #E4E4DC;
+  --accent:      #00AAFF;
+  --accent-red:  #FF1F3D;
+  --dim:         #1E1E1C;
+  --muted:       #565650;
+  --border:      #161614;
+  --fresh:       #4DCCFF;
+  --spreading:   #FF1F3D;
+  --settled:     #565650;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --col:         680px;
+}

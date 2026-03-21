@@ -1,0 +1,63 @@
+{{ define "main" }}
+
+<header class="page-header">
+  <p class="page-label">digital garden</p>
+  <h1 class="page-title">Signal <em>fragments</em></h1>
+  <p class="page-desc">Half-formed ideas, working notes, and things I keep returning to. These aren't finished. That's the point.</p>
+  <div class="status-legend" aria-label="Status key">
+    <span class="legend-item"><span class="legend-dot fresh" aria-hidden="true"></span><span class="legend-label fresh">fresh ink</span><span class="legend-desc">&nbsp;- newly planted</span></span>
+    <span class="legend-item"><span class="legend-dot spreading" aria-hidden="true"></span><span class="legend-label spreading">spreading</span><span class="legend-desc">&nbsp;- actively growing</span></span>
+    <span class="legend-item"><span class="legend-dot settled" aria-hidden="true"></span><span class="legend-label settled">settled</span><span class="legend-desc">&nbsp;- stable, still revisited</span></span>
+  </div>
+</header>
+
+<div class="filter-bar" role="tablist" aria-label="Filter by status">
+  <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">all</button>
+  <button class="filter-btn" data-filter="fresh" role="tab" aria-selected="false"><span class="fbtn-dot" aria-hidden="true"></span>fresh ink</button>
+  <button class="filter-btn" data-filter="spreading" role="tab" aria-selected="false"><span class="fbtn-dot" aria-hidden="true"></span>spreading</button>
+  <button class="filter-btn" data-filter="settled" role="tab" aria-selected="false"><span class="fbtn-dot" aria-hidden="true"></span>settled</button>
+</div>
+
+<div class="notes-grid">
+  {{ range .Pages }}
+  {{ $status := .Params.status | default "fresh" }}
+  {{ $isLink := isset .Params "source_url" }}
+  <a class="note-card{{ if $isLink }} link-note{{ end }}" href="{{ .RelPermalink }}" data-status="{{ $status }}">
+    <span class="note-status {{ $status }}">{{ if eq $status "fresh" }}fresh ink{{ else }}{{ $status }}{{ end }}</span>
+    {{ if $isLink }}
+    <span class="note-card-source">{{ .Params.source_name }}</span>
+    {{ end }}
+    <span class="note-title">{{ .Title }}</span>
+    <p class="note-body-preview">{{ .Summary | plainify | truncate 180 }}</p>
+    <div class="note-footer">
+      <time class="note-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2006" }}</time>
+      {{ with .Params.tags }}
+      <div class="note-tags">
+        {{ range . }}<span class="ntag">{{ . }}</span>{{ end }}
+      </div>
+      {{ end }}
+    </div>
+  </a>
+  {{ end }}
+</div>
+
+{{ end }}
+
+{{ define "scripts" }}
+<script>
+  (function() {
+    var btns  = document.querySelectorAll('.filter-btn');
+    var cards = document.querySelectorAll('.note-card');
+    btns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        btns.forEach(function(b) { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+        btn.classList.add('active'); btn.setAttribute('aria-selected','true');
+        var f = btn.dataset.filter;
+        cards.forEach(function(c) {
+          c.classList.toggle('hidden', f !== 'all' && c.dataset.status !== f);
+        });
+      });
+    });
+  })();
+</script>
+{{ end }}

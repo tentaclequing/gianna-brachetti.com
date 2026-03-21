@@ -1,0 +1,20 @@
+<nav class="bottom-nav" aria-label="Mobile navigation">
+  <div class="bottom-nav-inner">
+    <a href="/" class="bnav-item{{ if .IsHome }} active{{ end }}" aria-label="Home"{{ if .IsHome }} aria-current="page"{{ end }}>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12L12 3l9 9"/><path d="M5 10v9a1 1 0 001 1h4v-4h4v4h4a1 1 0 001-1v-9"/></svg>
+      <span class="bnav-label">home</span>
+    </a>
+    <a href="/writing/" class="bnav-item{{ if eq .Section "writing" }} active{{ end }}" aria-label="Writing"{{ if eq .Section "writing" }} aria-current="page"{{ end }}>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      <span class="bnav-label">writing</span>
+    </a>
+    <a href="/notes/" class="bnav-item{{ if eq .Section "notes" }} active{{ end }}" aria-label="Notes"{{ if eq .Section "notes" }} aria-current="page"{{ end }}>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+      <span class="bnav-label">notes</span>
+    </a>
+    <a href="/about/" class="bnav-item{{ if or (eq .Section "about") (eq .Type "about") }} active{{ end }}" aria-label="About"{{ if or (eq .Section "about") (eq .Type "about") }} aria-current="page"{{ end }}>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.58-7 8-7s8 3 8 7"/></svg>
+      <span class="bnav-label">about</span>
+    </a>
+  </div>
+</nav>

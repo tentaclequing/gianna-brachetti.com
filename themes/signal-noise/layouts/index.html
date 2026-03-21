@@ -1,0 +1,187 @@
+{{ define "main" }}
+{{- $writing := where .Site.RegularPages "Section" "writing" -}}
+{{- $notes := where .Site.RegularPages "Section" "notes" -}}
+{{- $transmissions := len $writing -}}
+{{- $fragments := len $notes -}}
+
+{{- /* ── Easter egg overlay ─────────────────────────── */ -}}
+<div class="easter-egg" id="easter-egg" role="dialog" aria-label="Secret terminal" aria-modal="true">
+  <div class="egg-terminal">
+    <p class="egg-line"         id="el1">&gt; INK CLOUD ACTIVATED</p>
+    <p class="egg-line divider" id="el2">&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;</p>
+    <p class="egg-line dim"     id="el3">&gt; adaptive camouflage: engaged</p>
+    <p class="egg-line dim"     id="el4">&nbsp;</p>
+    <p class="egg-line white"   id="el5">&nbsp;&nbsp;ARMS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;08&nbsp;&nbsp;&nbsp;(distributed intel)</p>
+    <p class="egg-line dim"     id="el6">&nbsp;&nbsp;NEURONS&nbsp;&nbsp;&nbsp;<span id="egg-ua">···</span>&nbsp;&nbsp;</p>
+    <p class="egg-line dim"     id="el7">&nbsp;&nbsp;HABITAT&nbsp;&nbsp;&nbsp;THE INTERNET</p>
+    <p class="egg-line red"     id="el8">&nbsp;&nbsp;THREAT&nbsp;&nbsp;&nbsp;&nbsp;ZERO - they see what I allow</p>
+    <p class="egg-line dim"     id="el9">&nbsp;</p>
+    <p class="egg-line divider" id="el10">&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;</p>
+    <p class="egg-line"         id="el11">&gt; good crawlers find what they deserve.</p>
+    <p class="egg-line dim"     id="el12">&gt; the rest get ink. <span class="blink">_</span></p>
+    <p class="egg-close"        id="egg-close">press <kbd>[ESC]</kbd> to surface</p>
+  </div>
+</div>
+
+{{- /* ── Hero ───────────────────────────────────────── */ -}}
+<section class="hero" aria-label="Introduction">
+  {{- partial "octopus.html" . -}}
+
+  <p class="hero-label" role="doc-subtitle">signal source</p>
+  <h1 class="hero-headline">Signal, <em>noise,</em> and the things I notice in between.</h1>
+  <div class="hero-meta">
+    <p class="hero-desc">
+      Long essays, sharp observations and experiments at the intersection of search, AI and the occasional unsettling security rabbit hole.
+    </p>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">{{ $transmissions }}</span>
+        <span class="stat-label">transmissions</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">{{ $fragments }}</span>
+        <span class="stat-label">signal fragments</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{- /* ── Recent writing ─────────────────────────────── */ -}}
+<div class="home-content">
+  {{- $recentPosts := first 4 (sort $writing "Date" "desc") -}}
+  {{- if $recentPosts }}
+  <section class="reveal" aria-labelledby="writing-heading">
+    <div class="section-header">
+      <h2 class="section-title" id="writing-heading">recent transmissions</h2>
+      <a class="section-meta" href="{{ "writing" | relURL }}">view all &rarr;</a>
+    </div>
+    <div class="posts-grid">
+      {{- range $i, $p := $recentPosts -}}
+        {{- if eq $i 0 -}}
+          {{ partial "post-card.html" (dict "page" $p "featured" true) }}
+        {{- else -}}
+          {{ partial "post-card.html" (dict "page" $p "featured" false) }}
+        {{- end -}}
+      {{- end }}
+    </div>
+  </section>
+  {{- end }}
+
+  {{- /* ── Garden fragments ───────────────────────────── */ -}}
+  {{- $recentNotes := first 3 (sort $notes "Date" "desc") -}}
+  {{- if $recentNotes }}
+  <section class="reveal" aria-labelledby="garden-heading">
+    <div class="section-header">
+      <h2 class="section-title" id="garden-heading">signal fragments</h2>
+      <a class="section-meta" href="{{ "notes" | relURL }}">view all &rarr;</a>
+    </div>
+    <div class="garden-grid">
+      {{- range $recentNotes -}}
+        {{ partial "note-card.html" . }}
+      {{- end }}
+    </div>
+  </section>
+  {{- end }}
+</div>
+{{ end }}
+
+{{ define "scripts" }}
+<script>
+  /* Scroll reveal */
+  (function() {
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+      });
+    }, { threshold: 0.06 });
+    document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
+  })();
+
+  /* Trail canvas */
+  (function() {
+    var isPointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    var canvas = document.getElementById('trail-canvas');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var particles = [];
+
+    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    resize();
+    window.addEventListener('resize', resize);
+
+    if (isPointer) {
+      document.addEventListener('mousemove', function(e) {
+        particles.push({ x: e.clientX, y: e.clientY, alpha: 0.45, radius: 1.3,
+          hue: Math.random() > 0.85 ? 'red' : 'blue', burst: false });
+      });
+      document.addEventListener('click', function(e) {
+        for (var i = 0; i < 20; i++) {
+          var a = (Math.PI * 2 / 20) * i;
+          var s = 1.8 + Math.random() * 2.8;
+          particles.push({ x: e.clientX, y: e.clientY, vx: Math.cos(a)*s, vy: Math.sin(a)*s,
+            alpha: 0.75, radius: 1.8 + Math.random(), hue: Math.random() > 0.5 ? 'red' : 'blue', burst: true });
+        }
+      });
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles = particles.filter(function(p) { return p.alpha > 0.01; });
+      for (var j = 0; j < particles.length; j++) {
+        var p = particles[j];
+        var c = p.hue === 'red' ? '255,31,61' : '0,170,255';
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(' + c + ',' + p.alpha + ')';
+        ctx.fill();
+        if (p.burst) { p.x += p.vx; p.y += p.vy; p.vx *= 0.91; p.vy *= 0.91; }
+        p.alpha  *= 0.80;
+        p.radius *= 0.93;
+      }
+      requestAnimationFrame(animate);
+    }
+    animate();
+  })();
+
+  /* Easter egg - Konami code */
+  (function() {
+    var KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+    var ki = 0;
+    var overlay = document.getElementById('easter-egg');
+    if (!overlay) return;
+
+    var uaEl = document.getElementById('egg-ua');
+    if (uaEl) {
+      uaEl.textContent = navigator.userAgent.indexOf('Mobile') > -1 ? 'MOBILE_CRAWLER' : 'DESKTOP_AGENT';
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === KONAMI[ki]) { ki++; if (ki === KONAMI.length) { triggerEgg(); ki = 0; } }
+      else ki = e.key === KONAMI[0] ? 1 : 0;
+      if (e.key === 'Escape') closeEgg();
+    });
+
+    function triggerEgg() {
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      var ids = ['el1','el2','el3','el4','el5','el6','el7','el8','el9','el10','el11','el12'];
+      ids.forEach(function(id, i) {
+        setTimeout(function() { var el = document.getElementById(id); if (el) el.classList.add('animate'); }, i * 85);
+      });
+      setTimeout(function() {
+        var cls = document.getElementById('egg-close');
+        if (cls) cls.classList.add('animate');
+      }, 12 * 85 + 80);
+    }
+
+    function closeEgg() {
+      if (!overlay.classList.contains('active')) return;
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+      document.querySelectorAll('.egg-line, .egg-close').forEach(function(el) { el.classList.remove('animate'); });
+    }
+
+    overlay.addEventListener('click', function(e) { if (e.target === overlay) closeEgg(); });
+  })();
+</script>
+{{ end }}

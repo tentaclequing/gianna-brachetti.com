@@ -1,0 +1,88 @@
+{{ define "main" }}
+
+<div class="progress-bar" id="progress" aria-hidden="true"></div>
+
+<div class="article-wrap">
+
+  <div class="back-bar">
+    <a class="back-link" href="/writing/">
+      <span class="arrow">&larr;</span> all writing
+    </a>
+  </div>
+
+  <header class="post-header">
+    {{ $type := .Params.type_label | default "essay" }}
+    {{ $readTime := .ReadingTime }}
+    {{ with .Params.reading_time }}{{ $readTime = . }}{{ end }}
+    <p class="post-type">{{ $type }} &middot; {{ printf "%02d" $readTime }} min read</p>
+    <h1 class="post-title">{{ .Title }}</h1>
+    <div class="post-meta-bar" role="contentinfo">
+      <div class="meta-cell">
+        <span class="meta-label">published</span>
+        <time class="meta-value" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+      </div>
+      <div class="meta-cell">
+        <span class="meta-label">read time</span>
+        <span class="meta-value">{{ printf "%02d" $readTime }} min</span>
+      </div>
+      <div class="meta-cell">
+        <span class="meta-label">type</span>
+        <span class="meta-value">{{ $type }}</span>
+      </div>
+    </div>
+  </header>
+
+  <article class="post-body" id="post-body">
+    {{ .Content }}
+  </article>
+
+  <footer class="post-footer">
+    {{ with .Params.tags }}
+    <nav class="tag-list" aria-label="Post tags">
+      {{ range . }}
+      <a class="tag" href="{{ "/tags/" | relURL }}{{ . | urlize }}/">{{ . }}</a>
+      {{ end }}
+    </nav>
+    {{ end }}
+
+    <nav class="post-nav" aria-label="Previous and next posts">
+      {{ with .PrevInSection }}
+      <a class="post-nav-item prev" href="{{ .RelPermalink }}">
+        <span class="pnav-label">&larr; previous</span>
+        <span class="pnav-title">{{ .Title }}</span>
+      </a>
+      {{ else }}
+      <span class="post-nav-item prev"></span>
+      {{ end }}
+      {{ with .NextInSection }}
+      <a class="post-nav-item next" href="{{ .RelPermalink }}">
+        <span class="pnav-label">next &rarr;</span>
+        <span class="pnav-title">{{ .Title }}</span>
+      </a>
+      {{ else }}
+      <span class="post-nav-item next"></span>
+      {{ end }}
+    </nav>
+  </footer>
+
+</div>
+
+{{ end }}
+
+{{ define "scripts" }}
+<script>
+  (function() {
+    var bar  = document.getElementById('progress');
+    var body = document.getElementById('post-body');
+    if (bar && body) {
+      window.addEventListener('scroll', function() {
+        var rect = body.getBoundingClientRect();
+        var total = body.offsetHeight - window.innerHeight;
+        var scrolled = -rect.top;
+        var pct = Math.min(100, Math.max(0, (scrolled / total) * 100));
+        bar.style.width = pct + '%';
+      }, { passive: true });
+    }
+  })();
+</script>
+{{ end }}

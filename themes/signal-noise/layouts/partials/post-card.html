@@ -1,0 +1,19 @@
+{{- $featured := .featured | default false -}}
+{{- $page := .page -}}
+<article class="post-card{{ if $featured }} featured{{ end }}">
+  <div class="post-meta">
+    <time datetime="{{ $page.Date.Format "2006-01-02" }}">{{ $page.Date.Format "2006-01-02" }}</time>
+    <span>{{ printf "%02d" $page.ReadingTime }} min{{ if $featured }} read{{ end }}</span>
+  </div>
+  <a class="post-title" href="{{ $page.Permalink }}">{{ $page.Title }}</a>
+  {{- if and $featured $page.Params.description }}
+  <p class="post-excerpt">{{ $page.Params.description }}</p>
+  {{- end }}
+  {{- with $page.Params.type_label }}
+  <span class="post-tag">{{ . }}</span>
+  {{- else }}
+    {{- with $page.Params.tags }}
+    <span class="post-tag">{{ delimit . " &middot; " }}</span>
+    {{- end }}
+  {{- end }}
+</article>

@@ -1,0 +1,41 @@
+baseURL = "https://gianna-brachetti.com/"
+languageCode = "en"
+title = "~/gianna"
+theme = "signal-noise"
+enableRobotsTXT = true
+
+[taxonomies]
+  tag = "tags"
+
+[permalinks]
+  [permalinks.page]
+    writing = "/writing/:slug/"
+    notes = "/notes/:slug/"
+  [permalinks.section]
+    writing = "/writing/"
+    notes = "/notes/"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.goldmark.extensions]
+    strikethrough = true
+    table = true
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML"]
+  taxonomy = ["HTML"]
+  term = ["HTML"]
+
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+
+[params]
+  description = "Long essays, sharp observations and experiments at the intersection of search, AI and security."
+  author = "Gianna Brachetti-Truskawa"
+  email = "hello@gianna-brachetti.com"
+  github = "https://github.com/tentaclequing"
+  linkedin = "https://linkedin.com/in/gianna-brachetti-truskawa"

@@ -1,0 +1,85 @@
+{{ define "main" }}
+
+<div class="note-wrap">
+
+  <div class="back-bar">
+    <a class="back-link" href="/notes/">
+      <span class="arrow">&larr;</span> signal fragments
+    </a>
+  </div>
+
+  <header>
+    {{ $status := .Params.status | default "fresh" }}
+    <div class="note-status {{ $status }}" aria-label="Status: {{ if eq $status "fresh" }}fresh ink{{ else }}{{ $status }}{{ end }}">{{ if eq $status "fresh" }}fresh ink{{ else }}{{ $status }}{{ end }}</div>
+    <h1 class="note-title">{{ .Title }}</h1>
+    <div class="note-meta">
+      <div class="note-meta-item">
+        <span class="nmeta-label">planted</span>
+        <time class="nmeta-value" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+      </div>
+      <div class="note-meta-item">
+        <span class="nmeta-label">last tended</span>
+        <time class="nmeta-value" datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod.Format "2006-01-02" }}</time>
+      </div>
+      {{ with .Params.type_label }}
+      <div class="note-meta-item">
+        <span class="nmeta-label">type</span>
+        <span class="nmeta-value">{{ . }}</span>
+      </div>
+      {{ end }}
+    </div>
+
+    {{ with .Params.source_url }}
+    <a class="source-block"
+       href="{{ . }}"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="Read the source article: {{ $.Params.source_title }}, by {{ $.Params.source_name }}">
+      <span class="source-label" aria-hidden="true">source</span>
+      <span class="source-body">
+        <span class="source-publication">{{ $.Params.source_name }}</span>
+        <span class="source-title">{{ $.Params.source_title }}</span>
+      </span>
+    </a>
+    {{ end }}
+
+  </header>
+
+  <div class="note-body" id="note-body">
+    {{ .Content }}
+  </div>
+
+  {{ with .Params.tags }}
+  <div style="border-top:1px solid var(--border);padding-top:36px;margin-top:48px">
+    <nav class="tag-list" aria-label="Tags">
+      {{ range . }}
+      <a class="tag" href="{{ "/tags/" | relURL }}{{ . | urlize }}/">{{ . }}</a>
+      {{ end }}
+    </nav>
+  </div>
+  {{ end }}
+
+  {{- $currentPermalink := .Permalink -}}
+  {{- $backlinks := slice -}}
+  {{- range where .Site.RegularPages "Section" "notes" -}}
+    {{- if and (ne .Permalink $currentPermalink) (in .Content ($currentPermalink | relURL)) -}}
+      {{- $backlinks = $backlinks | append . -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{ if gt (len $backlinks) 0 }}
+  <section class="backlinks" aria-labelledby="backlinks-label">
+    <p class="backlinks-label" id="backlinks-label">referenced by</p>
+    {{ range $backlinks }}
+    <a class="backlink-item" href="{{ .RelPermalink }}">
+      <span class="bl-arrow">&#8617;</span>
+      <span class="bl-title">{{ .Title }}</span>
+      <span class="bl-type">{{ .Params.type_label | default "note" }}</span>
+    </a>
+    {{ end }}
+  </section>
+  {{ end }}
+
+</div>
+
+{{ end }}

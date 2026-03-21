@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#000000">
+  <title>404 — signal lost · ~/yourname</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black:      #000000;
+      --white:      #E4E4DC;
+      --accent:     #00AAFF;
+      --accent-red: #FF1F3D;
+      --dim:        #1E1E1C;
+      --muted:      #565650;
+      --border:     #161614;
+      --safe-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Fira Code', monospace;
+      font-size: 13px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      padding-bottom: calc(68px + var(--safe-bottom));
+    }
+
+    /* Grain */
+    body::after {
+      content: '';
+      position: fixed; inset: -50%; width: 200%; height: 200%;
+      pointer-events: none; z-index: 9998; opacity: 0.028;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)'/%3E%3C/svg%3E");
+      animation: grain 8s steps(2) infinite;
+    }
+    @keyframes grain {
+      0%  { transform:translate(0,0); }   20% { transform:translate(-5%,3%); }
+      40% { transform:translate(3%,-4%); } 60% { transform:translate(-4%,5%); }
+      80% { transform:translate(5%,-2%); } 100%{ transform:translate(-2%,4%); }
+    }
+
+    /* Cursor */
+    @media (hover: hover) and (pointer: fine) {
+      *, *::before, *::after { cursor: none; }
+      .cursor {
+        position: fixed; top: 0; left: 0; width: 20px; height: 20px;
+        pointer-events: none; z-index: 10000; transform: translate(-50%,-50%);
+      }
+      .cursor::before {
+        content: ''; position: absolute;
+        width: 1px; height: 100%; left: 50%; top: 0;
+        background: rgba(228,228,220,0.65);
+      }
+      .cursor::after {
+        content: ''; position: absolute;
+        height: 1px; width: 100%; top: 50%; left: 0;
+        background: rgba(228,228,220,0.65);
+      }
+      .cursor.on-link::before,
+      .cursor.on-link::after { background: var(--accent); }
+      .cursor-dot {
+        position: fixed; width: 4px; height: 4px; border-radius: 50%;
+        background: var(--accent); top: 0; left: 0;
+        pointer-events: none; z-index: 10001; transform: translate(-50%,-50%);
+        box-shadow: 0 0 8px var(--accent);
+      }
+    }
+
+    /* Top nav */
+    .top-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 28px 56px;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, transparent 100%);
+    }
+    .nav-name {
+      font-family: 'Fira Code', monospace; font-size: 12px;
+      font-weight: 300; letter-spacing: .12em; color: var(--white); text-decoration: none;
+    }
+    .nav-name .prompt { color: var(--accent); }
+    .nav-links { display: flex; gap: 40px; list-style: none; }
+    .nav-links a {
+      font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none; position: relative; transition: color .25s;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 1px; background: var(--accent); transition: width .3s ease;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* Bottom nav */
+    .bottom-nav {
+      display: none;
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 500;
+      background: rgba(4,4,4,0.96);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid var(--border);
+      padding: 10px 0 calc(10px + var(--safe-bottom));
+    }
+    .bottom-nav-inner { display: flex; justify-content: space-around; align-items: center; }
+    .bnav-item {
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+      text-decoration: none; color: var(--muted);
+      min-width: 64px; min-height: 44px; padding: 6px 12px;
+      transition: color .2s; -webkit-tap-highlight-color: transparent;
+    }
+    .bnav-item:hover { color: var(--accent); }
+    .bnav-item svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .bnav-label { font-family: 'Fira Code', monospace; font-size: 9px; letter-spacing: .14em; text-transform: uppercase; }
+
+    /* Main 404 content */
+    .not-found {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 120px 56px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Ghost number */
+    .ghost-num {
+      position: absolute;
+      right: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(180px, 28vw, 340px);
+      font-weight: 300;
+      font-style: italic;
+      color: transparent;
+      -webkit-text-stroke: 1px var(--border);
+      line-height: 1;
+      user-select: none;
+      pointer-events: none;
+      opacity: 0;
+      animation: fade-num 1s ease .1s forwards;
+    }
+    @keyframes fade-num { to { opacity: 1; } }
+
+    /* Lost octopus — smaller, dimmer, rotated */
+    .lost-ceph {
+      position: absolute;
+      left: -30px;
+      bottom: 40px;
+      width: clamp(120px, 18vw, 200px);
+      opacity: 0;
+      pointer-events: none;
+      animation: ceph-lost 2s ease .6s forwards;
+      transform-origin: center center;
+    }
+    @keyframes ceph-lost {
+      0%   { opacity: 0; transform: rotate(120deg) translateY(10px); }
+      100% { opacity: .6; transform: rotate(108deg) translateY(0); }
+    }
+    .ceph-arm { stroke: var(--dim); stroke-width: 1.2; fill: none; }
+    .ceph-arm-blue { stroke: rgba(0,170,255,.12); stroke-width: 1px; fill: none; }
+    .ceph-arm-red  { stroke: rgba(255,31,61,.10); stroke-width: 1px; fill: none; }
+    .ceph-body { stroke: var(--dim); stroke-width: 1.2; fill: none; }
+
+    .status-line {
+      font-size: 10px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--accent-red);
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: slide-up .7s ease .15s forwards;
+    }
+    .status-line::before { content: '> '; opacity: .5; }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(42px, 7vw, 88px);
+      line-height: 1.05;
+      letter-spacing: -.02em;
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: slide-up .8s ease .28s forwards;
+    }
+    h1 em { font-style: italic; color: var(--muted); }
+
+    .terminal-block {
+      border-left: 1px solid var(--border);
+      padding-left: 24px;
+      margin-bottom: 48px;
+      max-width: 460px;
+      opacity: 0;
+      animation: slide-up .7s ease .44s forwards;
+    }
+    .terminal-line {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 2.2;
+    }
+    .terminal-line .path { color: var(--accent-red); }
+    .terminal-line .err  { color: var(--accent-red); opacity: .7; }
+    .terminal-line .ok   { color: var(--accent); }
+
+    .nav-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      opacity: 0;
+      animation: slide-up .7s ease .6s forwards;
+    }
+    .nav-btn {
+      font-family: 'Fira Code', monospace;
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 12px 22px;
+      border: 1px solid var(--dim);
+      color: var(--muted);
+      background: transparent;
+      transition: border-color .25s, color .25s, background .25s;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .nav-btn:hover { border-color: var(--accent); color: var(--white); }
+    .nav-btn.primary { border-color: var(--accent); color: var(--accent); }
+    .nav-btn.primary:hover { background: rgba(0,170,255,.06); }
+    .nav-btn .arrow { font-size: 14px; transition: transform .2s; }
+    .nav-btn:hover .arrow { transform: translateX(-3px); }
+    .nav-btn.primary .arrow { transform: none; }
+    .nav-btn.primary:hover .arrow { transform: translateX(-3px); }
+
+    @keyframes slide-up {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Footer */
+    footer {
+      padding: 28px 56px calc(28px + var(--safe-bottom));
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-left { font-size: 11px; color: var(--muted); }
+    .footer-left .name { color: var(--white); }
+    .footer-right { font-size: 10px; color: var(--dim); letter-spacing: .1em; }
+    .footer-right .status { color: var(--accent-red); }
+
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb { background: var(--dim); }
+
+    @media (max-width: 899px) {
+      .top-nav .nav-links { display: none; }
+      .bottom-nav { display: block; }
+      .not-found { padding: 100px 28px 60px; }
+      .ghost-num { right: -10px; opacity: 0; animation: fade-num 1s ease .1s forwards; }
+      .lost-ceph { display: none; }
+      footer { padding: 24px 28px; flex-direction: column; gap: 8px; align-items: flex-start; }
+    }
+
+    @media (min-width: 900px) {
+      body { padding-bottom: 0; }
+      .bottom-nav { display: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+<div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+
+<!-- Top nav -->
+<nav class="top-nav" aria-label="Primary navigation">
+  <a class="nav-name" href="/"><span class="prompt">~/</span>yourname</a>
+  <ul class="nav-links">
+    <li><a href="/writing">writing</a></li>
+    <li><a href="/notes">notes</a></li>
+    <li><a href="/about">about</a></li>
+  </ul>
+</nav>
+
+<!-- Mobile bottom nav -->
+<nav class="bottom-nav" aria-label="Mobile navigation">
+  <div class="bottom-nav-inner">
+    <a href="/" class="bnav-item" aria-label="Home">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12L12 3l9 9"/><path d="M5 10v9a1 1 0 001 1h4v-4h4v4h4a1 1 0 001-1v-9"/></svg>
+      <span class="bnav-label">home</span>
+    </a>
+    <a href="/writing" class="bnav-item" aria-label="Writing">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      <span class="bnav-label">writing</span>
+    </a>
+    <a href="/notes" class="bnav-item" aria-label="Notes">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+      <span class="bnav-label">notes</span>
+    </a>
+    <a href="/about" class="bnav-item" aria-label="About">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.58-7 8-7s8 3 8 7"/></svg>
+      <span class="bnav-label">about</span>
+    </a>
+  </div>
+</nav>
+
+<!-- 404 -->
+<main class="not-found" id="main-content">
+
+  <div class="ghost-num" aria-hidden="true">404</div>
+
+  <!-- Lost octopus, upside-down -->
+  <svg class="lost-ceph" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <path class="ceph-arm" d="M220 188 C268 172 312 150 350 108 C362 92 358 78 340 84"/>
+    <path class="ceph-arm" d="M226 200 C270 212 300 248 312 298 C320 330 308 347 292 336"/>
+    <path class="ceph-arm" d="M210 220 C208 264 200 302 188 344 C182 364 168 370 164 352"/>
+    <path class="ceph-arm" d="M186 216 C154 252 128 280 96 310 C76 328 66 320 74 302"/>
+    <path class="ceph-arm" d="M176 200 C134 194 96 178 58 146 C42 132 46 116 62 122"/>
+    <path class="ceph-arm" d="M180 182 C148 150 134 114 124 70 C118 46 132 38 146 52"/>
+    <path class="ceph-arm" d="M196 174 C196 136 202 100 208 58 C212 34 224 30 230 48"/>
+    <path class="ceph-arm" d="M214 178 C246 148 272 122 310 96 C330 84 342 90 336 108"/>
+    <path class="ceph-arm-blue" d="M220 188 C268 172 312 150 350 108 C362 92 358 78 340 84"/>
+    <path class="ceph-arm-red"  d="M186 216 C154 252 128 280 96 310 C76 328 66 320 74 302"/>
+    <ellipse class="ceph-body" cx="200" cy="198" rx="28" ry="23"/>
+    <ellipse class="ceph-body" cx="200" cy="195" rx="11" ry="9"/>
+    <circle class="ceph-body" cx="192" cy="193" r="2.5"/>
+    <circle class="ceph-body" cx="208" cy="193" r="2.5"/>
+    <circle fill="var(--dim)" cx="192" cy="193" r="1.2"/>
+    <circle fill="var(--dim)" cx="208" cy="193" r="1.2"/>
+  </svg>
+
+  <p class="status-line">signal lost · page not found</p>
+
+  <h1>Wrong depth.<br><em>Surface exists.</em></h1>
+
+  <div class="terminal-block" aria-label="Error details">
+    <p class="terminal-line">&gt; GET <span class="path" id="lost-path">/unknown</span></p>
+    <p class="terminal-line">&gt; status <span class="err">404</span> — no signal at this depth</p>
+    <p class="terminal-line">&gt; suggestion <span class="ok">return to surface</span></p>
+  </div>
+
+  <nav class="nav-options" aria-label="Recovery navigation">
+    <a href="javascript:history.back()" class="nav-btn primary">
+      <span class="arrow">←</span> go back
+    </a>
+    <a href="/" class="nav-btn">
+      <span class="arrow">←</span> home
+    </a>
+    <a href="/writing" class="nav-btn">writing</a>
+    <a href="/notes" class="nav-btn">notes</a>
+  </nav>
+
+</main>
+
+<footer>
+  <div class="footer-left">
+    <span class="name">~/yourname</span>
+  </div>
+  <div class="footer-right">
+    SIGNAL STATUS&nbsp;&nbsp;<span class="status">LOST</span>
+  </div>
+</footer>
+
+<script>
+  // Show actual lost path
+  try {
+    document.getElementById('lost-path').textContent = window.location.pathname;
+  } catch(e) {}
+
+  // Cursor
+  const isPointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (isPointer) {
+    const cursor    = document.getElementById('cursor');
+    const cursorDot = document.getElementById('cursor-dot');
+    document.addEventListener('mousemove', e => {
+      cursor.style.transform    = `translate(${e.clientX - 10}px, ${e.clientY - 10}px)`;
+      cursorDot.style.transform = `translate(${e.clientX - 2}px, ${e.clientY - 2}px)`;
+    });
+    document.querySelectorAll('a').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('on-link'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('on-link'));
+    });
+  }
+</script>
+</body>
+</html>
