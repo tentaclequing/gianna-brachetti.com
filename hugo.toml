@@ -3,6 +3,12 @@ languageCode = "en"
 title = "~/gianna"
 theme = "signal-noise"
 enableRobotsTXT = true
+ignoreFiles = ['content/Archive']
+
+[[module.mounts]]
+  source = "content"
+  target = "content"
+  excludeFiles = ["Archive/**"]
 
 [taxonomies]
   tag = "tags"
@@ -25,9 +31,13 @@ enableRobotsTXT = true
 
 [outputs]
   home = ["HTML", "RSS"]
-  section = ["HTML"]
+  section = ["HTML", "RSS"]
   taxonomy = ["HTML"]
   term = ["HTML"]
+
+[outputFormats.RSS]
+  mediaType = "application/rss+xml"
+  baseName = "index"
 
 [sitemap]
   changefreq = "weekly"

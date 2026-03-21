@@ -1,5 +1,20 @@
 {{ define "main" }}
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Gianna Brachetti-Truskawa",
+  "url": "{{ .Permalink }}",
+  "jobTitle": "SEO Strategist",
+  "description": {{ (.Description | default .Site.Params.description) | jsonify }},
+  "sameAs": [
+    "{{ .Site.Params.linkedin }}",
+    "{{ .Site.Params.github }}"
+  ]
+}
+</script>
+
 <div class="about-wrap">
 
   <div class="about-header">

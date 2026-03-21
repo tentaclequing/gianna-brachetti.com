@@ -1,5 +1,35 @@
 {{ define "main" }}
 
+{{- $type := .Params.type_label | default "essay" -}}
+{{- $readTime := .ReadingTime -}}
+{{- with .Params.reading_time }}{{ $readTime = . }}{{ end -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": {{ .Title | jsonify }},
+  "description": {{ (.Description | default .Site.Params.description) | jsonify }},
+  "datePublished": "{{ .Date.Format "2006-01-02" }}",
+  {{- with .Lastmod }}
+  "dateModified": "{{ .Format "2006-01-02" }}",
+  {{- end }}
+  "wordCount": {{ .WordCount }},
+  "author": {
+    "@type": "Person",
+    "name": "Gianna Brachetti-Truskawa",
+    "url": "{{ "about/" | absURL }}"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Gianna Brachetti-Truskawa"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ .Permalink }}"
+  }
+}
+</script>
+
 <div class="progress-bar" id="progress" aria-hidden="true"></div>
 
 <div class="article-wrap">
