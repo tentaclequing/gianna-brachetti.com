@@ -4,6 +4,7 @@ date: 2025-01-14
 lastmod: 2025-02-28
 status: spreading
 tags: [security, ai]
+description: "If an AI search engine renders a third-party snippet containing instructions to the model, not the user, the attack surface is real and present in every RAG system."
 ---
 
 If an AI search engine renders a snippet from a third-party page as part of its answer, and that snippet contains text formatted as an instruction - not to the user but to the model - you have a problem. This isn't theoretical. The attack surface exists today in every retrieval-augmented generation system that ingests web content without adequate input sanitisation.

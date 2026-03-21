@@ -7,6 +7,7 @@ tags: [ai, epistemics, seo, writing]
 source_url: "https://example.com/article-on-ai-and-epistemic-cowardice"
 source_name: "The Atlantic"
 source_title: "The Epistemic Cowardice of Safe AI Answers"
+description: "AI systems trained to avoid controversy model intellectual cowardice as default behaviour. Search has been rewarding the same epistemic posture for years."
 ---
 
 The argument is simple and worth stating plainly: AI systems trained to avoid controversy don't just avoid controversy - they actively model a kind of intellectual cowardice that normalises hedging as default behaviour. Every "on the one hand / on the other hand" non-answer teaches readers that ambiguity is acceptable where clarity is possible.

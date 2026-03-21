@@ -4,6 +4,7 @@ date: 2025-03-01
 lastmod: 2025-03-01
 status: fresh
 tags: [ai, seo]
+description: "The framing of Generative Engine Optimisation as a successor discipline keeps collapsing under scrutiny. We are naming a thing before we understand its shape."
 ---
 
 The framing of Generative Engine Optimisation as a successor discipline keeps collapsing under scrutiny. Every time I try to map it against classical search theory, the categories break down. The problem isn't that GEO is wrong - it's that it's premature. We're naming a thing before we understand its shape.
