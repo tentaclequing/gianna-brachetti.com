@@ -4,7 +4,6 @@
     <li><a href="/writing/"{{ if eq .Section "writing" }} aria-current="page"{{ end }}>writing</a></li>
     <li><a href="/notes/"{{ if eq .Section "notes" }} aria-current="page"{{ end }}>notes</a></li>
     <li><a href="/speaking/"{{ if eq .Section "speaking" }} aria-current="page"{{ end }}>speaking</a></li>
-    <li><a href="/reads/"{{ if eq .Section "reads" }} aria-current="page"{{ end }}>reads</a></li>
     <li><a href="/about/"{{ if or (eq .Section "about") (eq .Type "about") }} aria-current="page"{{ end }}>about</a></li>
   </ul>
 </nav>

@@ -18,7 +18,7 @@ facts:
     value: "octopus vulgaris"
     colour: "red"
 currently:
-  - "Reading: Crucial Conversations"
+  - "Reading: Crucial Conversations ([see what else I read](/reads/))"
   - "Thinking about what \"organic growth\" means when AI answers don't have URLs to click"
   - "Growing a monstera that has opinions about being moved"
   - "Building [GlowUp](https://github.com/tentaclequing/glowup) - an SEO scoring tool that's honest about what it can and can't detect"
