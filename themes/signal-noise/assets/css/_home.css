@@ -415,7 +415,7 @@ a.section-meta:focus-visible {
 }
 
 @media (min-width: 900px) {
-  .posts-grid {
+  .posts-grid:has(.post-card:nth-child(3)) {
     grid-template-columns: 1.55fr 1fr;
     grid-template-rows: 1fr 1fr;
   }
