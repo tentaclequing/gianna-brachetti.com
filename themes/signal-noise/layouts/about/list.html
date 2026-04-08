@@ -61,7 +61,7 @@
   <div class="currently" aria-label="Currently section">
     <p class="currently-label">// currently</p>
     {{ range . }}
-    <p class="currently-item">{{ . }}</p>
+    <p class="currently-item">{{ . | markdownify }}</p>
     {{ end }}
   </div>
   {{ end }}
