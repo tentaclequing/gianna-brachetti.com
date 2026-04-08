@@ -56,3 +56,28 @@ Each post SHALL generate: `<meta name="description">` from the `description` fro
 #### Scenario: Post has OG meta
 - **WHEN** a post page is rendered
 - **THEN** the HTML head contains correct Open Graph meta tags
+
+### Requirement: Author bio partial
+Every writing post SHALL include an "about the author" section rendered below the post body and above the tags. The section SHALL display: the author's name, a short biographical description, and a link to the about page (`/about/`).
+
+#### Scenario: Author bio renders on post
+- **WHEN** a writing post is viewed
+- **THEN** an "about the author" block appears between the post body and the tag badges, showing the author name, bio text, and a link to `/about/`
+
+### Requirement: Article JSON-LD structured data
+Every writing post SHALL include a `<script type="application/ld+json">` block in the HTML head containing schema.org Article structured data with fields: `headline`, `description`, `datePublished`, `dateModified`, `wordCount`, and `author` as a `Person` type with `url` linking to the about page.
+
+#### Scenario: JSON-LD present on post
+- **WHEN** a writing post is rendered
+- **THEN** the HTML contains a JSON-LD script block with `@type: Article`, the post's headline, dates, word count, and author as a Person with `url` pointing to `/about/`
+
+#### Scenario: dateModified reflects lastmod
+- **WHEN** a post has `lastmod` in front matter
+- **THEN** the JSON-LD `dateModified` field uses the lastmod value
+
+### Requirement: article:author Open Graph tag
+All writing pages SHALL include an `<meta property="article:author">` Open Graph tag in the HTML head.
+
+#### Scenario: OG author tag present
+- **WHEN** a writing post is rendered
+- **THEN** the HTML head contains `<meta property="article:author">` with the author's name or URL

@@ -70,3 +70,14 @@ All note pages SHALL include `<meta name="robots" content="noindex, follow">` in
 #### Scenario: Note has noindex meta
 - **WHEN** a note page is rendered
 - **THEN** the HTML head contains the noindex directive
+
+### Requirement: Note description field mandatory
+All notes MUST have a `description` field in their front matter. The description field is not optional - it SHALL be present on every note and used for meta description tags and card previews.
+
+#### Scenario: Note without description fails validation
+- **WHEN** a note Markdown file has no `description` field in front matter
+- **THEN** the note is considered invalid and should be corrected before publishing
+
+#### Scenario: Description used in meta tag
+- **WHEN** a note with a `description` field is rendered
+- **THEN** the HTML head contains `<meta name="description">` with the description value

@@ -1,11 +1,19 @@
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   background: var(--black);
   color: var(--white);
-  font-family: 'Fira Code', monospace;
-  font-size: 13px;
+  font-family: "Fira Code", monospace;
+  font-size: 16px;
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
@@ -13,28 +21,48 @@ body {
 }
 
 @media (min-width: 900px) {
-  body { padding-bottom: 0; }
+  body {
+    padding-bottom: 0;
+  }
 }
 
-::-webkit-scrollbar { width: 3px; }
-::-webkit-scrollbar-track { background: var(--black); }
-::-webkit-scrollbar-thumb { background: var(--dim); }
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: var(--black);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--dim);
+}
 
 .skip-link {
-  position: absolute; top: -999px; left: -999px;
-  background: var(--accent); color: var(--black);
-  padding: 8px 16px; font-family: 'Fira Code', monospace;
-  font-size: 12px; z-index: 99999;
+  position: absolute;
+  top: -999px;
+  left: -999px;
+  background: var(--accent);
+  color: var(--black);
+  padding: 8px 16px;
+  font-family: "Fira Code", monospace;
+  font-size: 12px;
+  z-index: 99999;
 }
-.skip-link:focus { top: 16px; left: 16px; }
+.skip-link:focus {
+  top: 16px;
+  left: 16px;
+}
 
 /* Reduced motion: disable all animations and transitions */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  html { scroll-behavior: auto; }
+  html {
+    scroll-behavior: auto;
+  }
 }

@@ -1,0 +1,36 @@
+{{ define "main" }}
+
+<div class="page-wrap reads-wrap">
+
+  <header class="page-header">
+    <p class="page-label">{{ .Params.page_label | default "// people I read" }}</p>
+    <h1 class="page-title">People I read</h1>
+    {{ with .Params.intro }}
+    <p class="page-desc">{{ . }}</p>
+    {{ end }}
+  </header>
+
+  {{ with .Params.reads }}
+  <div class="reads-list">
+    {{ range . }}
+    <article class="read-entry">
+      <div class="read-main">
+        <h2 class="read-name"><a href="{{ .url }}" rel="noopener noreferrer">{{ .name }}</a></h2>
+        <p class="read-why">{{ .why }}</p>
+        {{ with .highlights }}
+        <ul class="read-highlights">
+          {{ range . }}
+          <li><a href="{{ .url }}" rel="noopener noreferrer">{{ .title }}</a></li>
+          {{ end }}
+        </ul>
+        {{ end }}
+      </div>
+      <span class="read-url">{{ .url | replaceRE "^https?://(www\\.)?" "" | replaceRE "/$" "" }}</span>
+    </article>
+    {{ end }}
+  </div>
+  {{ end }}
+
+</div>
+
+{{ end }}

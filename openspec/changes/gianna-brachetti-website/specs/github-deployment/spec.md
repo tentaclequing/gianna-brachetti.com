@@ -31,3 +31,14 @@ The project SHALL be initialised as a git repository with an initial commit. A `
 #### Scenario: Repository is functional
 - **WHEN** the project setup is complete
 - **THEN** `git status` shows a clean working tree with all project files committed
+
+### Requirement: Default branch is main
+The repository SHALL use `main` as the default branch name (not `master`). The GitHub Actions workflow SHALL trigger on push to `main`.
+
+#### Scenario: Workflow triggers on main
+- **WHEN** a commit is pushed to the `main` branch
+- **THEN** the deploy workflow runs
+
+#### Scenario: No master branch
+- **WHEN** the repository branches are listed
+- **THEN** the default branch is `main`

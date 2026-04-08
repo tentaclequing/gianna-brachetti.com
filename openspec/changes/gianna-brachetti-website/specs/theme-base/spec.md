@@ -8,7 +8,7 @@ The theme SHALL define all design tokens as CSS custom properties on `:root`: `-
 - **THEN** all CSS custom properties are defined and available to all elements
 
 ### Requirement: Typography system
-The theme SHALL load Cormorant Garamond (weights 300, 400, 600; italic 300, 400) and Fira Code (weights 300, 400, 500) from Google Fonts with `font-display: swap`. Body text SHALL use Fira Code monospace at 13px/1.75. Headlines SHALL use Cormorant Garamond serif.
+The theme SHALL self-host Cormorant Garamond (weights 300, 400, 600; italic 300, 400) and Fira Code (weights 300, 400, 500) as variable WOFF2 files served from `/fonts/` (3 files total). @font-face declarations SHALL use `font-weight` ranges for variable font support. No Google Fonts dependency. `font-display: swap` SHALL be set. Body text SHALL use Fira Code monospace at 13px/1.75. Headlines SHALL use Cormorant Garamond serif.
 
 #### Scenario: Fonts render correctly
 - **WHEN** a page loads
@@ -74,3 +74,21 @@ The theme SHALL have a `baseof.html` layout that includes: HTML5 doctype, lang="
 #### Scenario: All pages inherit base layout
 - **WHEN** any page is rendered
 - **THEN** it includes the navigation, grain overlay, cursor, and footer from the base layout
+
+### Requirement: Self-hosted fonts
+All fonts SHALL be served as variable WOFF2 files from the `/fonts/` directory (3 files: Cormorant Garamond variable, Cormorant Garamond italic variable, Fira Code variable). The site SHALL have zero dependency on Google Fonts or any external font CDN. @font-face declarations SHALL specify `font-weight` ranges matching the variable font axes.
+
+#### Scenario: No external font requests
+- **WHEN** a page is loaded and network requests are inspected
+- **THEN** no requests are made to `fonts.googleapis.com` or `fonts.gstatic.com`, and all font files are served from `/fonts/`
+
+#### Scenario: Variable font weight ranges
+- **WHEN** @font-face rules are inspected in the CSS
+- **THEN** each declaration includes a `font-weight` range (e.g. `300 600`) rather than a single weight value
+
+### Requirement: Reduced motion global rule
+When the user has `prefers-reduced-motion: reduce` enabled, ALL animations and transitions across the entire site SHALL be disabled. This SHALL be implemented as a global rule in `_reset.css` that sets `animation: none`, `transition: none`, and `scroll-behavior: auto` on all elements.
+
+#### Scenario: All motion disabled
+- **WHEN** a user with `prefers-reduced-motion: reduce` visits any page
+- **THEN** no CSS animations play, no CSS transitions occur, and scroll behaviour is instant (not smooth)

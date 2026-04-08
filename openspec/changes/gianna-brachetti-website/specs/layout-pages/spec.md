@@ -73,3 +73,53 @@ The speaking page SHALL include a footer section with label (`// invite`), descr
 #### Scenario: Invite section renders
 - **WHEN** the speaking page is visited
 - **THEN** the invite section appears at the bottom with contact information
+
+### Requirement: Person JSON-LD on about page
+The about page SHALL include a `<script type="application/ld+json">` block containing schema.org Person structured data with fields: `name`, `jobTitle`, and `sameAs` array linking to LinkedIn and GitHub profiles.
+
+#### Scenario: Person JSON-LD present
+- **WHEN** the about page is rendered
+- **THEN** the HTML contains a JSON-LD script block with `@type: Person`, the author's name, job title, and `sameAs` array with LinkedIn and GitHub URLs
+
+### Requirement: About page H1 shows full name
+The about page H1 heading SHALL display the full name "Gianna Brachetti-Truskawa", regardless of the page `title` field in front matter.
+
+#### Scenario: Full name in H1
+- **WHEN** the about page is visited
+- **THEN** the H1 element contains "Gianna Brachetti-Truskawa"
+
+### Requirement: About page roles from frontmatter
+The about page SHALL render role descriptions from an array field in the page's front matter (e.g. `roles: [SEO strategist, AI researcher, language nerd]`), not hardcoded in the template.
+
+#### Scenario: Roles rendered from data
+- **WHEN** the about page front matter contains `roles: [SEO strategist, AI researcher]`
+- **THEN** the page displays those roles as listed in the front matter
+
+### Requirement: Work-with-me section anchor
+The work-with-me section on the about page SHALL have `id="work-with-me"` for direct linking via `#work-with-me` fragment.
+
+#### Scenario: Direct link to work-with-me
+- **WHEN** a user navigates to `/about/#work-with-me`
+- **THEN** the browser scrolls to the work-with-me section
+
+### Requirement: Speaking link in work-with-me
+The work-with-me section SHALL include a "See me speak" link (or equivalent) pointing to `/speaking/`.
+
+#### Scenario: Speaking link present
+- **WHEN** the about page work-with-me section is viewed
+- **THEN** a link to `/speaking/` is visible and functional
+
+### Requirement: Email obfuscation
+All email addresses displayed on the site SHALL be protected from scraping using a combination of: base64 encoding (decoded by JavaScript on click), CSS reverse display (`direction: rtl` with reversed text in the HTML source), and reversed character order. No plain-text email address SHALL appear in the HTML source.
+
+#### Scenario: Email not in page source
+- **WHEN** the HTML source of a page containing an email link is inspected
+- **THEN** no plain-text email address (e.g. `user@domain.com`) appears in the source
+
+#### Scenario: Email works on click
+- **WHEN** a user clicks an obfuscated email link with JavaScript enabled
+- **THEN** the mailto: link is decoded and the user's email client opens with the correct address
+
+#### Scenario: Email readable without JS
+- **WHEN** a user views the page without JavaScript
+- **THEN** the email text is displayed in reverse via CSS `direction: rtl` and remains human-readable

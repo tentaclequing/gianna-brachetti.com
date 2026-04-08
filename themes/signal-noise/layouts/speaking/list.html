@@ -5,7 +5,7 @@
   {{/* Page header */}}
   <header class="page-header">
     <p class="page-label">on the record</p>
-    <h1 class="page-title">Hear me <em>speak</em></h1>
+    <h1 class="page-title">{{ .Params.page_headline | default "Hear me speak" | safeHTML }}</h1>
     {{ with .Description }}
     <p class="page-desc">{{ . }}</p>
     {{ end }}
@@ -103,6 +103,39 @@
         {{ end }}
       {{ end }}
     </div>
+    {{ end }}
+  </section>
+  {{ end }}
+
+  {{/* Publications */}}
+  {{ $pubs := .Params.publications | default slice }}
+  {{ if $pubs }}
+  <section aria-labelledby="publications-label">
+    <div class="section-rule">
+      <span class="section-rule-label" id="publications-label">published</span>
+      <div class="section-rule-line" aria-hidden="true"></div>
+    </div>
+
+    {{ range $pubs }}
+    <article class="talk-entry">
+      <div class="talk-event">
+        <p class="talk-conf">{{ .publication }}</p>
+        <p class="talk-location">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          {{ .type | default "article" }}
+        </p>
+        <span class="talk-date-chip">{{ .date }}</span>
+      </div>
+      <div class="talk-content">
+        <h2 class="talk-title">{{ with .url }}<a href="{{ . }}" rel="noopener noreferrer">{{ end }}{{ .title }}{{ with .url }}</a>{{ end }}</h2>
+        {{ with .description }}<p class="talk-desc">{{ . }}</p>{{ end }}
+        {{ with .tags }}
+        <div class="talk-tags">
+          {{ range . }}<span class="talk-tag">{{ . }}</span>{{ end }}
+        </div>
+        {{ end }}
+      </div>
+    </article>
     {{ end }}
   </section>
   {{ end }}

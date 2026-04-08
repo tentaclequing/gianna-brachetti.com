@@ -107,6 +107,32 @@
     </section>
     {{ end }}
 
+    {{/* Publications */}}
+    {{ with .Params.publications }}
+    <section class="cv-section" aria-labelledby="publications-heading">
+      <div class="cv-section-header">
+        <h2 class="cv-section-title" id="publications-heading">publications</h2>
+        <div class="cv-section-rule" aria-hidden="true"></div>
+      </div>
+      <ul class="cv-pub-list">
+        {{ range . }}<li class="cv-pub-item">{{ . | markdownify }}</li>{{ end }}
+      </ul>
+    </section>
+    {{ end }}
+
+    {{/* Memberships */}}
+    {{ with .Params.memberships }}
+    <section class="cv-section" aria-labelledby="memberships-heading">
+      <div class="cv-section-header">
+        <h2 class="cv-section-title" id="memberships-heading">memberships</h2>
+        <div class="cv-section-rule" aria-hidden="true"></div>
+      </div>
+      <ul class="cv-pub-list">
+        {{ range . }}<li class="cv-pub-item">{{ . | markdownify }}</li>{{ end }}
+      </ul>
+    </section>
+    {{ end }}
+
     {{/* Education */}}
     {{ with .Params.education }}
     <section class="cv-section" aria-labelledby="education-heading">

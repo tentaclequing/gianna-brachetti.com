@@ -1,6 +1,6 @@
 {{ define "main" }}
 
-{{- $type := .Params.type_label | default "essay" -}}
+{{- $type := .Params.type_label | default "article" -}}
 {{- $readTime := .ReadingTime -}}
 {{- with .Params.reading_time }}{{ $readTime = . }}{{ end -}}
 <script type="application/ld+json">
@@ -9,10 +9,8 @@
   "@type": "Article",
   "headline": {{ .Title | jsonify }},
   "description": {{ (.Description | default .Site.Params.description) | jsonify }},
-  "datePublished": "{{ .Date.Format "2006-01-02" }}",
-  {{- with .Lastmod }}
-  "dateModified": "{{ .Format "2006-01-02" }}",
-  {{- end }}
+  "datePublished": "{{ with .Params.original_date }}{{ . }}{{ else }}{{ .Date.Format "2006-01-02" }}{{ end }}",
+  "dateModified": "{{ .Date.Format "2006-01-02" }}",
   "wordCount": {{ .WordCount }},
   "author": {
     "@type": "Person",
@@ -41,14 +39,14 @@
   </div>
 
   <header class="post-header">
-    {{ $type := .Params.type_label | default "essay" }}
+    {{ $type := .Params.type_label | default "article" }}
     {{ $readTime := .ReadingTime }}
     {{ with .Params.reading_time }}{{ $readTime = . }}{{ end }}
     <p class="post-type">{{ $type }} &middot; {{ printf "%02d" $readTime }} min read</p>
     <h1 class="post-title">{{ .Title }}</h1>
     <div class="post-meta-bar" role="contentinfo">
       <div class="meta-cell">
-        <span class="meta-label">published</span>
+        <span class="meta-label">{{ if .Params.original_date }}last updated{{ else }}published{{ end }}</span>
         <time class="meta-value" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
       </div>
       <div class="meta-cell">
@@ -62,9 +60,17 @@
     </div>
   </header>
 
+  {{ partial "tldr.html" . }}
+
   <article class="post-body" id="post-body">
     {{ .Content }}
   </article>
+
+  {{ with .Params.original_date }}
+  <div class="originally-published">
+    Originally published {{ . }}{{ with $.Params.original_source }} on <a href="{{ $.Params.canonical }}">{{ . }}</a>{{ end }}.
+  </div>
+  {{ end }}
 
   {{ partial "author-bio.html" . }}
 

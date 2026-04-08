@@ -35,3 +35,28 @@ The project SHALL include illustrative placeholder content for all content types
 #### Scenario: All page types render with placeholder content
 - **WHEN** Hugo builds the site
 - **THEN** every page type defined in the site map has at least one rendered page with realistic placeholder content
+
+### Requirement: Content directory as Obsidian vault symlink
+The content directory SHALL be a symlink to an external Obsidian vault. Hugo SHALL use `module.mounts` configuration with `excludeFiles` to skip non-content directories within the vault (e.g. `Archive/`).
+
+#### Scenario: Symlinked content builds
+- **WHEN** `hugo --minify` is run and `content/` is a symlink to an Obsidian vault
+- **THEN** Hugo builds successfully using the vault's Markdown files as content
+
+#### Scenario: Excluded directories ignored
+- **WHEN** the Obsidian vault contains an `Archive/` directory
+- **THEN** Hugo does not process files from `Archive/` during build
+
+### Requirement: ignoreFiles for non-publishable content
+The Hugo configuration SHALL include `ignoreFiles` patterns to skip non-publishable vault content (e.g. templates, daily notes, private files).
+
+#### Scenario: Ignored files not rendered
+- **WHEN** the vault contains files matching ignoreFiles patterns
+- **THEN** those files do not produce output pages in the built site
+
+### Requirement: Shorter URL slugs
+Content files with long titles SHALL have an explicit `slug:` field in front matter to produce shorter, more readable URLs.
+
+#### Scenario: Custom slug overrides filename
+- **WHEN** a post file is named `why-i-stopped-chasing-seo-perfection-and-started-building-things.md` with `slug: stop-chasing-perfection`
+- **THEN** the rendered URL is `/writing/stop-chasing-perfection/` (not the filename)
