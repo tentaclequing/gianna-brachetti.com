@@ -42,11 +42,11 @@ experience:
       - "Technical and international SEO strategy for a web development agency's client portfolio, bridging software development and search marketing."
       - "Optimised for multi-platform discovery including Spotify. Presented on multi-platform and micro search systems optimisation at conferences."
   - title: "International Senior SEO / Audience Manager"
-    company: "Aufeminin Group (gofeminin.de)"
+    company: "Aufeminin Group"
     period: "2017"
     location: "Cologne / Paris"
     bullets:
-      - "Led team of international SEO managers for technical optimisation across the group's European publisher properties."
+      - "Led team of international SEO managers across the group's European properties, including user-generated content platforms (gofeminin.de, sofeminine.co.uk and locale variants) and editorially produced medical content (Onmeda.de and international equivalents)."
       - "Designed and implemented server log monitoring and analysis process for crawl behaviour insights at scale."
       - "Managed programmatic SEO for scaled content across multiple European markets."
   - title: "Senior SEO Manager"
