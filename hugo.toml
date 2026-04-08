@@ -3,6 +3,8 @@ title = "~/gianna"
 theme = "signal-noise"
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = false
+enableRobotsTXT = true
+ignoreFiles = ['content/Archive']
 
 [languages]
   [languages.en]
@@ -14,8 +16,6 @@ defaultContentLanguageInSubdir = false
     languageName = "Deutsch"
     weight = 2
     contentDir = "content/de"
-enableRobotsTXT = true
-ignoreFiles = ['content/Archive']
 
 [[module.mounts]]
   source = "content"
