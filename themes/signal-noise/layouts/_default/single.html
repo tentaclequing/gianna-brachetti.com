@@ -1,7 +1,17 @@
 {{ define "main" }}
-<div class="article-wrap" style="max-width: var(--col); margin: 0 auto; padding: 120px 28px 80px;">
-  <h1>{{ .Title }}</h1>
+<div class="article-wrap">
+  <div class="back-bar">
+    <a class="back-link" href="/"> <span class="arrow">&larr;</span> home </a>
+  </div>
+
+  <header class="post-header">
+    <h1 class="post-title" style="font-size: clamp(28px, 5vw, 42px)">
+      {{ .Title }}
+    </h1>
+  </header>
+
   {{ partial "tldr.html" . }}
-  {{ .Content }}
+
+  <article class="post-body">{{ .Content }}</article>
 </div>
 {{ end }}
