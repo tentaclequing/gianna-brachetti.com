@@ -28,21 +28,12 @@
   {{- partial "octopus.html" . -}}
 
   <p class="hero-label" role="doc-subtitle">signal source</p>
-  <h1 class="hero-headline">Signal, <em>noise,</em> and the things I notice in between.</h1>
+  <h1 class="hero-headline">Signal, noise, and the things I notice in between.</h1>
   <div class="hero-meta">
     <p class="hero-desc">
-      Long essays, sharp observations and experiments at the intersection of search, AI and the occasional unsettling security rabbit hole.
+      Guides and observations on search, AI, and the occasionally unsettling security rabbit hole.
     </p>
-    <div class="hero-stats">
-      <div class="stat">
-        <span class="stat-num">{{ $transmissions }}</span>
-        <span class="stat-label">transmissions</span>
-      </div>
-      <div class="stat">
-        <span class="stat-num">{{ $fragments }}</span>
-        <span class="stat-label">signal fragments</span>
-      </div>
-    </div>
+    {{/* Hero stats removed - low numbers telegraph "new site" */}}
   </div>
 </section>
 
@@ -95,52 +86,6 @@
       });
     }, { threshold: 0.06 });
     document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
-  })();
-
-  /* Trail canvas */
-  (function() {
-    var isPointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-    var canvas = document.getElementById('trail-canvas');
-    if (!canvas) return;
-    var ctx = canvas.getContext('2d');
-    var particles = [];
-
-    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-    resize();
-    window.addEventListener('resize', resize);
-
-    if (isPointer) {
-      document.addEventListener('mousemove', function(e) {
-        particles.push({ x: e.clientX, y: e.clientY, alpha: 0.45, radius: 1.3,
-          hue: Math.random() > 0.85 ? 'red' : 'blue', burst: false });
-      });
-      document.addEventListener('click', function(e) {
-        for (var i = 0; i < 20; i++) {
-          var a = (Math.PI * 2 / 20) * i;
-          var s = 1.8 + Math.random() * 2.8;
-          particles.push({ x: e.clientX, y: e.clientY, vx: Math.cos(a)*s, vy: Math.sin(a)*s,
-            alpha: 0.75, radius: 1.8 + Math.random(), hue: Math.random() > 0.5 ? 'red' : 'blue', burst: true });
-        }
-      });
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles = particles.filter(function(p) { return p.alpha > 0.01; });
-      for (var j = 0; j < particles.length; j++) {
-        var p = particles[j];
-        var c = p.hue === 'red' ? '255,31,61' : '0,170,255';
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(' + c + ',' + p.alpha + ')';
-        ctx.fill();
-        if (p.burst) { p.x += p.vx; p.y += p.vy; p.vx *= 0.91; p.vy *= 0.91; }
-        p.alpha  *= 0.80;
-        p.radius *= 0.93;
-      }
-      requestAnimationFrame(animate);
-    }
-    animate();
   })();
 
   /* Easter egg - Konami code */

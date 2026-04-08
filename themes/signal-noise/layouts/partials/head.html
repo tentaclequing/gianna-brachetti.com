@@ -4,7 +4,7 @@
 
 {{- $title := .Title -}}
 {{- if .IsHome -}}
-  <title>Gianna Brachetti-Truskawa - SEO, AI &amp; Security Writing</title>
+  <title>Gianna Brachetti-Truskawa - Organic Growth, Search &amp; AI</title>
 {{- else -}}
   <title>{{ $title }} · ~/gianna</title>
 {{- end -}}
@@ -14,11 +14,16 @@
 {{- end }}
 
 {{- if or (.Params.noindex) (eq .Section "notes") (eq .Kind "term") (eq .Kind "taxonomy") }}
-<meta name="robots" content="noindex, follow">
+<meta name="robots" content="noindex, follow, noai, noimageai">
+{{- else }}
+<meta name="robots" content="index, follow, noai, noimageai">
 {{- end }}
 
-{{- /* Canonical */ -}}
-<link rel="canonical" href="{{ .Permalink }}">
+{{- /* TDM Reservation - EU DSM Directive compliance */ -}}
+<meta name="tdm-reservation" content="1">
+
+{{- /* Canonical - use frontmatter canonical if set, otherwise self */ -}}
+<link rel="canonical" href="{{ with .Params.canonical }}{{ . }}{{ else }}{{ .Permalink }}{{ end }}">
 
 {{- /* Open Graph */ -}}
 <meta property="og:title" content="{{ $title }}">
@@ -48,7 +53,8 @@
 {{- $note := resources.Get "css/_note.css" -}}
 {{- $page := resources.Get "css/_page.css" -}}
 {{- $four04 := resources.Get "css/_404.css" -}}
-{{- $css := slice $fonts $vars $reset $typo $grain $cursor $nav $footer $home $post $note $page $four04 | resources.Concat "css/main.css" | minify | fingerprint -}}
+{{- $sidenote := resources.Get "css/_sidenote.css" -}}
+{{- $css := slice $fonts $vars $reset $typo $grain $cursor $nav $footer $home $post $note $page $four04 $sidenote | resources.Concat "css/main.css" | minify | fingerprint -}}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
 
 {{- /* RSS */ -}}

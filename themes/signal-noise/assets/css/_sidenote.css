@@ -1,0 +1,62 @@
+/* Sidenotes - Tufte-inspired, pure CSS */
+
+.sidenote-checkbox {
+  display: none;
+}
+
+.sidenote-toggle {
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 0.75em;
+  vertical-align: super;
+  line-height: 0;
+  padding: 0 1px;
+}
+
+.sidenote {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.7;
+  display: block;
+  float: right;
+  clear: right;
+  width: 200px;
+  margin-right: -240px;
+  margin-top: 0.3em;
+  margin-bottom: 1em;
+  padding-left: 16px;
+  border-left: 1px solid var(--border);
+}
+
+.sidenote a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0, 170, 255, 0.25);
+  transition: border-color 0.2s;
+}
+.sidenote a:hover {
+  border-bottom-color: var(--accent);
+}
+
+/* Mobile: collapse to inline toggle */
+@media (max-width: 1100px) {
+  .sidenote {
+    display: none;
+    float: none;
+    width: 100%;
+    margin: 0.8em 0;
+    margin-right: 0;
+    padding: 12px 0 12px 16px;
+  }
+
+  .sidenote-checkbox:checked + .sidenote {
+    display: block;
+  }
+}
+
+/* Wide screens: always visible, no toggle needed */
+@media (min-width: 1101px) {
+  .sidenote-toggle {
+    cursor: default;
+  }
+}

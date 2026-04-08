@@ -1,53 +1,15 @@
 <script>
-  /* Custom cursor */
-  (function() {
-    var isPointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-    if (!isPointer) return;
-    var cursor = document.getElementById('cursor');
-    var dot = document.getElementById('cursor-dot');
-    if (!cursor || !dot) return;
-    document.addEventListener('mousemove', function(e) {
-      cursor.style.transform = 'translate(' + (e.clientX - 10) + 'px,' + (e.clientY - 10) + 'px)';
-      dot.style.transform = 'translate(' + (e.clientX - 2) + 'px,' + (e.clientY - 2) + 'px)';
-    });
-    document.querySelectorAll('a, button').forEach(function(el) {
-      el.addEventListener('mouseenter', function() {
-        cursor.classList.add('on-link');
-        dot.classList.add('red');
-      });
-      el.addEventListener('mouseleave', function() {
-        cursor.classList.remove('on-link');
-        dot.classList.remove('red');
-      });
-    });
-  })();
-
   /* Email obfuscation - decode real email on click */
-  (function() {
-    document.querySelectorAll('.obfuscated-email').forEach(function(el) {
-      el.addEventListener('click', function(e) {
+  (function () {
+    document.querySelectorAll(".obfuscated-email").forEach(function (el) {
+      el.addEventListener("click", function (e) {
         e.preventDefault();
-        var encoded = el.getAttribute('data-m');
+        var encoded = el.getAttribute("data-m");
         if (encoded) {
           var decoded = atob(encoded);
-          window.location.href = 'mailto:' + decoded;
+          window.location.href = "mailto:" + decoded;
         }
       });
     });
-  })();
-
-  /* Uptime counter */
-  (function() {
-    var start = Date.now();
-    var el = document.getElementById('uptime');
-    if (!el) return;
-    setInterval(function() {
-      var s = Math.floor((Date.now() - start) / 1000);
-      el.textContent = [
-        Math.floor(s / 3600),
-        Math.floor((s % 3600) / 60),
-        s % 60
-      ].map(function(n) { return String(n).padStart(2, '0'); }).join(':');
-    }, 1000);
   })();
 </script>

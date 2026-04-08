@@ -59,3 +59,46 @@ The site SHALL style the scrollbar: 3px width, black track, dim thumb.
 #### Scenario: Custom scrollbar renders
 - **WHEN** a page has scrollable content on a WebKit browser
 - **THEN** the scrollbar appears as a thin 3px bar with dark styling
+
+### Requirement: Custom sitemap template
+The site SHALL use a custom sitemap template that excludes noindexed sections (e.g. notes) and individual pages with `noindex: true` in front matter from the sitemap output.
+
+#### Scenario: Notes excluded from sitemap
+- **WHEN** the site is built
+- **THEN** `/sitemap.xml` contains no URLs from the `/notes/` section
+
+#### Scenario: Noindex pages excluded
+- **WHEN** a page has `noindex: true` in front matter
+- **THEN** that page does not appear in `/sitemap.xml`
+
+### Requirement: Custom RSS template for writing only
+The site SHALL use a custom RSS template that includes only writing posts. Notes and other content types SHALL be excluded from the feed.
+
+#### Scenario: RSS contains only writing
+- **WHEN** the site is built with 5 writing posts and 4 notes
+- **THEN** `/index.xml` contains entries for the 5 writing posts and zero notes
+
+### Requirement: Tag pages noindex
+All tag/taxonomy pages SHALL include `<meta name="robots" content="noindex, follow">` in the HTML head.
+
+#### Scenario: Tag page has noindex
+- **WHEN** the tag page `/tags/seo/` is rendered
+- **THEN** the HTML head contains `<meta name="robots" content="noindex, follow">`
+
+### Requirement: AI crawler directives in robots.txt
+The `robots.txt` SHALL include specific directives for AI crawlers. The following bots SHALL be allowed: GPTBot, ChatGPT-User, Google-Extended, anthropic-ai, ClaudeBot, CCBot, PerplexityBot. The following bots SHALL be blocked: Bytespider.
+
+#### Scenario: AI bots configured
+- **WHEN** `/robots.txt` is inspected
+- **THEN** it contains `User-agent: GPTBot` with `Allow: /` and `User-agent: Bytespider` with `Disallow: /`
+
+#### Scenario: Allowed AI bots can crawl
+- **WHEN** ClaudeBot requests `/robots.txt`
+- **THEN** the directives permit crawling of the site
+
+### Requirement: Homepage title with author and keywords
+The homepage `<title>` tag SHALL include the author's name and topic keywords to improve search visibility, rather than using only the site name.
+
+#### Scenario: Homepage title is descriptive
+- **WHEN** the homepage is rendered
+- **THEN** the `<title>` tag contains the author's name and relevant topic keywords (e.g. SEO, AI, writing)

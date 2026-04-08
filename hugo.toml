@@ -1,7 +1,19 @@
 baseURL = "https://gianna-brachetti.com/"
-languageCode = "en"
 title = "~/gianna"
 theme = "signal-noise"
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+
+[languages]
+  [languages.en]
+    languageCode = "en"
+    languageName = "English"
+    weight = 1
+  [languages.de]
+    languageCode = "de"
+    languageName = "Deutsch"
+    weight = 2
+    contentDir = "content/de"
 enableRobotsTXT = true
 ignoreFiles = ['content/Archive']
 

@@ -3,31 +3,32 @@
 <header class="page-header">
   <div class="page-header-left">
     <p class="page-label">all transmissions</p>
-    <h1 class="page-title">Writing &amp; <em>thinking</em></h1>
+    <h1 class="page-title">Writing &amp; thinking</h1>
   </div>
   <p class="page-count"><strong id="visible-count">{{ len .Pages }}</strong> transmissions</p>
 </header>
 
-<div class="filter-bar" role="tablist" aria-label="Filter by type">
-  <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">all</button>
-  <button class="filter-btn" data-filter="essay" role="tab" aria-selected="false">essays</button>
-  <button class="filter-btn" data-filter="observation" role="tab" aria-selected="false">observations</button>
-  <button class="filter-btn" data-filter="guide" role="tab" aria-selected="false">guides</button>
-</div>
+{{/* Filter tabs removed - reintroduce when 5+ articles exist */}}
 
 <div class="writing-archive">
+  {{ if not .Pages }}
+  <div class="empty-state">
+    <p class="empty-label">// nothing here yet</p>
+    <p class="empty-text">This website has just been relaunched, so this space is empty for now.<br>Enjoy the silence while it lasts.</p>
+  </div>
+  {{ end }}
   {{ range .Pages.GroupByDate "2006" }}
   <div class="year-group">
     <p class="year-label" aria-hidden="true">{{ .Key }}</p>
 
     {{ range .Pages }}
-    {{ $type := .Params.type_label | default "essay" }}
+    {{ $type := .Params.type_label | default "article" }}
     <a class="post-row" href="{{ .RelPermalink }}" data-type="{{ $type }}">
       <time class="row-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 02" }}</time>
       <span class="row-title">{{ .Title }}</span>
       <span class="row-right">
         {{ with .Params.tags }}
-        <span class="row-tag">{{ delimit . " &middot; " }}</span>
+        <span class="row-tag">{{ delimit . " · " }}</span>
         {{ end }}
         <span class="row-type">{{ $type }}</span>
         <span class="row-arrow" aria-hidden="true">&rarr;</span>
@@ -40,26 +41,4 @@
 
 {{ end }}
 
-{{ define "scripts" }}
-<script>
-  (function() {
-    var btns  = document.querySelectorAll('.filter-btn');
-    var rows  = document.querySelectorAll('.post-row');
-    var count = document.getElementById('visible-count');
-    btns.forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        btns.forEach(function(b) { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
-        btn.classList.add('active'); btn.setAttribute('aria-selected','true');
-        var f = btn.dataset.filter;
-        var n = 0;
-        rows.forEach(function(r) {
-          var show = f === 'all' || r.dataset.type === f;
-          r.classList.toggle('hidden', !show);
-          if (show) n++;
-        });
-        count.textContent = n;
-      });
-    });
-  })();
-</script>
-{{ end }}
+{{/* Filter scripts removed - reintroduce with filter tabs */}}
