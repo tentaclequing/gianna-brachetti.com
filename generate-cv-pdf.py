@@ -46,7 +46,7 @@ def draw_dark_header(c, y):
     c.setFont("Georgia", 28)
     c.drawString(LEFT, H - 24 * mm, "Gianna Brachetti-Truskawa")
 
-    # Roles line
+    # Roles line (PDF-specific: tailored for search experience roles)
     c.setFont("Consolas", 8.5)
     c.setFillColor(ACCENT)
     c.drawString(LEFT, H - 33 * mm, "// ")
@@ -54,7 +54,7 @@ def draw_dark_header(c, y):
     c.drawString(
         LEFT + 14,
         H - 33 * mm,
-        "Organic Growth Leader  /  Search & AI Product Manager  /  Multilingual Strategist",
+        "Search Experience Product Manager",
     )
 
     # Profile
