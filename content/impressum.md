@@ -9,8 +9,8 @@ noindex: true
 ## Legal notice pursuant to TMG ss 5
 
 **Gianna Brachetti-Truskawa**
-Dusseldorfer Str. 147
-51063 Koln
+Düsseldorfer Str. 147
+51063 Köln
 Germany
 
 **Contact:**
