@@ -60,7 +60,7 @@ experience:
       - "Fine-tuned and tested the on-site search experience, using search result data and user behaviour signals to improve relevance and discovery."
       - "Used search result features to promote internal links, feeding search behaviour data back into SEO-driven content decisions."
       - "Early adopter of structured data (Schema.org/JSON-LD) from its first days, spearheading implementation across Bertelsmann companies. Collaborated directly with a Google technical team as the first company in Germany to test new markup formats. Achieved over 100% visibility gain through Rich Results and AMP."
-      - "Designed context-sensitive product recommendation engine for recipe pages, bridging SEO signals with product UX."
+      - "Designed and built a context-sensitive affiliate product placement feature that programmatically adapted to the user's search query and the recipe they were viewing, creating a new revenue stream for the company."
       - "Drove programmatic SEO for scaled recipe and category page generation."
       - "Built automated JIRA-based content optimisation workflow, reducing manual coordination overhead across editorial and development teams."
   - title: "Head of SEO"
