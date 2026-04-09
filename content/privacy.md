@@ -9,8 +9,8 @@ noindex: true
 ## 1. Controller
 
 Gianna Brachetti-Truskawa
-Dusseldorfer Str. 147
-51063 Koln, Germany
+Düsseldorfer Str. 147
+51063 Köln, Germany
 Email: hello@gianna-brachetti.com
 
 ## 2. Overview of data processing
@@ -27,7 +27,7 @@ Data transfer to the USA is covered by the EU-US Data Privacy Framework adequacy
 
 ## 4. DNS and email
 
-DNS resolution and email for this domain are provided by **ALL-INKL.COM - Neue Medien Muennich** (Hauptstrasse 68, 02742 Friedersdorf, Germany). When you access this website, your DNS queries are processed by their servers. When you send an email to the address listed on this site, ALL-INKL processes the email on their servers in Germany.
+DNS resolution and email for this domain are provided by **ALL-INKL.COM - Neue Medien Münnich** (Hauptstraße 68, 02742 Friedersdorf, Germany). When you access this website, your DNS queries are processed by their servers. When you send an email to the address listed on this site, ALL-INKL processes the email on their servers in Germany.
 
 Legal basis: Art. 6(1)(f) GDPR (legitimate interest in the reliable provision of the website and email communication).
 
@@ -56,9 +56,9 @@ To exercise these rights, contact: hello@gianna-brachetti.com
 
 You have the right to lodge a complaint with a supervisory authority. The competent authority is:
 
-Landesbeauftragte fuer Datenschutz und Informationsfreiheit Nordrhein-Westfalen
-Kavalleriestrasse 2-4
-40213 Duesseldorf
+Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen
+Kavalleriestraße 2-4
+40213 Düsseldorf
 Germany
 Website: [https://www.ldi.nrw.de/](https://www.ldi.nrw.de/)
 
