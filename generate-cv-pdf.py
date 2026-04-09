@@ -274,7 +274,7 @@ def generate_cv():
                 "Working as product manager with a dedicated engineering team, shipping technical SEO, CRO, and Product Update Notifications. Owning and prioritising the tech SEO backlog. Practising agile, test-driven, and spec-driven development.",
                 "Building measurement and attribution dashboards (SQL, Metabase) to track organic impact on engagement and conversion. Running A/B tests (Statsig) to validate growth hypotheses and inform conversion rate optimisation.",
                 "Built an internal search for the website based on Lunr as an experiment to improve content discovery.",
-                "Helping teams adopt and understand AI capabilities: built an automated prompt engineering framework, custom Claude Code skills, and a Claude-to-Gemini skill porter. Built an internal LLM visibility tracker for competitive intelligence (hackathon, early 2024) before commercial tools offered this.",
+                "Helping teams adopt and understand AI capabilities: built an automated prompt engineering framework (n8n, OpenRouter), custom Claude Code skills, and a Claude-to-Gemini skill porter. Built an internal LLM visibility tracker for competitive intelligence (hackathon, early 2024) before commercial tools offered this.",
                 "Introduced frontend e2e testing at the company, including specific SEO QA automation with SpeedCurve, Audisto, Screaming Frog, Ahrefs, and Playwright for continuous quality monitoring.",
             ],
         },
@@ -384,7 +384,7 @@ def generate_cv():
         },
         {
             "label": "Tools & Data",
-            "value": "Google Search Console, Bing Webmaster Tools, Naver Search Advisor, Yandex Webmaster, GA4, Statsig, Screaming Frog, Ahrefs, Semrush, Audisto, Botify, Metabase, Solr, Elasticsearch, Lunr, Claude CLI, Gemini CLI",
+            "value": "Google Search Console, Bing Webmaster Tools, Naver Search Advisor, Yandex Webmaster, GA4, Statsig, Screaming Frog, Ahrefs, Semrush, Audisto, Botify, Metabase, Solr, Elasticsearch, Lunr, n8n, OpenRouter, Claude CLI, Gemini CLI",
         },
         {
             "label": "Human Languages",
