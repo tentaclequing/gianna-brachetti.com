@@ -32,10 +32,10 @@ experience:
     period: "2019 - 2022"
     location: "Malta, Remote"
     bullets:
-      - "C-level SEO leadership for an international iGaming affiliate operating in a YMYL niche - one of the most competitive and heavily regulated markets online. Achieved 99% organic traffic share across the portfolio."
-      - "Built and grew the SEO and QA teams, establishing quality standards and processes for sustainable white-hat growth across multiple regulated markets. Introduced frontend end-to-end testing for SEO quality assurance."
+      - "C-level SEO leadership for an international iGaming affiliate in a YMYL niche where advertising restrictions meant 99% of traffic and revenue depended on organic search. Highly volatile rankings and aggressive competitor tactics made this one of the most demanding SEO environments to operate in - yet we grew and stayed stable."
+      - "Built and mentored the SEO and QA teams from scratch, establishing the technical excellence, domain management practices, and bot detection capabilities that made sustained growth possible. Introduced frontend end-to-end testing for SEO quality assurance."
       - "Built systems and honeypots to detect and defend against fraudulent DMCA notices, content scraping, and copying - protecting the company's organic assets in a market where competitors actively attack each other's rankings."
-      - "Drove programmatic SEO strategy for scaled content generation."
+      - "Drove programmatic SEO strategy for scaled content generation across multiple regulated markets."
   - title: "International Senior SEO Manager"
     company: "bold ventures GmbH"
     period: "2018 - 2019"
