@@ -76,6 +76,10 @@ Disallow: /
 User-agent: img2dataset
 Disallow: /
 
+# Block CV PDF from all bots
+User-agent: *
+Disallow: /cv/
+
 # Default - allow
 User-agent: *
 Allow: /

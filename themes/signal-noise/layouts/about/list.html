@@ -1,16 +1,94 @@
 {{ define "main" }}
 
+{{- $siteURL := .Site.BaseURL | strings.TrimSuffix "/" -}}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Gianna Brachetti-Truskawa",
-  "url": "{{ .Permalink }}",
-  "jobTitle": "SEO Strategist",
-  "description": {{ (.Description | default .Site.Params.description) | jsonify }},
-  "sameAs": [
-    "{{ .Site.Params.linkedin }}",
-    "{{ .Site.Params.github }}"
+  "@graph": [
+    {
+      "@type": "ProfilePage",
+      "@id": "{{ .Permalink }}",
+      "url": "{{ .Permalink }}",
+      "name": "{{ .Title }}",
+      "description": "{{ .Description | default .Site.Params.description }}",
+      "isPartOf": {
+        "@id": "{{ $siteURL }}/#website"
+      },
+      "mainEntity": {
+        "@id": "{{ $siteURL }}/#person"
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "Person",
+      "@id": "{{ $siteURL }}/#person",
+      "name": "Gianna Brachetti-Truskawa",
+      "givenName": "Gianna",
+      "familyName": "Brachetti-Truskawa",
+      "url": "{{ .Permalink }}",
+      "description": "{{ .Description | default .Site.Params.description }}",
+      "jobTitle": "Senior Product Manager, Search & CMS",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "DeepL SE",
+        "url": "https://www.deepl.com/"
+      },
+      "homeLocation": {
+        "@type": "City",
+        "name": "Cologne",
+        "containedInPlace": {
+          "@type": "Country",
+          "name": "Germany"
+        }
+      },
+      "knowsAbout": [
+        "SEO",
+        "Search Experience",
+        "AI Crawler Governance",
+        "Structured Data",
+        "Product Management",
+        "Technical SEO",
+        "Organic Growth",
+        "Generative Engine Optimisation"
+      ],
+      "knowsLanguage": [
+        {
+          "@type": "Language",
+          "name": "German",
+          "alternateName": "de"
+        },
+        {
+          "@type": "Language",
+          "name": "English",
+          "alternateName": "en"
+        },
+        {
+          "@type": "Language",
+          "name": "French",
+          "alternateName": "fr"
+        },
+        {
+          "@type": "Language",
+          "name": "Italian",
+          "alternateName": "it"
+        },
+        {
+          "@type": "Language",
+          "name": "Turkish",
+          "alternateName": "tr"
+        }
+      ],
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "TH Koeln - Cologne University of Applied Sciences",
+        "url": "https://www.th-koeln.de/"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/gianna-brachetti-truskawa/",
+        "https://github.com/tentaclequing"
+      ],
+      "email": "mailto:hello@gianna-brachetti.com"
+    }
   ]
 }
 </script>

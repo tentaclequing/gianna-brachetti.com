@@ -7,7 +7,7 @@ description: "What I'm focused on right now."
 
 ## Product manager
 
-Owning the search experience for anonymous users at [DeepL](https://www.deepl.com/). Thinking about what discovery means when the user hasn't told you what language they speak yet. Building measurement frameworks that care about engagement, not just traffic.
+Owning the search experience for anonymous users at [DeepL](https://www.deepl.com/). Thinking about what discovery means when the user hasn't told you what language they speak yet. Building measurement frameworks that care about engagement, not just traffic. Increasingly interested in how search works differently in health and regulated contexts, where the stakes of a wrong result are higher and the responsibility is more personal - something I first noticed working with medical content at Onmeda and online pharmacies at arvato, and that keeps coming back through family in healthcare.
 
 ## Builder
 

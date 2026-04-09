@@ -3,23 +3,30 @@
 {{- $type := .Params.type_label | default "article" -}}
 {{- $readTime := .ReadingTime -}}
 {{- with .Params.reading_time }}{{ $readTime = . }}{{ end -}}
+{{- $siteURL := .Site.BaseURL | strings.TrimSuffix "/" -}}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": {{ .Title | jsonify }},
-  "description": {{ (.Description | default .Site.Params.description) | jsonify }},
+  "headline": "{{ .Title }}",
+  "description": "{{ .Description | default .Site.Params.description }}",
   "datePublished": "{{ with .Params.original_date }}{{ . }}{{ else }}{{ .Date.Format "2006-01-02" }}{{ end }}",
   "dateModified": "{{ .Date.Format "2006-01-02" }}",
   "wordCount": {{ .WordCount }},
+  "inLanguage": "en",
   "author": {
     "@type": "Person",
+    "@id": "{{ $siteURL }}/#person",
     "name": "Gianna Brachetti-Truskawa",
     "url": "{{ "about/" | absURL }}"
   },
   "publisher": {
     "@type": "Person",
+    "@id": "{{ $siteURL }}/#person",
     "name": "Gianna Brachetti-Truskawa"
+  },
+  "isPartOf": {
+    "@id": "{{ $siteURL }}/#website"
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
