@@ -57,19 +57,16 @@ def draw_dark_header(c, y):
         "Search Experience Product Manager",
     )
 
-    # Profile
+    # Profile (synced with cv.md)
     c.setFont("Georgia", 9)
     c.setFillColor(HexColor("#C8C8C0"))
     profile = (
-        "Product manager and organic growth leader with 17+ years in international search, now working at the "
-        "intersection of search, AI, and security. Has managed web platforms with up to 900,000 daily active users. "
-        "Designs frameworks that make complex technical "
-        "problems accessible to non-technical teams, from prompt engineering methodologies for "
-        "marketers to multi-level AI crawler governance published by the IAB. Sees teams like "
-        "an octopus: multiple independent, intelligent minds that align and grow as one organism. "
-        "Operates across "
-        "engineering, product, and marketing with cross-functional leadership experience across "
-        "30+ language markets."
+        "Product manager and organic growth leader with 17+ years in international search, "
+        "now working where search, AI, and security overlap. Has managed web platforms with "
+        "up to 900,000 daily active users. Published multi-level AI crawler governance with "
+        "the IAB. Sees teams like an octopus: multiple independent, intelligent minds that "
+        "align and grow as one organism. Cross-functional leadership across engineering, "
+        "product, and marketing in 30+ language markets."
     )
     y_prof = H - 41 * mm
     y_prof = draw_wrapped_text(
@@ -266,29 +263,32 @@ def generate_cv():
     experiences = [
         {
             "title": "Senior Product Manager, Search & CMS",
-            "company": "DeepL",
+            "company": "DeepL SE",
             "company_desc": "Enterprise AI translation platform. 200,000+ business customers, 100+ supported languages.",
             "period": "2022 - Present",
-            "location": "Cologne, Remote",
+            "location": "Cologne",
             "bullets": [
                 "Leading a cross-functional team of 7 (engineers, QA, product designer, content strategist) and managing freelancers, owning organic user growth and search experience strategy. Grew organic traffic by 200% within the first year.",
                 "Owning the search experience for anonymous web users - discovery, content surfacing, and conversion flows across 30+ language markets. Initially also product manager for Linguee, DeepL's linguistic search engine.",
-                "Owning the content pipeline for landing, comparison, and conversion pages. Establishing cross-functional SEO alignment across the entire company.",
-                "Working as product manager with a dedicated engineering team, shipping technical SEO, CRO, and Product Update Notifications. Owning and prioritising the tech SEO backlog.",
+                "Owning the content pipeline for landing, comparison, and conversion pages. Establishing cross-functional SEO alignment across the entire company, bringing together engineering, product, and marketing to resolve structural growth blockers.",
+                "Working as product manager with a dedicated engineering team, shipping technical SEO, CRO, and Product Update Notifications. Owning and prioritising the tech SEO backlog. Practising agile, test-driven, and spec-driven development.",
                 "Building measurement and attribution dashboards (SQL, Metabase) to track organic impact on engagement and conversion. Running A/B tests (Statsig) to validate growth hypotheses and inform conversion rate optimisation.",
                 "Built an internal search for the website based on Lunr as an experiment to improve content discovery.",
-                "Helping teams adopt and understand AI capabilities: built an automated prompt engineering framework, custom Claude Code skills, and a Claude-to-Gemini skill porter. Built an internal LLM visibility tracker for competitive intelligence (hackathon, early 2024).",
-                "Introduced frontend e2e testing at the company, including SEO QA automation with SpeedCurve, Audisto, Screaming Frog, Ahrefs, and Playwright.",
+                "Helping teams adopt and understand AI capabilities: built an automated prompt engineering framework, custom Claude Code skills, and a Claude-to-Gemini skill porter. Built an internal LLM visibility tracker for competitive intelligence (hackathon, early 2024) before commercial tools offered this.",
+                "Introduced frontend e2e testing at the company, including specific SEO QA automation with SpeedCurve, Audisto, Screaming Frog, Ahrefs, and Playwright for continuous quality monitoring.",
             ],
         },
         {
             "title": "VP of SEO",
-            "company": "KaFe Rocks Ltd (via Startdowns GmbH)",
+            "company": "KaFe Rocks Ltd (acquired by Gaming Innovation Group)",
             "period": "2019 - 2022",
-            "location": "Malta, Remote",
+            "location": "Malta / Remote",
             "bullets": [
-                "Strategic SEO leadership for an international iGaming affiliate, focused on sustainable white-hat growth across multiple markets.",
-                "Drove programmatic SEO strategy for scaled content generation.",
+                "C-level SEO leadership for an international iGaming affiliate managing 70+ domains in a YMYL niche where advertising restrictions meant 99% of traffic and revenue depended on organic search.",
+                "Grew and stabilised the portfolio and launched a new domain with a community-driven content model.",
+                "Built and mentored the SEO and QA teams from scratch, establishing the technical excellence, domain management practices, and bot detection capabilities that made sustained growth possible. Introduced frontend end-to-end testing for SEO quality assurance.",
+                "Built systems and honeypots to detect and defend against fraudulent DMCA notices, content scraping, and copying - protecting the company's organic assets in a market where competitors actively attack each other's rankings.",
+                "Drove programmatic SEO strategy for scaled content generation across multiple regulated markets.",
             ],
         },
         {
@@ -297,17 +297,18 @@ def generate_cv():
             "period": "2018 - 2019",
             "location": "Cologne",
             "bullets": [
-                "Led technical and international SEO strategy for a web development agency's client portfolio, bridging software development and search marketing.",
+                "Led technical and international SEO strategy for a software house, working exclusively with large enterprise clients in B2B eSignature technology and biopharmaceutical equipment manufacturing.",
                 "Optimised for multi-platform discovery including Spotify. Presented on multi-platform and micro search systems optimisation at conferences.",
             ],
         },
         {
             "title": "International Senior SEO / Audience Manager",
-            "company": "Aufeminin Group (gofeminin.de)",
+            "company": "Aufeminin Group",
             "period": "2017",
             "location": "Cologne / Paris",
             "bullets": [
-                "Led team of international SEO managers for technical optimisation across the group's European publisher properties.",
+                "Staff role reporting directly to the Managing Directors (Stabsstelle der GF). Led team of international SEO managers across the group's European properties, including user-generated content platforms (gofeminin.de, sofeminine.co.uk and locale variants) and editorially produced medical content (Onmeda.de and international equivalents).",
+                "Educated and guided large editorial teams on SEO best practices for both the UGC and medical content properties, driving content quality and search performance without formal line authority.",
                 "Designed and implemented server log monitoring and analysis process for crawl behaviour insights at scale.",
                 "Managed programmatic SEO for scaled content across multiple European markets.",
             ],
@@ -318,11 +319,11 @@ def generate_cv():
             "period": "2015 - 2017",
             "location": "Bonn",
             "bullets": [
-                "Managed SEO for a 65 million URL estate, one of Germany's largest web properties.",
-                "Fine-tuned the on-site search (Solr), including autocomplete, result ranking, and alternative suggestions for zero-result queries, using search result data, user behaviour signals, and A/B tests.",
+                "Managed SEO and search experience for Chefkoch.de, Germany's largest recipe search engine with a 65 million URL estate.",
+                "Fine-tuned and tested the on-site search (powered by Solr), including autocomplete, result ranking, and alternative suggestions for zero-result queries, using search result data, user behaviour signals, and A/B tests to improve relevance and discovery.",
                 "Applied data-driven analysis of search behaviour and conversion rate optimisation to feed insights back into content decisions and product features.",
-                "Selected by Google as the first company in Germany to test new structured data markup formats (Schema.org/JSON-LD) before they became official search features. Achieved over 100% visibility gain through Rich Results and AMP.",
-                "Designed context-sensitive product recommendation engine for recipe pages, bridging SEO signals with product UX.",
+                "Selected by Google as the first company in Germany to test new structured data markup formats (Schema.org/JSON-LD) before they became official search features. Led the implementation and spearheaded adoption across Bertelsmann companies. Achieved over 100% visibility gain through Rich Results and AMP.",
+                "Designed and built a context-sensitive affiliate product placement feature that programmatically adapted to the user's search query and the recipe they were viewing, creating a new revenue stream for the company.",
                 "Drove programmatic SEO for scaled recipe and category page generation.",
                 "Built automated JIRA-based content optimisation workflow, reducing manual coordination overhead across editorial and development teams.",
             ],
@@ -333,7 +334,7 @@ def generate_cv():
             "period": "2014 - 2015",
             "location": "Cologne",
             "bullets": [
-                "Built new SEO expert team from scratch. Developed content marketing strategies for large-scale clients.",
+                "Built new SEO expert team from scratch. Developed content marketing strategies for clients across eCommerce, NGOs, and web hosting.",
             ],
         },
         {
@@ -342,7 +343,7 @@ def generate_cv():
             "period": "2012 - 2014",
             "location": "Cologne",
             "bullets": [
-                "Led team of four SEO specialists managing large international e-commerce projects for Microsoft, ASUS, and Toshiba.",
+                "Led team of four SEO specialists managing large international e-commerce projects for Microsoft, ASUS, Toshiba, and major online pharmacies in a regulated healthcare market.",
                 "Provided technical consulting for CMS migrations across Magento, Hybris, and Demandware platforms.",
             ],
         },
@@ -383,11 +384,15 @@ def generate_cv():
         },
         {
             "label": "Tools & Data",
-            "value": "Google Search Console, GA4, Statsig, Screaming Frog, Ahrefs, Semrush, Audisto, Botify, Metabase, Solr, Elasticsearch, Lunr, SQL",
+            "value": "Google Search Console, Bing Webmaster Tools, Naver Search Advisor, Yandex Webmaster, GA4, Statsig, Screaming Frog, Ahrefs, Semrush, Audisto, Botify, Metabase, Solr, Elasticsearch, Lunr, Claude CLI, Gemini CLI",
         },
         {
-            "label": "Languages",
+            "label": "Human Languages",
             "value": "German (native), English (fluent), French (intermediate), Italian (intermediate), Turkish (intermediate), Spanish & Portuguese (written understanding), Dutch (beginner), Norwegian (beginner)",
+        },
+        {
+            "label": "Machine Languages",
+            "value": "SQL (basics), Python (basics)",
         },
     ]
     y, page_num = draw_skills(c, skills, y, page_num)
@@ -443,7 +448,7 @@ def generate_cv():
         {
             "degree": "BA Multilingual Communication (grade 1.3)",
             "school": "TH Koeln - Cologne University of Applied Sciences",
-            "year": "2014",
+            "year": "2012",
         },
         {
             "degree": "Commercial Agent in Dialogue Marketing (Apprenticeship)",
@@ -472,9 +477,8 @@ def generate_cv():
     y -= 6
     y = draw_section_title(c, "Elsewhere", y)
     elsewhere_items = [
-        "Building an open-source prompt and context engineering framework designed to make AI tools accessible to non-technical knowledge workers.",
         "Building an MCP server for Audisto to integrate crawl data into AI-assisted workflows (github.com/tentaclequing/audisto-mcp).",
-        "Writing and digital garden at gianna-brachetti.com.",
+        "Personal connection to healthcare: half my family works in the sector. I have proofread and corrected medical research papers, helped write SOPs for hospitals, and run smaller security tests in my free time.",
         "Volunteer in geriatric psychiatry (2004-2005). Faculty board member, TH Koeln (2011-2012). Former freelance translator (DE/EN/FR/IT).",
     ]
     for item in elsewhere_items:
