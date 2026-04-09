@@ -232,7 +232,7 @@ def generate_cv():
                 "Leading a cross-functional team of 7 (engineers, QA, product designer, content strategist) and managing freelancers, owning organic user growth and search experience strategy for an enterprise SaaS product serving 200,000+ business customers across 100+ languages. Grew organic traffic by 200% within the first year.",
                 "Owning the search experience for anonymous web users - discovery, content surfacing, and conversion flows across 30+ language markets. Initially also served as product manager for Linguee, DeepL's linguistic search engine.",
                 "Owning the content pipeline for landing pages, comparison pages, funnel pages, and conversion pages. Established cross-functional SEO alignment across the entire company.",
-                "Working as product manager with a dedicated engineering team, shipping technical SEO improvements and platform changes. Owning and prioritising the tech SEO backlog.",
+                "Working as product manager with a dedicated engineering team, shipping technical SEO, CRO, and Product Update Notifications. Owning and prioritising the tech SEO backlog.",
                 "Driving data-driven decision-making through measurement and attribution dashboards (SQL, Metabase) to track organic impact on engagement and conversion rate optimisation. Running A/B tests (Statsig) to validate growth hypotheses.",
                 "Built an internal search tool based on Lunr as an experiment to improve content discovery workflows.",
                 "Advising PR teams on link acquisition and authority-building strategies incorporating LLM visibility, GEO, and AI search positioning.",
