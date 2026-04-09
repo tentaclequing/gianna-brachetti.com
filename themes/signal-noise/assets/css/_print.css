@@ -185,6 +185,16 @@
     color: #ccc;
   }
 
+  .entry-company-desc {
+    font-family: "Georgia", serif;
+    font-style: italic;
+    font-size: 7pt;
+    color: #888880;
+    margin-top: 1pt;
+    margin-bottom: 3pt;
+    display: block;
+  }
+
   .entry-bullets {
     margin-top: 3pt;
   }

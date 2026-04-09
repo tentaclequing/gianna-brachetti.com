@@ -49,15 +49,19 @@ def draw_dark_header(c, y):
     c.setFillColor(ACCENT)
     c.drawString(LEFT, H - 30 * mm, "// ")
     c.setFillColor(MUTED)
-    c.drawString(LEFT + 14, H - 30 * mm,
-                 "Organic Growth Leader  /  Search & AI Product Manager  /  Multilingual Strategist")
+    c.drawString(
+        LEFT + 14,
+        H - 30 * mm,
+        "Organic Growth Leader  /  Search & AI Product Manager  /  Multilingual Strategist",
+    )
 
     # Profile
     c.setFont("Georgia", 8.5)
     c.setFillColor(HexColor("#C8C8C0"))
     profile = (
         "Product manager and organic growth leader with 17+ years in international search, now working at the "
-        "intersection of search, AI, and security. Designs frameworks that make complex technical "
+        "intersection of search, AI, and security. Has managed web platforms with up to 900,000 daily active users. "
+        "Designs frameworks that make complex technical "
         "problems accessible to non-technical teams, from prompt engineering methodologies for "
         "marketers to multi-level AI crawler governance published by the IAB. Sees teams like "
         "an octopus: multiple independent, intelligent minds that align and grow as one organism. "
@@ -66,8 +70,9 @@ def draw_dark_header(c, y):
         "30+ language markets."
     )
     y_prof = H - 37 * mm
-    y_prof = draw_wrapped_text(c, profile, LEFT, y_prof, CONTENT_W, 11, "Georgia", 8.5,
-                               HexColor("#C8C8C0"))
+    y_prof = draw_wrapped_text(
+        c, profile, LEFT, y_prof, CONTENT_W, 11, "Georgia", 8.5, HexColor("#C8C8C0")
+    )
 
     # Accent line at bottom of header
     c.setFillColor(ACCENT)
@@ -110,10 +115,12 @@ def draw_section_title(c, title, y):
     return y - 12
 
 
-def draw_experience_entry(c, title, company, period, location, bullets, y, compact=False):
+def draw_experience_entry(
+    c, title, company, period, location, bullets, y, compact=False, company_desc=None
+):
     """Draw a single experience entry."""
     # Check if we need a new page
-    min_needed = 14 + len(bullets) * 10
+    min_needed = 14 + len(bullets) * 10 + (10 if company_desc else 0)
     if y < 30 * mm + min_needed:
         return y, False  # Signal that we need a new page
 
@@ -133,13 +140,29 @@ def draw_experience_entry(c, title, company, period, location, bullets, y, compa
     c.drawRightString(RIGHT, y + 1, period_loc)
     y -= 12
 
+    # Company description (one-liner beneath company name)
+    if company_desc:
+        c.setFont("Georgia-Italic", 7.5)
+        c.setFillColor(HexColor("#888880"))
+        c.drawString(LEFT, y, company_desc)
+        y -= 10
+
     # Bullets
     for bullet in bullets:
         c.setFillColor(ACCENT)
         c.setFont("Consolas", 6)
         c.drawString(LEFT + 4, y + 1, ">")
-        y_new = draw_wrapped_text(c, bullet, LEFT + 14, y, CONTENT_W - 14, 10,
-                                   "Georgia", 8, HexColor("#3A3A38"))
+        y_new = draw_wrapped_text(
+            c,
+            bullet,
+            LEFT + 14,
+            y,
+            CONTENT_W - 14,
+            10,
+            "Georgia",
+            8,
+            HexColor("#3A3A38"),
+        )
         y = y_new - 2
 
     return y - (4 if compact else 6), True
@@ -156,8 +179,9 @@ def draw_skills(c, skills, y):
         c.drawString(LEFT, y, label.upper())
         y -= 10
 
-        y = draw_wrapped_text(c, value, LEFT + 2, y, CONTENT_W - 2, 10,
-                               "Georgia", 8, HexColor("#3A3A38"))
+        y = draw_wrapped_text(
+            c, value, LEFT + 2, y, CONTENT_W - 2, 10, "Georgia", 8, HexColor("#3A3A38")
+        )
         y -= 6
     return y
 
@@ -201,14 +225,16 @@ def generate_cv():
         {
             "title": "Senior Product Manager, Search & CMS",
             "company": "DeepL",
+            "company_desc": "Enterprise AI translation platform. 200,000+ business customers, 100+ supported languages.",
             "period": "2022 - Present",
             "location": "Cologne, Remote",
             "bullets": [
-                "Lead a cross-functional team of 7 (engineers, QA, product designer, content strategist) and manage freelancers, owning organic user growth strategy for a high-growth SaaS product across 30+ language markets. Grew organic traffic by 200% within the first year.",
+                "Lead a cross-functional team of 7 (engineers, QA, product designer, content strategist) and manage freelancers, owning organic user growth and search experience strategy for an enterprise SaaS product serving 200,000+ business customers across 100+ languages. Grew organic traffic by 200% within the first year.",
                 "Own content pipeline and production for landing pages, comparison pages, funnel pages, and conversion pages, driving organic acquisition and engagement.",
                 "Established cross-functional SEO alignment across the entire company, bringing together engineering, product, and marketing to surface and resolve structural growth blockers.",
                 "Work as product manager with a dedicated engineering team, shipping technical SEO improvements and platform changes. Own and prioritise the tech SEO backlog. Practise agile, test-driven, and spec-driven development.",
-                "Built measurement and attribution dashboards (SQL, Metabase) to track organic impact on engagement and conversion.",
+                "Built measurement and attribution dashboards (SQL, Metabase) to track organic impact on engagement and conversion. Run A/B tests (Statsig) to validate growth hypotheses.",
+                "Built an internal search tool based on Lunr as an experiment to improve content discovery workflows.",
                 "Advise PR teams on link acquisition and authority-building strategies incorporating LLM visibility, GEO, and AI search positioning.",
                 "Building SEO QA automation leveraging SpeedCurve, Audisto, Screaming Frog, Ahrefs, and Playwright tests for continuous quality monitoring.",
                 "Built prompt engineering framework and introduced meta-prompting techniques for marketing teams, before meta-prompting became an established practice.",
@@ -253,6 +279,7 @@ def generate_cv():
             "location": "Bonn",
             "bullets": [
                 "Managed SEO for a 65 million URL estate, one of Germany's largest web properties.",
+                "Fine-tuned the on-site search experience (Solr), using search result data, user behaviour signals, and A/B tests to improve relevance and discovery.",
                 "Implemented structured data and AMP for Google Rich Results, achieving over 100% visibility gain.",
                 "Designed context-sensitive product recommendation engine for recipe pages, bridging SEO signals with product UX.",
                 "Drove programmatic SEO for scaled recipe and category page generation.",
@@ -283,8 +310,15 @@ def generate_cv():
     page1_entries = 4  # First 4 entries on page 1
     for i, exp in enumerate(experiences[:page1_entries]):
         y, ok = draw_experience_entry(
-            c, exp["title"], exp["company"], exp["period"], exp["location"],
-            exp["bullets"], y, compact=(i > 0)
+            c,
+            exp["title"],
+            exp["company"],
+            exp["period"],
+            exp["location"],
+            exp["bullets"],
+            y,
+            compact=(i > 0),
+            company_desc=exp.get("company_desc"),
         )
 
     draw_dark_footer(c, 1)
@@ -298,24 +332,41 @@ def generate_cv():
     y = draw_section_title(c, "Experience (continued)", y)
     for exp in experiences[page1_entries:]:
         y, ok = draw_experience_entry(
-            c, exp["title"], exp["company"], exp["period"], exp["location"],
-            exp["bullets"], y, compact=True
+            c,
+            exp["title"],
+            exp["company"],
+            exp["period"],
+            exp["location"],
+            exp["bullets"],
+            y,
+            compact=True,
+            company_desc=exp.get("company_desc"),
         )
 
     # Skills
     y -= 4
     y = draw_section_title(c, "Skills & Expertise", y)
     skills = [
-        {"label": "Search & Discovery",
-         "value": "Strategic International SEO, Technical SEO, On-page SEO, Keyword research, Query fan-out analysis, Core Web Vitals, Log file analysis, Schema / JSON-LD, Content architecture, Crawl infrastructure, Localisation, Multi-language content"},
-        {"label": "AI & Security",
-         "value": "AI crawler governance, GEO (Generative Engine Optimisation), Prompt engineering, Meta-prompting, LLM behaviour analysis, Crawl security, Adversarial content analysis"},
-        {"label": "Product & Leadership",
-         "value": "Cross-functional programme leadership, Framework design, Stakeholder communication, Executive presentation, Systems thinking, Team building, coaching & mentoring, Freelancer management"},
-        {"label": "Tools & Data",
-         "value": "Google Search Console, GA4, Screaming Frog, Ahrefs, Semrush, Audisto, Botify, Metabase, SQL"},
-        {"label": "Languages",
-         "value": "German (native), English (fluent), French (intermediate), Italian (intermediate), Turkish (intermediate), Spanish & Portuguese (written understanding), Dutch (beginner), Norwegian (beginner)"},
+        {
+            "label": "Search & Discovery",
+            "value": "Strategic International SEO, Technical SEO, On-page SEO, Keyword research, Query fan-out analysis, Core Web Vitals, Log file analysis, Schema / JSON-LD, Content architecture, Crawl infrastructure, Localisation, Multi-language content",
+        },
+        {
+            "label": "AI & Security",
+            "value": "AI crawler governance, GEO (Generative Engine Optimisation), Prompt engineering, Meta-prompting, LLM behaviour analysis, Crawl security, Adversarial content analysis",
+        },
+        {
+            "label": "Product & Leadership",
+            "value": "Cross-functional programme leadership, Framework design, Stakeholder communication, Executive presentation, Systems thinking, Team building, coaching & mentoring, Freelancer management",
+        },
+        {
+            "label": "Tools & Data",
+            "value": "Google Search Console, GA4, Statsig, Screaming Frog, Ahrefs, Semrush, Audisto, Botify, Metabase, Solr, Elasticsearch, Lunr, SQL",
+        },
+        {
+            "label": "Languages",
+            "value": "German (native), English (fluent), French (intermediate), Italian (intermediate), Turkish (intermediate), Spanish & Portuguese (written understanding), Dutch (beginner), Norwegian (beginner)",
+        },
     ]
     y = draw_skills(c, skills, y)
 
@@ -330,8 +381,9 @@ def generate_cv():
         c.setFillColor(ACCENT)
         c.setFont("Consolas", 6)
         c.drawString(LEFT + 4, y + 1, ">")
-        y = draw_wrapped_text(c, pub, LEFT + 14, y, CONTENT_W - 14, 10,
-                               "Georgia", 8, HexColor("#3A3A38"))
+        y = draw_wrapped_text(
+            c, pub, LEFT + 14, y, CONTENT_W - 14, 10, "Georgia", 8, HexColor("#3A3A38")
+        )
         y -= 4
 
     # Memberships
@@ -354,10 +406,16 @@ def generate_cv():
     y -= 2
     y = draw_section_title(c, "Education", y)
     education = [
-        {"degree": "BA Multilingual Communication (grade 1.3)",
-         "school": "TH Koeln - Cologne University of Applied Sciences", "year": "2014"},
-        {"degree": "Commercial Agent in Dialogue Marketing (Apprenticeship)",
-         "school": "IHK", "year": "2008"},
+        {
+            "degree": "BA Multilingual Communication (grade 1.3)",
+            "school": "TH Koeln - Cologne University of Applied Sciences",
+            "year": "2014",
+        },
+        {
+            "degree": "Commercial Agent in Dialogue Marketing (Apprenticeship)",
+            "school": "IHK",
+            "year": "2008",
+        },
     ]
     for edu in education:
         c.setFont("Georgia-Bold", 8.5)
@@ -382,8 +440,9 @@ def generate_cv():
         "Volunteer in geriatric psychiatry (2004-2005). Faculty board member, TH Koeln (2011-2012). Former freelance translator (DE/EN/FR/IT).",
     ]
     for item in elsewhere_items:
-        y = draw_wrapped_text(c, item, LEFT + 2, y, CONTENT_W - 2, 10,
-                               "Georgia", 8, HexColor("#555550"))
+        y = draw_wrapped_text(
+            c, item, LEFT + 2, y, CONTENT_W - 2, 10, "Georgia", 8, HexColor("#555550")
+        )
         y -= 4
 
     draw_dark_footer(c, 2)

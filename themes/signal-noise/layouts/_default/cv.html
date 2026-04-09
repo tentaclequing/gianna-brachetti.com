@@ -126,6 +126,7 @@
         <div class="entry-main">
           <h3 class="entry-title">{{ .title }}</h3>
           <p class="entry-company">{{ .company }}</p>
+          {{ with .company_desc }}<p class="entry-company-desc">{{ . }}</p>{{ end }}
           {{ with .bullets }}
           <ul class="entry-bullets">
             {{ range . }}<li>{{ . | markdownify }}</li>{{ end }}
