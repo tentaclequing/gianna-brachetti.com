@@ -25,7 +25,7 @@ experience:
       - "Build and maintain measurement and attribution dashboards (SQL, Metabase) to track organic impact on engagement and conversion."
       - "Advise PR teams on link acquisition and authority-building strategies incorporating LLM visibility, GEO, and AI search positioning."
       - "Introduced prompt engineering framework and meta-prompting techniques for marketing teams, before meta-prompting became an established practice."
-      - "Build SEO QA automation with SpeedCurve, Audisto, Screaming Frog, Ahrefs, and Playwright tests for continuous quality monitoring."
+      - "Build SEO QA automation with SpeedCurve, Audisto, Screaming Frog, Ahrefs, and Playwright end-to-end tests for continuous quality monitoring. Introduced frontend e2e testing as an SEO practice at the company."
       - "Reframed organic growth metrics from traffic share to engagement and conversion, establishing a net new user acquisition framework."
   - title: "VP of SEO"
     company: "KaFe Rocks Ltd (via Startdowns GmbH)"
@@ -33,7 +33,7 @@ experience:
     location: "Malta, Remote"
     bullets:
       - "C-level SEO leadership for an international iGaming affiliate operating in a YMYL niche - one of the most competitive and heavily regulated markets online. Achieved 99% organic traffic share across the portfolio."
-      - "Built and grew the SEO and QA teams, establishing quality standards and processes for sustainable white-hat growth across multiple regulated markets."
+      - "Built and grew the SEO and QA teams, establishing quality standards and processes for sustainable white-hat growth across multiple regulated markets. Introduced frontend end-to-end testing for SEO quality assurance."
       - "Drove programmatic SEO strategy for scaled content generation."
   - title: "International Senior SEO Manager"
     company: "bold ventures GmbH"
