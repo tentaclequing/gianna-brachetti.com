@@ -32,7 +32,7 @@ experience:
     period: "2019 - 2022"
     location: "Malta, Remote"
     bullets:
-      - "C-level SEO leadership for an international iGaming affiliate operating in one of the most competitive and heavily regulated markets online. Achieved 99% organic traffic share across the portfolio."
+      - "C-level SEO leadership for an international iGaming affiliate operating in a YMYL niche - one of the most competitive and heavily regulated markets online. Achieved 99% organic traffic share across the portfolio."
       - "Built and grew the SEO and QA teams, establishing quality standards and processes for sustainable white-hat growth across multiple regulated markets."
       - "Drove programmatic SEO strategy for scaled content generation."
   - title: "International Senior SEO Manager"
