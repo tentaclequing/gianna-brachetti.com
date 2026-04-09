@@ -234,7 +234,7 @@ def generate_cv():
                 "Owning the content pipeline for landing pages, comparison pages, funnel pages, and conversion pages. Established cross-functional SEO alignment across the entire company.",
                 "Working as product manager with a dedicated engineering team, shipping technical SEO, CRO, and Product Update Notifications. Owning and prioritising the tech SEO backlog.",
                 "Driving data-driven decision-making through measurement and attribution dashboards (SQL, Metabase) to track organic impact on engagement and conversion rate optimisation. Running A/B tests (Statsig) to validate growth hypotheses.",
-                "Built an internal search tool based on Lunr as an experiment to improve content discovery workflows.",
+                "Built an internal search for the website based on Lunr as an experiment to improve content discovery.",
                 "Advising PR teams on link acquisition and authority-building strategies incorporating LLM visibility, GEO, and AI search positioning.",
                 "Building SEO QA automation leveraging SpeedCurve, Audisto, Screaming Frog, Ahrefs, and Playwright tests for continuous quality monitoring.",
                 "Built prompt engineering framework and introduced meta-prompting techniques for marketing teams, before meta-prompting became an established practice.",
