@@ -32,7 +32,7 @@ experience:
     period: "2019 - 2022"
     location: "Malta, Remote"
     bullets:
-      - "C-level SEO leadership for an international iGaming affiliate in a YMYL niche where advertising restrictions meant 99% of traffic and revenue depended on organic search. Highly volatile rankings and aggressive competitor tactics made this one of the most demanding SEO environments to operate in - yet we grew and stayed stable."
+      - "C-level SEO leadership for an international iGaming affiliate managing 70+ domains in a YMYL niche where advertising restrictions meant 99% of traffic and revenue depended on organic search. Highly volatile rankings and aggressive competitor tactics made this one of the most demanding SEO environments to operate in - yet we grew and stayed stable. Also launched a new domain with a community-driven content model."
       - "Built and mentored the SEO and QA teams from scratch, establishing the technical excellence, domain management practices, and bot detection capabilities that made sustained growth possible. Introduced frontend end-to-end testing for SEO quality assurance."
       - "Built systems and honeypots to detect and defend against fraudulent DMCA notices, content scraping, and copying - protecting the company's organic assets in a market where competitors actively attack each other's rankings."
       - "Drove programmatic SEO strategy for scaled content generation across multiple regulated markets."
