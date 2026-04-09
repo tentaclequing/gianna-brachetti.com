@@ -17,7 +17,7 @@ experience:
     period: "2022 - Present"
     location: "Cologne, Remote"
     bullets:
-      - "Lead a cross-functional team of 7 (engineers, QA, product designer, content strategist) and manage freelancers, owning organic user growth and search experience strategy for a high-growth SaaS product across 30+ language markets. Grew organic traffic by 200% within the first year."
+      - "Lead a cross-functional team of 7 (engineers, QA, product designer, content strategist) and manage freelancers, owning organic user growth and search experience strategy for a high-growth enterprise SaaS product (B2C and B2B) across 30+ language markets. Grew organic traffic by 200% within the first year."
       - "Own the search experience for anonymous web users - discovery, content surfacing, and conversion flows across 30+ language markets."
       - "Own content pipeline and production for landing pages, comparison pages, funnel pages, and conversion pages, driving organic acquisition and engagement."
       - "Established cross-functional SEO alignment across the entire company, bringing together engineering, product, and marketing to surface and resolve structural growth blockers."
