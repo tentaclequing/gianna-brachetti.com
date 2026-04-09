@@ -18,7 +18,7 @@ experience:
     location: "Cologne, Remote"
     bullets:
       - "Lead a cross-functional team of 7 (engineers, QA, product designer, content strategist) and manage freelancers, owning organic user growth and search experience strategy for a high-growth enterprise SaaS product (B2C and B2B) across 30+ language markets. Grew organic traffic by 200% within the first year."
-      - "Own the search experience for anonymous web users - discovery, content surfacing, and conversion flows across 30+ language markets."
+      - "Own the search experience for anonymous web users - discovery, content surfacing, and conversion flows across 30+ language markets. Initially also served as product manager for Linguee, DeepL's linguistic search engine."
       - "Own content pipeline and production for landing pages, comparison pages, funnel pages, and conversion pages, driving organic acquisition and engagement."
       - "Established cross-functional SEO alignment across the entire company, bringing together engineering, product, and marketing to surface and resolve structural growth blockers."
       - "Work as product manager with a dedicated engineering team, shipping technical SEO improvements and platform changes. Own and prioritise the tech SEO backlog. Practise agile, test-driven, and spec-driven development."
