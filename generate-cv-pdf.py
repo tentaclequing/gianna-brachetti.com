@@ -229,15 +229,14 @@ def generate_cv():
             "period": "2022 - Present",
             "location": "Cologne, Remote",
             "bullets": [
-                "Leading a cross-functional team of 7 (engineers, QA, product designer, content strategist) and managing freelancers, owning organic user growth and search experience strategy for an enterprise SaaS product serving 200,000+ business customers across 100+ languages. Grew organic traffic by 200% within the first year.",
-                "Owning the search experience for anonymous web users - discovery, content surfacing, and conversion flows across 30+ language markets. Initially also served as product manager for Linguee, DeepL's linguistic search engine.",
-                "Owning the content pipeline for landing pages, comparison pages, funnel pages, and conversion pages. Established cross-functional SEO alignment across the entire company.",
+                "Leading a cross-functional team of 7 (engineers, QA, product designer, content strategist) and managing freelancers, owning organic user growth and search experience strategy. Grew organic traffic by 200% within the first year.",
+                "Owning the search experience for anonymous web users - discovery, content surfacing, and conversion flows across 30+ language markets. Initially also product manager for Linguee, DeepL's linguistic search engine.",
+                "Owning the content pipeline for landing, comparison, and conversion pages. Establishing cross-functional SEO alignment across the entire company.",
                 "Working as product manager with a dedicated engineering team, shipping technical SEO, CRO, and Product Update Notifications. Owning and prioritising the tech SEO backlog.",
-                "Driving data-driven decision-making through measurement and attribution dashboards (SQL, Metabase) to track organic impact on engagement and conversion rate optimisation. Running A/B tests (Statsig) to validate growth hypotheses.",
+                "Building measurement and attribution dashboards (SQL, Metabase) to track organic impact on engagement and conversion. Running A/B tests (Statsig) to validate growth hypotheses and inform conversion rate optimisation.",
                 "Built an internal search for the website based on Lunr as an experiment to improve content discovery.",
-                "Advising PR teams on link acquisition and authority-building strategies incorporating LLM visibility, GEO, and AI search positioning.",
-                "Building SEO QA automation leveraging SpeedCurve, Audisto, Screaming Frog, Ahrefs, and Playwright tests for continuous quality monitoring.",
-                "Built an automated prompt engineering framework that lets marketing colleagues produce optimised prompts without manual crafting. Introduced meta-prompting techniques before they became established practice.",
+                "Helping teams adopt and understand AI capabilities: built an automated prompt engineering framework, custom Claude Code skills, and a Claude-to-Gemini skill porter. Built an internal LLM visibility tracker for competitive intelligence (hackathon, early 2024).",
+                "Introduced frontend e2e testing at the company, including SEO QA automation with SpeedCurve, Audisto, Screaming Frog, Ahrefs, and Playwright.",
             ],
         },
         {
@@ -256,7 +255,7 @@ def generate_cv():
             "period": "2018 - 2019",
             "location": "Cologne",
             "bullets": [
-                "Technical and international SEO strategy for a web development agency's client portfolio, bridging software development and search marketing.",
+                "Led technical and international SEO strategy for a web development agency's client portfolio, bridging software development and search marketing.",
                 "Optimised for multi-platform discovery including Spotify. Presented on multi-platform and micro search systems optimisation at conferences.",
             ],
         },
@@ -278,9 +277,9 @@ def generate_cv():
             "location": "Bonn",
             "bullets": [
                 "Managed SEO for a 65 million URL estate, one of Germany's largest web properties.",
-                "Fine-tuned the on-site search experience (Solr), including autocomplete, result ranking, and alternative suggestions for zero-result queries, using search result data, user behaviour signals, and A/B tests to improve relevance and discovery.",
+                "Fine-tuned the on-site search (Solr), including autocomplete, result ranking, and alternative suggestions for zero-result queries, using search result data, user behaviour signals, and A/B tests.",
                 "Applied data-driven analysis of search behaviour and conversion rate optimisation to feed insights back into content decisions and product features.",
-                "Implemented structured data and AMP for Google Rich Results, achieving over 100% visibility gain.",
+                "Selected by Google as the first company in Germany to test new structured data markup formats (Schema.org/JSON-LD) before they became official search features. Achieved over 100% visibility gain through Rich Results and AMP.",
                 "Designed context-sensitive product recommendation engine for recipe pages, bridging SEO signals with product UX.",
                 "Drove programmatic SEO for scaled recipe and category page generation.",
                 "Built automated JIRA-based content optimisation workflow, reducing manual coordination overhead across editorial and development teams.",
@@ -302,7 +301,7 @@ def generate_cv():
             "location": "Cologne",
             "bullets": [
                 "Led team of four SEO specialists managing large international e-commerce projects for Microsoft, ASUS, and Toshiba.",
-                "Technical consulting for CMS migrations across Magento, Hybris, and Demandware platforms.",
+                "Provided technical consulting for CMS migrations across Magento, Hybris, and Demandware platforms.",
             ],
         },
     ]
