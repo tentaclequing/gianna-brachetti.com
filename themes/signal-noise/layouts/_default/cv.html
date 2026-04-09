@@ -205,6 +205,25 @@
     </section>
     {{ end }}
 
+    {{/* Continuing Education */}}
+    {{ with .Params.continuing_education }}
+    <section class="cv-section" aria-labelledby="conted-heading">
+      <div class="cv-section-header">
+        <h2 class="cv-section-title" id="conted-heading">continuing education</h2>
+        <div class="cv-section-rule" aria-hidden="true"></div>
+      </div>
+      {{ range . }}
+      <div class="edu-entry">
+        <div>
+          <p class="edu-degree">{{ .course }}</p>
+          <p class="edu-school">{{ .school }}</p>
+        </div>
+        <p class="edu-year">{{ .year }}</p>
+      </div>
+      {{ end }}
+    </section>
+    {{ end }}
+
     {{/* Elsewhere */}}
     {{ with .Params.elsewhere }}
     <section class="cv-section" aria-labelledby="elsewhere-heading">
