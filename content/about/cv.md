@@ -23,7 +23,7 @@ experience:
       - "Established cross-functional SEO alignment across the entire company, bringing together engineering, product, and marketing to surface and resolve structural growth blockers."
       - "Work as product manager with a dedicated engineering team, shipping technical SEO improvements and platform changes. Own and prioritise the tech SEO backlog. Practise agile, test-driven, and spec-driven development."
       - "Build and maintain measurement and attribution dashboards (SQL, Metabase) to track organic impact on engagement and conversion."
-      - "Advise PR teams on link acquisition and authority-building strategies incorporating LLM visibility, GEO, and AI search positioning."
+      - "Advise PR teams on link acquisition and authority-building strategies incorporating AI SEO / GEO."
       - "Introduced prompt engineering framework and meta-prompting techniques for marketing teams, before meta-prompting became an established practice."
       - "Build SEO QA automation with SpeedCurve, Audisto, Screaming Frog, Ahrefs, and Playwright end-to-end tests for continuous quality monitoring. Introduced frontend e2e testing as an SEO practice at the company."
       - "Reframed organic growth metrics from traffic share to engagement and conversion, establishing a net new user acquisition framework."
