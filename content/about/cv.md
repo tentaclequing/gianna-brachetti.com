@@ -25,7 +25,7 @@ experience:
       - "Build and maintain measurement and attribution dashboards (SQL, Metabase) to track organic impact on engagement and conversion."
       - "Advise PR teams on link acquisition and authority-building strategies incorporating AI SEO / GEO."
       - "Introduced prompt engineering framework and meta-prompting techniques for marketing teams, before meta-prompting became an established practice."
-      - "Build SEO QA automation with SpeedCurve, Audisto, Screaming Frog, Ahrefs, and Playwright end-to-end tests for continuous quality monitoring. Introduced frontend e2e testing as an SEO practice at the company."
+      - "Introduced frontend e2e testing at the company, including specific SEO QA automation with SpeedCurve, Audisto, Screaming Frog, Ahrefs, and Playwright for continuous quality monitoring."
       - "Reframed organic growth metrics from traffic share to engagement and conversion, establishing a net new user acquisition framework."
   - title: "VP of SEO"
     company: "KaFe Rocks Ltd (via Startdowns GmbH)"
