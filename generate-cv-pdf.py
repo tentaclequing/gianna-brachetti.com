@@ -488,6 +488,11 @@ def generate_cv():
             "school": "Maven",
             "year": "2025",
         },
+        {
+            "course": "Mental Health First Aid (certified)",
+            "school": "Central Institute of Mental Health",
+            "year": "2021",
+        },
     ]
     for ce in cont_ed:
         c.setFont("Georgia-Bold", 9.5)
