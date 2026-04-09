@@ -1,6 +1,59 @@
 {{ define "main" }}
 {{- $writing := where .Site.RegularPages "Section" "writing" -}}
 {{- $notes := where .Site.RegularPages "Section" "notes" -}}
+
+{{- /* ── Structured Data: WebSite + Person ─────────── */ -}}
+{{- $siteURL := .Site.BaseURL | strings.TrimSuffix "/" -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "{{ $siteURL }}/#website",
+      "url": "{{ $siteURL }}/",
+      "name": "~/gianna",
+      "description": "{{ .Site.Params.description }}",
+      "inLanguage": "en",
+      "publisher": {
+        "@id": "{{ $siteURL }}/#person"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "{{ $siteURL }}/#person",
+      "name": "Gianna Brachetti-Truskawa",
+      "givenName": "Gianna",
+      "familyName": "Brachetti-Truskawa",
+      "url": "{{ "about/" | absURL }}",
+      "jobTitle": "Senior Product Manager, Search & CMS",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "DeepL SE",
+        "url": "https://www.deepl.com/"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/gianna-brachetti-truskawa/",
+        "https://github.com/tentaclequing"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "{{ .Permalink }}",
+      "url": "{{ .Permalink }}",
+      "name": "Gianna Brachetti-Truskawa - Organic Growth, Search & AI",
+      "description": "{{ .Site.Params.description }}",
+      "isPartOf": {
+        "@id": "{{ $siteURL }}/#website"
+      },
+      "about": {
+        "@id": "{{ $siteURL }}/#person"
+      },
+      "inLanguage": "en"
+    }
+  ]
+}
+</script>
 {{- $transmissions := len $writing -}}
 {{- $fragments := len $notes -}}
 

@@ -1,5 +1,49 @@
 {{ define "main" }}
 
+{{- $siteURL := .Site.BaseURL | strings.TrimSuffix "/" -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfilePage",
+      "@id": "{{ .Permalink }}",
+      "url": "{{ .Permalink }}",
+      "name": "{{ .Title }}",
+      "description": "{{ .Description | default .Site.Params.description }}",
+      "isPartOf": {
+        "@id": "{{ $siteURL }}/#website"
+      },
+      "mainEntity": {
+        "@id": "{{ $siteURL }}/#person"
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "Person",
+      "@id": "{{ $siteURL }}/#person",
+      "name": "Gianna Brachetti-Truskawa",
+      "url": "{{ "about/" | absURL }}",
+      "jobTitle": "Senior Product Manager, Search & CMS",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "DeepL SE",
+        "url": "https://www.deepl.com/"
+      },
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "TH Koeln - Cologne University of Applied Sciences",
+        "url": "https://www.th-koeln.de/"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/gianna-brachetti-truskawa/",
+        "https://github.com/tentaclequing"
+      ]
+    }
+  ]
+}
+</script>
+
 <div class="cv-wrap">
 
   {{/* Breadcrumb */}}
@@ -14,7 +58,7 @@
   {{/* Sticky download bar */}}
   {{ with .Params.pdf }}
   <div class="download-bar" role="complementary" aria-label="Download CV">
-    <span class="download-bar-label">last updated {{ $.Params.updated | default "2025" }}</span>
+    <span class="download-bar-label">last updated {{ $.Params.last_updated | default "2026" }}</span>
     <a class="download-btn" href="{{ .url }}" download="{{ .filename | default "CV.pdf" }}" aria-label="Download CV as PDF">
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
@@ -30,11 +74,14 @@
   <div class="cv-header">
     <p class="cv-label">curriculum vitae</p>
     <h1 class="cv-name">{{ .Params.cv_name | default .Title }}</h1>
-    <p class="cv-role">
+    <p class="cv-role cv-print-hide">
       {{ with .Params.roles }}
         {{ range $i, $r := . }}{{ if $i }}<span class="sep">/</span>{{ end }}{{ $r }}{{ end }}
       {{ end }}
     </p>
+    {{ with .Params.print_roles }}
+    <p class="cv-role cv-print-only">{{ . }}</p>
+    {{ end }}
     {{ with .Params.cv_contact }}
     <div class="cv-contact">
       {{ range . }}
@@ -44,6 +91,11 @@
       <a class="cv-contact-chip" href="{{ .url }}"{{ with .rel }} rel="{{ . }}"{{ end }}>{{ .label }}</a>
         {{- end }}
       {{ end }}
+    </div>
+    {{ end }}
+    {{ with .Params.print_contact }}
+    <div class="cv-print-only" style="font-size: 8pt; color: #666660; margin-top: 6pt; font-family: 'Fira Code', monospace; letter-spacing: 0.05em;">
+      {{ . }}
     </div>
     {{ end }}
   </div>
@@ -57,7 +109,7 @@
         <h2 class="cv-section-title" id="profile-heading">profile</h2>
         <div class="cv-section-rule" aria-hidden="true"></div>
       </div>
-      <p class="cv-summary">{{ . }}</p>
+      <p class="cv-summary">{{ . | markdownify }}</p>
     </section>
     {{ end }}
 
@@ -76,7 +128,7 @@
           <p class="entry-company">{{ .company }}</p>
           {{ with .bullets }}
           <ul class="entry-bullets">
-            {{ range . }}<li>{{ . }}</li>{{ end }}
+            {{ range . }}<li>{{ . | markdownify }}</li>{{ end }}
           </ul>
           {{ end }}
         </div>

@@ -1,0 +1,327 @@
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #1a1a18;
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 9.5pt;
+    line-height: 1.45;
+    padding-bottom: 0;
+  }
+
+  /* Hide non-print elements */
+  .top-nav,
+  .bottom-nav,
+  .breadcrumb,
+  .download-bar,
+  .back-to-about,
+  footer,
+  .cv-print-hide {
+    display: none !important;
+  }
+
+  .cv-print-only {
+    display: block !important;
+  }
+
+  /* ── Full-bleed dark header ────────────────────── */
+  .cv-wrap {
+    max-width: 100%;
+    padding: 0 15mm;
+  }
+
+  .cv-header {
+    background: #1a1a18 !important;
+    margin: 0 -15mm;
+    padding: 10mm 15mm 8mm;
+    margin-bottom: 8pt;
+  }
+
+  .cv-label {
+    display: none;
+  }
+
+  .cv-name {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 24pt;
+    font-weight: 300;
+    color: #ffffff !important;
+    margin-bottom: 1pt;
+    letter-spacing: -0.01em;
+  }
+
+  .cv-role {
+    font-family: "Fira Code", monospace;
+    color: #8a8a84 !important;
+    font-size: 8pt;
+    letter-spacing: 0.05em;
+    margin-bottom: 0;
+  }
+
+  .cv-role .sep {
+    color: #555 !important;
+  }
+
+  .cv-header .cv-print-only {
+    color: #999 !important;
+    margin-top: 5pt;
+    font-family: "Fira Code", monospace;
+    font-size: 7.5pt;
+    letter-spacing: 0.03em;
+  }
+
+  .cv-contact {
+    display: none;
+  }
+
+  /* ── Sections ──────────────────────────────────── */
+  .cv-section {
+    margin-bottom: 6pt;
+  }
+
+  .cv-section-header {
+    border-bottom: none;
+    margin-bottom: 4pt;
+    padding-bottom: 0;
+    display: block;
+  }
+
+  .cv-section-title {
+    font-family: "Fira Code", monospace;
+    color: #0066cc;
+    font-weight: 700;
+    font-size: 7pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border-bottom: 1.5pt solid #0066cc;
+    padding-bottom: 2pt;
+    display: inline-block;
+  }
+
+  .cv-section-rule {
+    display: none;
+  }
+
+  .cv-summary {
+    color: #333330;
+    font-size: 9pt;
+    padding: 4pt 0;
+    border-bottom: none;
+    line-height: 1.55;
+  }
+
+  /* ── Experience entries ────────────────────────── */
+  .cv-entry {
+    position: relative;
+    display: block;
+    border-bottom: none;
+    padding: 5pt 0 4pt;
+    break-inside: avoid;
+    border-left: 2pt solid #0066cc;
+    padding-left: 8pt;
+    margin-bottom: 3pt;
+    padding-right: 120pt;
+  }
+
+  .cv-entry:last-child {
+    border-bottom: none;
+  }
+
+  .entry-main {
+    width: 100%;
+  }
+
+  /* Date and location: stacked, top-right */
+  .entry-meta {
+    position: absolute;
+    top: 5pt;
+    right: 0;
+    text-align: right;
+    width: 115pt;
+  }
+
+  .entry-period {
+    font-family: "Fira Code", monospace;
+    font-size: 7pt;
+    color: #666660;
+    display: block;
+    letter-spacing: 0.06em;
+    line-height: 1.4;
+  }
+
+  .entry-location {
+    font-family: "Fira Code", monospace;
+    font-size: 6.5pt;
+    color: #999;
+    display: block;
+    line-height: 1.4;
+    margin-top: 1pt;
+  }
+
+  /* Title in blue, company in grey */
+  .entry-title {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    color: #0066cc;
+    font-size: 11pt;
+    font-weight: 600;
+    display: inline;
+  }
+
+  .entry-company {
+    font-family: "Fira Code", monospace;
+    color: #666660;
+    display: inline;
+    font-size: 7.5pt;
+    margin-bottom: 0;
+    letter-spacing: 0.02em;
+  }
+
+  .entry-company::before {
+    content: "  \2014  ";
+    color: #ccc;
+  }
+
+  .entry-bullets {
+    margin-top: 3pt;
+  }
+
+  .entry-bullets li {
+    color: #333330;
+    font-size: 8pt;
+    line-height: 1.45;
+    margin-bottom: 1.5pt;
+    padding-left: 8pt;
+    font-family: "Cormorant Garamond", Georgia, serif;
+  }
+
+  .entry-bullets li::before {
+    color: #0066cc;
+  }
+
+  .entry-bullets li strong {
+    color: #1a1a18;
+    font-weight: 700;
+  }
+
+  /* ── Skills grid ───────────────────────────────── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    background: none;
+    margin-top: 2pt;
+    border: 0.5pt solid #d0d0ca;
+  }
+
+  .skill-cell {
+    background: #fafaf8;
+    padding: 4pt 6pt;
+    border-right: 0.5pt solid #d0d0ca;
+    border-bottom: 0.5pt solid #d0d0ca;
+  }
+
+  .skill-cell:nth-child(3n) {
+    border-right: none;
+  }
+
+  .skill-cell:nth-last-child(-n + 3) {
+    border-bottom: none;
+  }
+
+  .skill-label {
+    font-family: "Fira Code", monospace;
+    color: #0066cc;
+    font-size: 6pt;
+    margin-bottom: 1pt;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .skill-value {
+    color: #333330;
+    font-size: 7.5pt;
+    line-height: 1.35;
+    font-family: "Cormorant Garamond", Georgia, serif;
+  }
+
+  /* ── Education ─────────────────────────────────── */
+  .edu-entry {
+    border-bottom: none;
+    padding: 3pt 0;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+  }
+
+  .edu-degree {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    color: #1a1a18;
+    font-size: 10pt;
+  }
+
+  .edu-school {
+    font-family: "Fira Code", monospace;
+    color: #666660;
+    font-size: 6.5pt;
+    letter-spacing: 0.02em;
+  }
+
+  .edu-year {
+    font-family: "Fira Code", monospace;
+    color: #666660;
+    font-size: 7pt;
+  }
+
+  /* ── Publications ──────────────────────────────── */
+  .cv-pub-item {
+    color: #333330;
+    font-size: 8pt;
+    border-bottom: none;
+    padding: 2pt 0;
+    line-height: 1.4;
+  }
+
+  .cv-pub-item a {
+    color: #0066cc;
+    border-bottom: none;
+    text-decoration: none;
+  }
+
+  .cv-pub-list {
+    margin: 0;
+  }
+
+  /* ── Elsewhere ─────────────────────────────────── */
+  .cv-elsewhere {
+    color: #333330;
+    font-size: 8pt;
+    line-height: 1.45;
+    padding: 2pt 0;
+  }
+
+  .cv-elsewhere a {
+    color: #0066cc;
+    border-bottom: none;
+    text-decoration: none;
+  }
+
+  /* ── Page setup ────────────────────────────────── */
+  @page {
+    margin: 0;
+    size: A4;
+  }
+
+  @page :not(:first) {
+    margin-top: 10mm;
+  }
+}
+
+/* Print-only elements hidden on screen */
+.cv-print-only {
+  display: none;
+}

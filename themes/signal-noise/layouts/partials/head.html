@@ -54,7 +54,8 @@
 {{- $page := resources.Get "css/_page.css" -}}
 {{- $four04 := resources.Get "css/_404.css" -}}
 {{- $sidenote := resources.Get "css/_sidenote.css" -}}
-{{- $css := slice $fonts $vars $reset $typo $grain $cursor $nav $footer $home $post $note $page $four04 $sidenote | resources.Concat "css/main.css" | minify | fingerprint -}}
+{{- $print := resources.Get "css/_print.css" -}}
+{{- $css := slice $fonts $vars $reset $typo $grain $cursor $nav $footer $home $post $note $page $four04 $sidenote $print | resources.Concat "css/main.css" | minify | fingerprint -}}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
 
 {{- /* RSS */ -}}
