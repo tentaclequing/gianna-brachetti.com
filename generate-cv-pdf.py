@@ -229,16 +229,15 @@ def generate_cv():
             "period": "2022 - Present",
             "location": "Cologne, Remote",
             "bullets": [
-                "Lead a cross-functional team of 7 (engineers, QA, product designer, content strategist) and manage freelancers, owning organic user growth and search experience strategy for an enterprise SaaS product serving 200,000+ business customers across 100+ languages. Grew organic traffic by 200% within the first year.",
-                "Own content pipeline and production for landing pages, comparison pages, funnel pages, and conversion pages, driving organic acquisition and engagement.",
-                "Established cross-functional SEO alignment across the entire company, bringing together engineering, product, and marketing to surface and resolve structural growth blockers.",
-                "Work as product manager with a dedicated engineering team, shipping technical SEO improvements and platform changes. Own and prioritise the tech SEO backlog. Practise agile, test-driven, and spec-driven development.",
-                "Built measurement and attribution dashboards (SQL, Metabase) to track organic impact on engagement and conversion. Run A/B tests (Statsig) to validate growth hypotheses.",
+                "Leading a cross-functional team of 7 (engineers, QA, product designer, content strategist) and managing freelancers, owning organic user growth and search experience strategy for an enterprise SaaS product serving 200,000+ business customers across 100+ languages. Grew organic traffic by 200% within the first year.",
+                "Owning the search experience for anonymous web users - discovery, content surfacing, and conversion flows across 30+ language markets. Initially also served as product manager for Linguee, DeepL's linguistic search engine.",
+                "Owning the content pipeline for landing pages, comparison pages, funnel pages, and conversion pages. Established cross-functional SEO alignment across the entire company.",
+                "Working as product manager with a dedicated engineering team, shipping technical SEO improvements and platform changes. Owning and prioritising the tech SEO backlog.",
+                "Driving data-driven decision-making through measurement and attribution dashboards (SQL, Metabase) to track organic impact on engagement and conversion rate optimisation. Running A/B tests (Statsig) to validate growth hypotheses.",
                 "Built an internal search tool based on Lunr as an experiment to improve content discovery workflows.",
-                "Advise PR teams on link acquisition and authority-building strategies incorporating LLM visibility, GEO, and AI search positioning.",
+                "Advising PR teams on link acquisition and authority-building strategies incorporating LLM visibility, GEO, and AI search positioning.",
                 "Building SEO QA automation leveraging SpeedCurve, Audisto, Screaming Frog, Ahrefs, and Playwright tests for continuous quality monitoring.",
                 "Built prompt engineering framework and introduced meta-prompting techniques for marketing teams, before meta-prompting became an established practice.",
-                "Developed net new user acquisition framework, reframing organic growth metrics from traffic share to engagement and conversion.",
             ],
         },
         {
@@ -279,7 +278,8 @@ def generate_cv():
             "location": "Bonn",
             "bullets": [
                 "Managed SEO for a 65 million URL estate, one of Germany's largest web properties.",
-                "Fine-tuned the on-site search experience (Solr), using search result data, user behaviour signals, and A/B tests to improve relevance and discovery.",
+                "Fine-tuned the on-site search experience (Solr), including autocomplete, result ranking, and alternative suggestions for zero-result queries, using search result data, user behaviour signals, and A/B tests to improve relevance and discovery.",
+                "Applied data-driven analysis of search behaviour and conversion rate optimisation to feed insights back into content decisions and product features.",
                 "Implemented structured data and AMP for Google Rich Results, achieving over 100% visibility gain.",
                 "Designed context-sensitive product recommendation engine for recipe pages, bridging SEO signals with product UX.",
                 "Drove programmatic SEO for scaled recipe and category page generation.",
@@ -349,7 +349,7 @@ def generate_cv():
     skills = [
         {
             "label": "Search & Discovery",
-            "value": "Strategic International SEO, Technical SEO, On-page SEO, Keyword research, Query fan-out analysis, Core Web Vitals, Log file analysis, Schema / JSON-LD, Content architecture, Crawl infrastructure, Localisation, Multi-language content",
+            "value": "Search relevance, Autocomplete, Query understanding, A/B testing, Conversion rate optimisation, Strategic International SEO, Technical SEO, On-page SEO, Keyword research, Query fan-out analysis, Core Web Vitals, Log file analysis, Schema / JSON-LD, Content architecture, Crawl infrastructure, Localisation, Multi-language content",
         },
         {
             "label": "AI & Security",
