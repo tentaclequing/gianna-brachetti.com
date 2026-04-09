@@ -14,11 +14,11 @@ footer {
 }
 .footer-right {
   font-size: 10px;
-  color: var(--dim);
+  color: var(--muted);
   letter-spacing: 0.1em;
 }
 .footer-license a {
-  color: var(--dim);
+  color: var(--muted);
   text-decoration: none;
   border-bottom: 1px solid var(--border);
   padding-bottom: 1px;
@@ -31,7 +31,7 @@ footer {
   border-color: var(--accent);
 }
 .footer-sep {
-  color: var(--border);
+  color: var(--dim);
   margin: 0 6px;
 }
 

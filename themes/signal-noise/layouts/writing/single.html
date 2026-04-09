@@ -58,6 +58,11 @@
         <span class="meta-value">{{ $type }}</span>
       </div>
     </div>
+    {{ with .Params.original_date }}
+    <p class="originally-published">
+      Originally published {{ . }}{{ with $.Params.original_source }} on <a href="{{ $.Params.canonical }}">{{ . }}</a>{{ end }}.
+    </p>
+    {{ end }}
   </header>
 
   {{ partial "tldr.html" . }}
@@ -65,12 +70,6 @@
   <article class="post-body" id="post-body">
     {{ .Content }}
   </article>
-
-  {{ with .Params.original_date }}
-  <div class="originally-published">
-    Originally published {{ . }}{{ with $.Params.original_source }} on <a href="{{ $.Params.canonical }}">{{ . }}</a>{{ end }}.
-  </div>
-  {{ end }}
 
   {{ partial "author-bio.html" . }}
 
