@@ -37,7 +37,7 @@ OUTPUT = "C:/Users/gianna.brachetti/ops/personal/gianna-brachetti.com/static/cv/
 
 def draw_dark_header(c, y):
     """Dark header block with name and roles."""
-    header_h = 66 * mm
+    header_h = 80 * mm
     c.setFillColor(BLACK)
     c.rect(0, H - header_h, W, header_h, fill=1, stroke=0)
 
@@ -143,13 +143,32 @@ def draw_experience_entry(
     c.setFont("Georgia", 9.5)
     c.setFillColor(HexColor("#555550"))
     title_w = pdfmetrics.stringWidth(title, "Georgia-Bold", 10)
-    c.drawString(LEFT + title_w + 4, y, "  -  " + company)
+    company_str = "  -  " + company
+    company_w = pdfmetrics.stringWidth(company_str, "Georgia", 9.5)
 
     # Period + location on right
     c.setFont("Consolas", 7.5)
     c.setFillColor(MUTED)
     period_loc = f"{period}  |  {location}"
-    c.drawRightString(RIGHT, y + 1, period_loc)
+    period_w = pdfmetrics.stringWidth(period_loc, "Consolas", 7.5)
+
+    # Check if title + company + period would overlap
+    if LEFT + title_w + 4 + company_w + 10 + period_w > RIGHT:
+        # Put period/location on its own line
+        c.setFont("Georgia", 9.5)
+        c.setFillColor(HexColor("#555550"))
+        c.drawString(LEFT + title_w + 4, y, company_str)
+        y -= 13
+        c.setFont("Consolas", 7.5)
+        c.setFillColor(MUTED)
+        c.drawString(LEFT, y, period_loc)
+    else:
+        c.setFont("Georgia", 9.5)
+        c.setFillColor(HexColor("#555550"))
+        c.drawString(LEFT + title_w + 4, y, company_str)
+        c.setFont("Consolas", 7.5)
+        c.setFillColor(MUTED)
+        c.drawRightString(RIGHT, y + 1, period_loc)
     y -= 14
 
     # Company description (one-liner beneath company name)
