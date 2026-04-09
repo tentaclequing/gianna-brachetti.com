@@ -34,7 +34,7 @@ experience:
     bullets:
       - "C-level SEO leadership for an international iGaming affiliate operating in a YMYL niche - one of the most competitive and heavily regulated markets online. Achieved 99% organic traffic share across the portfolio."
       - "Built and grew the SEO and QA teams, establishing quality standards and processes for sustainable white-hat growth across multiple regulated markets. Introduced frontend end-to-end testing for SEO quality assurance."
-      - "Built systems to detect and defend against fraudulent DMCA notices, content scraping, and copying - protecting the company's organic assets in a market where competitors actively attack each other's rankings."
+      - "Built systems and honeypots to detect and defend against fraudulent DMCA notices, content scraping, and copying - protecting the company's organic assets in a market where competitors actively attack each other's rankings."
       - "Drove programmatic SEO strategy for scaled content generation."
   - title: "International Senior SEO Manager"
     company: "bold ventures GmbH"
