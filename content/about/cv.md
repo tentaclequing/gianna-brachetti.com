@@ -29,7 +29,7 @@ experience:
       - "Driving **data-driven** decision-making through measurement and attribution dashboards (SQL, Metabase) to track organic impact on engagement and **conversion rate optimisation**. Reframed organic growth metrics from traffic share to engagement and conversion. Running **A/B tests** (Statsig) to validate growth hypotheses."
       - "Built an internal search for the website based on **Lunr** as an experiment to improve content discovery."
       - "Built an internal tool to create synthetic prompts and track LLM visibility, citations, and competitive intelligence across multiple models (hackathon, early 2024) - before commercial tools offered this capability."
-      - "Built a semi-automated **prompt engineering framework** that let marketing colleagues fill in a short form and receive optimised prompts and results after multiple LLM iterations - removing the need for manual prompt crafting."
+      - "Built an automated **prompt engineering framework** that lets marketing colleagues fill in a short form and receive optimised prompts and results after multiple LLM iterations - removing the need for manual prompt crafting."
       - "Introduced frontend e2e testing at the company, including specific SEO QA automation with SpeedCurve, Audisto, Screaming Frog, Ahrefs, and Playwright for continuous quality monitoring."
   - title: "VP of SEO"
     company: "KaFe Rocks Ltd (acquired by Gaming Innovation Group)"

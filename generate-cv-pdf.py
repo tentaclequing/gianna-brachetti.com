@@ -237,7 +237,7 @@ def generate_cv():
                 "Built an internal search for the website based on Lunr as an experiment to improve content discovery.",
                 "Advising PR teams on link acquisition and authority-building strategies incorporating LLM visibility, GEO, and AI search positioning.",
                 "Building SEO QA automation leveraging SpeedCurve, Audisto, Screaming Frog, Ahrefs, and Playwright tests for continuous quality monitoring.",
-                "Built prompt engineering framework and introduced meta-prompting techniques for marketing teams, before meta-prompting became an established practice.",
+                "Built an automated prompt engineering framework that lets marketing colleagues produce optimised prompts without manual crafting. Introduced meta-prompting techniques before they became established practice.",
             ],
         },
         {
