@@ -29,34 +29,36 @@ W, H = A4
 LEFT = 28 * mm
 RIGHT = W - 28 * mm
 CONTENT_W = RIGHT - LEFT
+FOOTER_H = 12 * mm
+BOTTOM_MARGIN = FOOTER_H + 10 * mm  # safe zone above footer
 
 OUTPUT = "C:/Users/gianna.brachetti/ops/personal/gianna-brachetti.com/static/cv/gianna-brachetti-truskawa-cv.pdf"
 
 
 def draw_dark_header(c, y):
     """Dark header block with name and roles."""
-    header_h = 62 * mm
+    header_h = 66 * mm
     c.setFillColor(BLACK)
     c.rect(0, H - header_h, W, header_h, fill=1, stroke=0)
 
     # Name
     c.setFillColor(WHITE)
     c.setFont("Georgia", 28)
-    c.drawString(LEFT, H - 22 * mm, "Gianna Brachetti-Truskawa")
+    c.drawString(LEFT, H - 24 * mm, "Gianna Brachetti-Truskawa")
 
     # Roles line
-    c.setFont("Consolas", 8)
+    c.setFont("Consolas", 8.5)
     c.setFillColor(ACCENT)
-    c.drawString(LEFT, H - 30 * mm, "// ")
+    c.drawString(LEFT, H - 33 * mm, "// ")
     c.setFillColor(MUTED)
     c.drawString(
         LEFT + 14,
-        H - 30 * mm,
+        H - 33 * mm,
         "Organic Growth Leader  /  Search & AI Product Manager  /  Multilingual Strategist",
     )
 
     # Profile
-    c.setFont("Georgia", 8.5)
+    c.setFont("Georgia", 9)
     c.setFillColor(HexColor("#C8C8C0"))
     profile = (
         "Product manager and organic growth leader with 17+ years in international search, now working at the "
@@ -69,16 +71,16 @@ def draw_dark_header(c, y):
         "engineering, product, and marketing with cross-functional leadership experience across "
         "30+ language markets."
     )
-    y_prof = H - 37 * mm
+    y_prof = H - 41 * mm
     y_prof = draw_wrapped_text(
-        c, profile, LEFT, y_prof, CONTENT_W, 11, "Georgia", 8.5, HexColor("#C8C8C0")
+        c, profile, LEFT, y_prof, CONTENT_W, 12.5, "Georgia", 9, HexColor("#C8C8C0")
     )
 
     # Accent line at bottom of header
     c.setFillColor(ACCENT)
     c.rect(0, H - header_h, W, 0.6, fill=1, stroke=0)
 
-    return H - header_h - 8 * mm
+    return H - header_h - 10 * mm
 
 
 def draw_wrapped_text(c, text, x, y, max_w, leading, font, size, color):
@@ -103,54 +105,70 @@ def draw_wrapped_text(c, text, x, y, max_w, leading, font, size, color):
 
 def draw_section_title(c, title, y):
     """Draw section heading with accent line."""
-    c.setFont("Consolas", 7.5)
+    c.setFont("Consolas", 8)
     c.setFillColor(ACCENT)
     c.drawString(LEFT, y, "//")
     c.setFillColor(DARK_TEXT)
     c.drawString(LEFT + 14, y, title.upper())
-    title_w = pdfmetrics.stringWidth(title.upper(), "Consolas", 7.5)
+    title_w = pdfmetrics.stringWidth(title.upper(), "Consolas", 8)
     c.setStrokeColor(HexColor("#D0D0CA"))
     c.setLineWidth(0.4)
     c.line(LEFT + 18 + title_w, y + 3, RIGHT, y + 3)
-    return y - 12
+    return y - 16
+
+
+def new_page(c, page_num):
+    """End current page and start a new one. Returns new y position."""
+    draw_dark_footer(c, page_num)
+    c.showPage()
+    draw_page_bg(c)
+    return H - 20 * mm
 
 
 def draw_experience_entry(
-    c, title, company, period, location, bullets, y, compact=False, company_desc=None
+    c, title, company, period, location, bullets, y, page_num, company_desc=None
 ):
-    """Draw a single experience entry."""
-    # Check if we need a new page
-    min_needed = 14 + len(bullets) * 10 + (10 if company_desc else 0)
-    if y < 30 * mm + min_needed:
-        return y, False  # Signal that we need a new page
+    """Draw a single experience entry. Returns (y, page_num)."""
+    # Estimate space needed for at least the header + 1 bullet
+    min_needed = 40
+    if y < BOTTOM_MARGIN + min_needed:
+        y = new_page(c, page_num)
+        page_num += 1
+        y = draw_section_title(c, "Experience (continued)", y)
 
     # Title + company
-    c.setFont("Georgia-Bold", 9)
+    c.setFont("Georgia-Bold", 10)
     c.setFillColor(DARK_TEXT)
     c.drawString(LEFT, y, title)
-    c.setFont("Georgia", 9)
+    c.setFont("Georgia", 9.5)
     c.setFillColor(HexColor("#555550"))
-    title_w = pdfmetrics.stringWidth(title, "Georgia-Bold", 9)
+    title_w = pdfmetrics.stringWidth(title, "Georgia-Bold", 10)
     c.drawString(LEFT + title_w + 4, y, "  -  " + company)
 
     # Period + location on right
-    c.setFont("Consolas", 7)
+    c.setFont("Consolas", 7.5)
     c.setFillColor(MUTED)
     period_loc = f"{period}  |  {location}"
     c.drawRightString(RIGHT, y + 1, period_loc)
-    y -= 12
+    y -= 14
 
     # Company description (one-liner beneath company name)
     if company_desc:
-        c.setFont("Georgia-Italic", 7.5)
+        c.setFont("Georgia-Italic", 8)
         c.setFillColor(HexColor("#888880"))
         c.drawString(LEFT, y, company_desc)
-        y -= 10
+        y -= 12
 
     # Bullets
     for bullet in bullets:
+        # Check if we need a page break mid-entry
+        if y < BOTTOM_MARGIN + 14:
+            y = new_page(c, page_num)
+            page_num += 1
+            y = draw_section_title(c, "Experience (continued)", y)
+
         c.setFillColor(ACCENT)
-        c.setFont("Consolas", 6)
+        c.setFont("Consolas", 6.5)
         c.drawString(LEFT + 4, y + 1, ">")
         y_new = draw_wrapped_text(
             c,
@@ -158,54 +176,57 @@ def draw_experience_entry(
             LEFT + 14,
             y,
             CONTENT_W - 14,
-            10,
+            12,
             "Georgia",
-            8,
+            9,
             HexColor("#3A3A38"),
         )
-        y = y_new - 2
+        y = y_new - 4
 
-    return y - (4 if compact else 6), True
+    return y - 10, page_num
 
 
-def draw_skills(c, skills, y):
-    """Draw skills grid."""
+def draw_skills(c, skills, y, page_num):
+    """Draw skills grid. Returns (y, page_num)."""
     for skill in skills:
         label = skill["label"]
         value = skill["value"]
 
-        c.setFont("Consolas", 7)
+        if y < BOTTOM_MARGIN + 30:
+            y = new_page(c, page_num)
+            page_num += 1
+
+        c.setFont("Consolas", 7.5)
         c.setFillColor(ACCENT)
         c.drawString(LEFT, y, label.upper())
-        y -= 10
+        y -= 12
 
         y = draw_wrapped_text(
-            c, value, LEFT + 2, y, CONTENT_W - 2, 10, "Georgia", 8, HexColor("#3A3A38")
+            c, value, LEFT + 2, y, CONTENT_W - 2, 12, "Georgia", 9, HexColor("#3A3A38")
         )
-        y -= 6
-    return y
+        y -= 10
+    return y, page_num
 
 
 def draw_dark_footer(c, page_num):
     """Dark footer bar."""
-    footer_h = 12 * mm
     c.setFillColor(BLACK)
-    c.rect(0, 0, W, footer_h, fill=1, stroke=0)
+    c.rect(0, 0, W, FOOTER_H, fill=1, stroke=0)
     c.setFillColor(ACCENT)
-    c.rect(0, footer_h, W, 0.4, fill=1, stroke=0)
+    c.rect(0, FOOTER_H, W, 0.4, fill=1, stroke=0)
 
     c.setFont("Consolas", 6.5)
     c.setFillColor(MUTED)
     c.drawString(LEFT, 4.5 * mm, "gianna-brachetti.com")
-    c.drawCentredString(W / 2, 4.5 * mm, "March 2026")
+    c.drawCentredString(W / 2, 4.5 * mm, "April 2026")
     c.setFillColor(HexColor("#565650"))
-    c.drawRightString(RIGHT, 4.5 * mm, f"Page {page_num} of 2")
+    c.drawRightString(RIGHT, 4.5 * mm, f"Page {page_num}")
 
 
 def draw_page_bg(c):
     """Light background for body area."""
     c.setFillColor(BODY_BG)
-    c.rect(0, 12 * mm, W, H - 12 * mm, fill=1, stroke=0)
+    c.rect(0, FOOTER_H, W, H - FOOTER_H, fill=1, stroke=0)
 
 
 def generate_cv():
@@ -213,6 +234,8 @@ def generate_cv():
     c.setTitle("Gianna Brachetti-Truskawa - CV")
     c.setAuthor("Gianna Brachetti-Truskawa")
     c.setSubject("Search & AI Product Lead")
+
+    page_num = 1
 
     # --- PAGE 1 ---
     draw_page_bg(c)
@@ -306,9 +329,8 @@ def generate_cv():
         },
     ]
 
-    page1_entries = 4  # First 4 entries on page 1
-    for i, exp in enumerate(experiences[:page1_entries]):
-        y, ok = draw_experience_entry(
+    for exp in experiences:
+        y, page_num = draw_experience_entry(
             c,
             exp["title"],
             exp["company"],
@@ -316,34 +338,16 @@ def generate_cv():
             exp["location"],
             exp["bullets"],
             y,
-            compact=(i > 0),
-            company_desc=exp.get("company_desc"),
-        )
-
-    draw_dark_footer(c, 1)
-    c.showPage()
-
-    # --- PAGE 2 ---
-    draw_page_bg(c)
-    y = H - 18 * mm
-
-    # Remaining experience
-    y = draw_section_title(c, "Experience (continued)", y)
-    for exp in experiences[page1_entries:]:
-        y, ok = draw_experience_entry(
-            c,
-            exp["title"],
-            exp["company"],
-            exp["period"],
-            exp["location"],
-            exp["bullets"],
-            y,
-            compact=True,
+            page_num,
             company_desc=exp.get("company_desc"),
         )
 
     # Skills
-    y -= 4
+    if y < BOTTOM_MARGIN + 60:
+        y = new_page(c, page_num)
+        page_num += 1
+
+    y -= 6
     y = draw_section_title(c, "Skills & Expertise", y)
     skills = [
         {
@@ -367,10 +371,14 @@ def generate_cv():
             "value": "German (native), English (fluent), French (intermediate), Italian (intermediate), Turkish (intermediate), Spanish & Portuguese (written understanding), Dutch (beginner), Norwegian (beginner)",
         },
     ]
-    y = draw_skills(c, skills, y)
+    y, page_num = draw_skills(c, skills, y, page_num)
 
     # Publications
-    y -= 2
+    if y < BOTTOM_MARGIN + 40:
+        y = new_page(c, page_num)
+        page_num += 1
+
+    y -= 6
     y = draw_section_title(c, "Publications", y)
     pubs = [
         "Multi-Level Approach to Managing AI Crawler Behaviour and Content Protection (IAB, 2024)",
@@ -378,15 +386,19 @@ def generate_cv():
     ]
     for pub in pubs:
         c.setFillColor(ACCENT)
-        c.setFont("Consolas", 6)
+        c.setFont("Consolas", 6.5)
         c.drawString(LEFT + 4, y + 1, ">")
         y = draw_wrapped_text(
-            c, pub, LEFT + 14, y, CONTENT_W - 14, 10, "Georgia", 8, HexColor("#3A3A38")
+            c, pub, LEFT + 14, y, CONTENT_W - 14, 12, "Georgia", 9, HexColor("#3A3A38")
         )
-        y -= 4
+        y -= 6
 
     # Memberships
-    y -= 2
+    if y < BOTTOM_MARGIN + 40:
+        y = new_page(c, page_num)
+        page_num += 1
+
+    y -= 6
     y = draw_section_title(c, "Memberships", y)
     memberships = [
         "WiCyS - Women in Cybersecurity (since 2025)",
@@ -394,15 +406,19 @@ def generate_cv():
     ]
     for mem in memberships:
         c.setFillColor(ACCENT)
-        c.setFont("Consolas", 6)
+        c.setFont("Consolas", 6.5)
         c.drawString(LEFT + 4, y + 1, ">")
-        c.setFont("Georgia", 8)
+        c.setFont("Georgia", 9)
         c.setFillColor(HexColor("#3A3A38"))
         c.drawString(LEFT + 14, y, mem)
-        y -= 12
+        y -= 14
 
     # Education
-    y -= 2
+    if y < BOTTOM_MARGIN + 50:
+        y = new_page(c, page_num)
+        page_num += 1
+
+    y -= 6
     y = draw_section_title(c, "Education", y)
     education = [
         {
@@ -417,20 +433,24 @@ def generate_cv():
         },
     ]
     for edu in education:
-        c.setFont("Georgia-Bold", 8.5)
+        c.setFont("Georgia-Bold", 9.5)
         c.setFillColor(DARK_TEXT)
         c.drawString(LEFT, y, edu["degree"])
-        c.setFont("Consolas", 7)
+        c.setFont("Consolas", 7.5)
         c.setFillColor(MUTED)
         c.drawRightString(RIGHT, y + 1, edu["year"])
-        y -= 11
-        c.setFont("Georgia", 8)
+        y -= 13
+        c.setFont("Georgia", 9)
         c.setFillColor(HexColor("#555550"))
         c.drawString(LEFT, y, edu["school"])
-        y -= 14
+        y -= 16
 
     # Elsewhere
-    y -= 2
+    if y < BOTTOM_MARGIN + 50:
+        y = new_page(c, page_num)
+        page_num += 1
+
+    y -= 6
     y = draw_section_title(c, "Elsewhere", y)
     elsewhere_items = [
         "Building an open-source prompt and context engineering framework designed to make AI tools accessible to non-technical knowledge workers.",
@@ -440,13 +460,13 @@ def generate_cv():
     ]
     for item in elsewhere_items:
         y = draw_wrapped_text(
-            c, item, LEFT + 2, y, CONTENT_W - 2, 10, "Georgia", 8, HexColor("#555550")
+            c, item, LEFT + 2, y, CONTENT_W - 2, 12, "Georgia", 9, HexColor("#555550")
         )
-        y -= 4
+        y -= 6
 
-    draw_dark_footer(c, 2)
+    draw_dark_footer(c, page_num)
     c.save()
-    print(f"CV PDF generated: {OUTPUT}")
+    print(f"CV PDF generated: {OUTPUT} ({page_num} pages)")
 
 
 if __name__ == "__main__":
