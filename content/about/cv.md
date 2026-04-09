@@ -111,6 +111,9 @@ continuing_education:
   - course: "Actionable AI for Marketers (certified)"
     school: "Maven"
     year: "2025"
+  - course: "Mental Health First Aid (certified)"
+    school: "Central Institute of Mental Health"
+    year: "2021"
 publications:
   - "[Multi-Level Approach to Managing AI Crawler Behaviour and Content Protection](https://datatracker.ietf.org/doc/slides-aicontrolws-proposal-multi-level-approach-to-managing-ai-crawler-behavior-and-content-protection/) (IAB, 2024)"
   - "Qualification Characteristics of Swearwords and Their Significance in Translation (Bachelor thesis, 2012)"
