@@ -48,6 +48,7 @@ experience:
     location: "Cologne / Paris"
     bullets:
       - "Staff role reporting directly to the Managing Directors (Stabsstelle der GF). Led team of international SEO managers across the group's European properties, including user-generated content platforms (gofeminin.de, sofeminine.co.uk and locale variants) and editorially produced medical content (Onmeda.de and international equivalents)."
+      - "Educated and guided large editorial teams on SEO best practices for both the UGC and medical content properties, driving content quality and search performance without formal line authority."
       - "Designed and implemented server log monitoring and analysis process for crawl behaviour insights at scale."
       - "Managed programmatic SEO for scaled content across multiple European markets."
   - title: "Senior SEO Manager"
@@ -58,7 +59,7 @@ experience:
       - "Managed SEO and search experience for Chefkoch.de, Germany's largest recipe search engine with a 65 million URL estate."
       - "Fine-tuned and tested the on-site search experience, using search result data and user behaviour signals to improve relevance and discovery."
       - "Used search result features to promote internal links, feeding search behaviour data back into SEO-driven content decisions."
-      - "Implemented structured data and AMP for Google Rich Results, achieving over 100% visibility gain."
+      - "Early adopter of structured data (Schema.org/JSON-LD) from its first days, spearheading implementation across Bertelsmann companies. Collaborated directly with a Google technical team as the first company in Germany to test new markup formats. Achieved over 100% visibility gain through Rich Results and AMP."
       - "Designed context-sensitive product recommendation engine for recipe pages, bridging SEO signals with product UX."
       - "Drove programmatic SEO for scaled recipe and category page generation."
       - "Built automated JIRA-based content optimisation workflow, reducing manual coordination overhead across editorial and development teams."
@@ -73,7 +74,7 @@ experience:
     period: "2012 - 2014"
     location: "Cologne"
     bullets:
-      - "Led team of four SEO specialists managing large international e-commerce projects for Microsoft, ASUS, Toshiba, and major online pharmacies."
+      - "Led team of four SEO specialists managing large international e-commerce projects for Microsoft, ASUS, Toshiba, and major online pharmacies in a regulated healthcare market."
       - "Technical consulting for CMS migrations across Magento, Hybris, and Demandware platforms."
 skills:
   - label: "Search & Discovery"
@@ -101,5 +102,5 @@ publications:
 memberships:
   - "WiCyS - Women in Cybersecurity (since 2025)"
   - "Women4Cyber Foundation (since 2025)"
-elsewhere: "Building an open-source prompt and context engineering framework designed to make AI tools accessible to non-technical knowledge workers. Building an [MCP server for Audisto](https://github.com/tentaclequing/audisto-mcp) to integrate crawl data into AI-assisted workflows. Writing and digital garden at [gianna-brachetti.com](https://gianna-brachetti.com). Volunteer in geriatric psychiatry (2004-2005). Faculty board member, TH Koeln (2011-2012). Former freelance translator (DE/EN/FR/IT)."
+elsewhere: "Building an open-source prompt and context engineering framework designed to make AI tools accessible to non-technical knowledge workers. Building an [MCP server for Audisto](https://github.com/tentaclequing/audisto-mcp) to integrate crawl data into AI-assisted workflows. Personal connection to healthcare: half my family works in the sector, and I have helped write SOPs for hospitals and run smaller security tests in my free time. Writing and digital garden at [gianna-brachetti.com](https://gianna-brachetti.com). Volunteer in geriatric psychiatry (2004-2005). Faculty board member, TH Koeln (2011-2012). Former freelance translator (DE/EN/FR/IT)."
 ---
