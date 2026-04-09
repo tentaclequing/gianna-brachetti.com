@@ -101,6 +101,16 @@ education:
   - degree: "Commercial Agent in Dialogue Marketing (Apprenticeship)"
     school: "IHK"
     year: "2008"
+continuing_education:
+  - course: "Building AI Copilots (certified)"
+    school: "Maven"
+    year: "2026"
+  - course: "Agentic SDLC"
+    school: "Multiverse School"
+    year: "2026"
+  - course: "Actionable AI for Marketers (certified)"
+    school: "Maven"
+    year: "2025"
 publications:
   - "[Multi-Level Approach to Managing AI Crawler Behaviour and Content Protection](https://datatracker.ietf.org/doc/slides-aicontrolws-proposal-multi-level-approach-to-managing-ai-crawler-behavior-and-content-protection/) (IAB, 2024)"
   - "Qualification Characteristics of Swearwords and Their Significance in Translation (Bachelor thesis, 2012)"

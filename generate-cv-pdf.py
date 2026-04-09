@@ -469,6 +469,39 @@ def generate_cv():
         c.drawString(LEFT, y, edu["school"])
         y -= 16
 
+    # Continuing Education
+    if y < BOTTOM_MARGIN + 50:
+        y = new_page(c, page_num)
+        page_num += 1
+
+    y -= 6
+    y = draw_section_title(c, "Continuing Education", y)
+    cont_ed = [
+        {
+            "course": "Building AI Copilots (certified)",
+            "school": "Maven",
+            "year": "2026",
+        },
+        {"course": "Agentic SDLC", "school": "Multiverse School", "year": "2026"},
+        {
+            "course": "Actionable AI for Marketers (certified)",
+            "school": "Maven",
+            "year": "2025",
+        },
+    ]
+    for ce in cont_ed:
+        c.setFont("Georgia-Bold", 9.5)
+        c.setFillColor(DARK_TEXT)
+        c.drawString(LEFT, y, ce["course"])
+        c.setFont("Consolas", 7.5)
+        c.setFillColor(MUTED)
+        c.drawRightString(RIGHT, y + 1, ce["year"])
+        y -= 13
+        c.setFont("Georgia", 9)
+        c.setFillColor(HexColor("#555550"))
+        c.drawString(LEFT, y, ce["school"])
+        y -= 16
+
     # Elsewhere
     if y < BOTTOM_MARGIN + 50:
         y = new_page(c, page_num)
