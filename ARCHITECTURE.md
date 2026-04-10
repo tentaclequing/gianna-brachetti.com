@@ -4,7 +4,7 @@
 
 ## Overview
 
-Personal website and digital garden. Hugo static site, GitHub Pages hosting, Obsidian as CMS.
+Personal website and kelp forest (digital garden). Hugo static site, GitHub Pages hosting, Obsidian as CMS.
 
 ## Stack
 
