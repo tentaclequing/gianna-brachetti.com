@@ -1,8 +1,8 @@
 ---
 title: "Signal fragments"
-description: "Half-formed ideas, working notes, and things I keep returning to."
+description: "Ideas anchored at different depths. Some are still growing."
 layout: list
-page_label: "digital garden"
+page_label: "kelp forest"
 sitemap:
   disable: true
 ---
