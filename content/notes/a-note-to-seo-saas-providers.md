@@ -1,5 +1,5 @@
 ---
-title: A note to SEO SaaS Providers
+title: A note to SEO SaaS providers
 date: 2026-04-10
 status: fresh
 tags: []
