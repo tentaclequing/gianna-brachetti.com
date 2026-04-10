@@ -266,7 +266,7 @@
 }
 .cv-nudge-text {
   font-size: 11px;
-  color: var(--dim);
+  color: var(--muted);
 }
 .cv-nudge-link {
   font-size: 11px;
