@@ -1,0 +1,6 @@
+{{ $colour := .Get "colour" | default "blue" -}} {{ $label := .Get "label" |
+default "" -}}
+<div class="highlight-box highlight-box--{{ $colour }}">
+  {{- with $label }}<span class="highlight-box-label">{{ . }}</span>{{ end -}}
+  {{ .Inner | markdownify }}
+</div>
