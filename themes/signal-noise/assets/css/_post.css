@@ -302,19 +302,21 @@
 
 /* --- TL;DR box (neurodivergent-friendly summary) --- */
 .tldr {
-  border-left: 2px solid rgba(0, 170, 255, 0.3);
-  padding: 0 0 0 24px;
+  background: rgba(0, 170, 255, 0.045);
+  border-radius: 4px;
+  padding: 16px 24px;
   margin-bottom: 64px;
   font-size: 13px;
   line-height: 1.75;
-  color: rgba(0, 170, 255, 0.55);
+  color: rgba(0, 170, 255, 0.6);
 }
 .tldr-label {
+  font-family: "Fira Code", monospace;
   font-size: 11px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--muted);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   display: block;
 }
 .tldr-label::before {
@@ -356,10 +358,8 @@
   font-weight: 500;
 }
 .tldr em {
-  font-style: italic;
-  color: var(--white);
-  font-family: "Cormorant Garamond", serif;
-  font-size: 1.1em;
+  font-style: normal;
+  font-family: "Fira Code", monospace;
 }
 .tldr code {
   font-family: "Fira Code", monospace;
@@ -368,6 +368,93 @@
   color: var(--accent);
   padding: 2px 7px;
   border-radius: 2px;
+}
+
+/* --- Highlight box (blue/red notification callout) --- */
+.highlight-box {
+  border-radius: 0 4px 4px 0;
+  padding: 16px 24px;
+  margin-bottom: 32px;
+  font-size: 13px;
+  line-height: 1.75;
+}
+.highlight-box--blue {
+  background: rgba(0, 170, 255, 0.05);
+  border-left: 3px solid rgba(0, 170, 255, 0.4);
+  color: rgba(0, 170, 255, 0.6);
+}
+.highlight-box--red {
+  background: rgba(255, 31, 61, 0.04);
+  border-left: 3px solid rgba(255, 31, 61, 0.35);
+  color: var(--muted);
+}
+.highlight-box-label {
+  font-family: "Fira Code", monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+  display: block;
+}
+.highlight-box--blue .highlight-box-label::before {
+  content: "// ";
+  color: var(--accent);
+}
+.highlight-box--red .highlight-box-label::before {
+  content: "// ";
+  color: var(--accent-red);
+}
+.highlight-box p {
+  margin-bottom: 0.8em;
+}
+.highlight-box p:last-child {
+  margin-bottom: 0;
+}
+.highlight-box ul,
+.highlight-box ol {
+  margin: 0 0 0.8em 1.4em;
+  padding: 0;
+}
+.highlight-box li {
+  margin-bottom: 0.3em;
+}
+.highlight-box li:last-child {
+  margin-bottom: 0;
+}
+.highlight-box ul:last-child,
+.highlight-box ol:last-child {
+  margin-bottom: 0;
+}
+.highlight-box a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  transition: opacity 0.2s;
+}
+.highlight-box a:hover {
+  opacity: 0.8;
+}
+.highlight-box strong {
+  color: var(--white);
+  font-weight: 500;
+}
+.highlight-box em {
+  font-style: normal;
+  font-family: "Fira Code", monospace;
+}
+.highlight-box code {
+  font-family: "Fira Code", monospace;
+  font-size: 0.88em;
+  background: var(--black);
+  padding: 2px 7px;
+  border-radius: 2px;
+}
+.highlight-box--blue code {
+  color: var(--accent);
+}
+.highlight-box--red code {
+  color: var(--accent-red);
 }
 
 /* --- Post body typography --- */
