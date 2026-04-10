@@ -11,7 +11,9 @@ tldr: |
 *(This is going to be a longer rant, but bear with me.)*
 
 Imagine this: You are on sick leave, in bed. Your phone rings. Once, twice. You decide to take it though you do not recognise the number - and it is through snot and headaches that you come to understand it's a sales person from a famous SEO tool provider. You tell them you are off sick and that you do not appreciate being called on your private phone number, and hope that's the end of it.
-You have no idea how they got your private phone number but it was likely when you spoke at a conference and allowed that your number was given to companies at the exhibition. This usually gets you great deals, eg. testing a new tool for free for 30 days. Not this time. This time, that decision is going to be one you'll regret. 
+You have no idea how they got your private phone number but it was likely when you spoke at a conference and allowed that your number was given to companies at the exhibition. This usually gets you great deals, eg. testing a new tool for free for 30 days. Not this time. This time, that decision is going to be one you'll regret.
+
+<!--more-->
 
  The next time they reach out, you are in a meeting, presenting your new strategy to stakeholders. Your phone rings. You ignore it. It rings again. You look at the screen: a mobile phone number with your country ID, not flagged as spam. You cannot take it right now, so you refuse the call. It immediately dials again - and again, and again, until you have to switch your phone off, rendering yourself unreachable (what if your family had an emergency?), just so you can continue with your call. 
 

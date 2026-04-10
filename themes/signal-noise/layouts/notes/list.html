@@ -31,9 +31,18 @@
     <a class="note-entry-source" href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ $page.Params.source_name }} &rarr;</a>
     {{ end }}
     <div class="note-entry-body">
-      {{ .Content }}
+      {{ if .Truncated }}
+        {{ .Summary }}
+        <a class="note-read-more" href="{{ .RelPermalink }}">continue reading &rarr;</a>
+      {{ else }}
+        {{ .Content }}
+      {{ end }}
     </div>
+    {{ if .Truncated }}
+    <a class="note-entry-anchor" href="{{ .RelPermalink }}" aria-label="Read full note">#</a>
+    {{ else }}
     <a class="note-entry-anchor" href="#{{ .File.ContentBaseName }}" aria-label="Link to this note">#</a>
+    {{ end }}
   </article>
   {{ end }}
 </div>
