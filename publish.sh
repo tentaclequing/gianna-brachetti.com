@@ -6,8 +6,8 @@ VAULT="$HOME/Documents/Obsidian Vault"
 HUGO_CONTENT="$HOME/ops/personal/gianna-brachetti.com/content"
 
 # Vault source folders (create these in your Obsidian vault)
-VAULT_WRITING="$VAULT/WEBSITE/writing"
-VAULT_NOTES="$VAULT/WEBSITE/notes"
+VAULT_WRITING="$VAULT/TENTACLE/WEBSITE/writing"
+VAULT_NOTES="$VAULT/TENTACLE/WEBSITE/notes"
 
 # Ensure vault source folders exist
 mkdir -p "$VAULT_WRITING" "$VAULT_NOTES"
