@@ -56,7 +56,7 @@ ignoreFiles = ['content/Archive']
   priority = 0.5
 
 [params]
-  description = "Long essays, sharp observations and experiments at the intersection of search, AI and security."
+  description = "Product management, organic growth, and sharp observations at the intersection of search, AI, and security."
   author = "Gianna Brachetti-Truskawa"
   email = "hello@gianna-brachetti.com"
   github = "https://github.com/tentaclequing"
