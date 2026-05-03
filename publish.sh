@@ -5,12 +5,17 @@
 VAULT="$HOME/Documents/Obsidian Vault"
 HUGO_CONTENT="$HOME/ops/personal/gianna-brachetti.com/content"
 
-# Vault source folders (create these in your Obsidian vault)
+# Vault source folders
 VAULT_WRITING="$VAULT/TENTACLE/WEBSITE/writing"
 VAULT_NOTES="$VAULT/TENTACLE/WEBSITE/notes"
 
 # Ensure vault source folders exist
 mkdir -p "$VAULT_WRITING" "$VAULT_NOTES"
+
+# Convert filename to slug: lowercase, spaces to hyphens, strip non-alphanumeric except hyphens
+slugify() {
+  echo "$1" | sed 's/\.md$//' | tr '[:upper:]' '[:lower:]' | tr ' ' '-' | sed 's/[^a-z0-9-]//g' | sed 's/--*/-/g' | sed 's/^-//;s/-$//'
+}
 
 sync_writing() {
   local count=0
@@ -18,7 +23,8 @@ sync_writing() {
     [ -f "$f" ] || continue
     local name=$(basename "$f")
     [ "$name" = "_index.md" ] && continue
-    cp "$f" "$HUGO_CONTENT/writing/$name"
+    local slug=$(slugify "$name")
+    cp "$f" "$HUGO_CONTENT/writing/${slug}.md"
     count=$((count + 1))
   done
   echo "writing: synced $count file(s)"
@@ -30,7 +36,8 @@ sync_notes() {
     [ -f "$f" ] || continue
     local name=$(basename "$f")
     [ "$name" = "_index.md" ] && continue
-    cp "$f" "$HUGO_CONTENT/notes/$name"
+    local slug=$(slugify "$name")
+    cp "$f" "$HUGO_CONTENT/notes/${slug}.md"
     count=$((count + 1))
   done
   echo "notes: synced $count file(s)"

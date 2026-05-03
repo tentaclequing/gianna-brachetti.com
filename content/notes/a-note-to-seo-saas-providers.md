@@ -4,7 +4,7 @@ date: 2026-04-10
 status: fresh
 tags: []
 draft: false
-description: "What happens when an enterprise SEO SaaS provider gets your private number and won't stop calling - and why their sales tactics are backfiring."
+description: What happens when an enterprise SEO SaaS provider gets your private number and won't stop calling - and why their sales tactics are backfiring.
 tldr: |
   An SEO SaaS vendor got my private phone number, called me while I was sick, interrupted a stakeholder meeting, and kept redialling from different country codes when I blocked them. When I finally engaged, asking one real technical question, they couldn't answer it - but kept calling for months anyway. Dear CMOs: this is how you turn a potential customer into someone who warns their entire network about you.
 ---
