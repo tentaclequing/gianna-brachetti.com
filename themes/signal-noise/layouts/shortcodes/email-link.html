@@ -1,0 +1,3 @@
+{{- partial "email-link.html" (dict "email" (.Get "email" | default
+"hello@gianna-brachetti.com") "label" (.Get "label" | default "email") "class"
+(.Get "class" | default "")) -}}

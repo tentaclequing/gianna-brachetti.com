@@ -522,6 +522,14 @@
         <a href="/" class="nav-btn"> <span class="arrow">&larr;</span> home </a>
         <a href="/writing/" class="nav-btn">writing</a>
         <a href="/notes/" class="nav-btn">notes</a>
+        <a
+          id="report-link"
+          href="https://github.com/tentaclequing/gianna-brachetti.com/issues/new?title=Broken+link&amp;body=I+found+a+404+at+this+path."
+          class="nav-btn"
+          target="_blank"
+          rel="noopener"
+          >report this</a
+        >
       </nav>
     </main>
 
@@ -536,8 +544,23 @@
 
     <script>
       try {
-        document.getElementById("lost-path").textContent =
-          window.location.pathname;
+        var p = window.location.pathname;
+        document.getElementById("lost-path").textContent = p;
+        var r = document.getElementById("report-link");
+        if (r) {
+          var u =
+            "https://github.com/tentaclequing/gianna-brachetti.com/issues/new" +
+            "?title=" +
+            encodeURIComponent("Broken link: " + p) +
+            "&body=" +
+            encodeURIComponent(
+              "I found a 404 at: https://gianna-brachetti.com" +
+                p +
+                "\n\nReferrer: " +
+                (document.referrer || "(direct)"),
+            );
+          r.href = u;
+        }
       } catch (e) {}
     </script>
   </body>
