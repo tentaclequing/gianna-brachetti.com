@@ -8,3 +8,22 @@ node_modules/
 .claude.json
 .claude/
 .playwright-mcp/
+
+# Claude session state
+CHANGELOG.md
+CLAUDE.md
+DECISION_LOG.md
+MEMORY.md
+tasks.json
+
+# Scratch/tooling artefacts
+stitch-*.md
+stitch-*.png
+
+# Draft variants (published piece lives at fishing-in-the-dark.md)
+content/writing/*-DRAFT*.md
+content/writing/*-REWRITE*.md
+content/writing/*-RESTRUCTURED*.md
+
+# Archived reference material
+content/Archive/
