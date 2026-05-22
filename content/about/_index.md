@@ -21,7 +21,7 @@ currently:
   - "Reading: Crucial Conversations ([see what else I read](/reads/))"
   - "Thinking about what \"organic growth\" means when AI answers don't have URLs to click"
   - "Growing a monstera that has opinions about being moved"
-  - "Building internal tools at DeepL for SEO QA automation, alerting, and content scoring"
+  - "Building internal tooling for SEO content scoring and AI workflow automation"
 work:
   status: "not taking on new clients"
   headline: "I work best on problems<br>*other people have stopped finding interesting.*"
