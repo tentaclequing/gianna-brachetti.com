@@ -1,6 +1,6 @@
 ---
 title: "Konny needs to see the SEO therapist"
-date: 2026-05-03
+date: 2026-05-22
 status: fresh
 tags: [seo, ai]
 draft: false
