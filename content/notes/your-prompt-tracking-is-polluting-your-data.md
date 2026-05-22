@@ -29,4 +29,4 @@ I do not have all the answers yet, and that is partly why I am writing this note
 - **Internal governance policies for how your team runs prompt tracking without contaminating shared data**
 - Opinions, rants, or informed scepticism - all welcome
 
-The full article will go deeper into the mechanics and what we might do about it. I want to see the extent of it. For now, consider this an open invitation - you can reach me via [LinkedIn](https://www.linkedin.com/in/gianna-brachetti/).
+The full article will go deeper into the mechanics and what we might do about it. I want to see the extent of it. For now, consider this an open invitation - you can reach me via [LinkedIn](https://www.linkedin.com/in/gianna-brachetti-truskawa/).
