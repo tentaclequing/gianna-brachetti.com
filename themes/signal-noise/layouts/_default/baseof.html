@@ -1,20 +1,18 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  {{- partial "head.html" . -}}
-</head>
-<body>
-  <a class="skip-link" href="#main-content">Skip to content</a>
-  {{- partial "cursor.html" . -}}
-  {{- partial "nav-top.html" . -}}
-  {{- partial "nav-bottom.html" . -}}
+  <head>
+    {{- partial "head.html" . -}}
+  </head>
+  <body>
+    <div id="kao-banner"></div>
+    <script src="https://keepandroidopen.org/banner.js?lang={{ .Lang }}&size=normal&id=kao-banner"></script>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    {{- partial "cursor.html" . -}} {{- partial "nav-top.html" . -}} {{- partial
+    "nav-bottom.html" . -}}
 
-  <main id="main-content">
-    {{- block "main" . }}{{ end -}}
-  </main>
+    <main id="main-content">{{- block "main" . }}{{ end -}}</main>
 
-  {{- partial "footer.html" . -}}
-  {{- partial "scripts.html" . -}}
-  {{- block "scripts" . }}{{ end -}}
-</body>
+    {{- partial "footer.html" . -}} {{- partial "scripts.html" . -}} {{- block
+    "scripts" . }}{{ end -}}
+  </body>
 </html>
