@@ -307,6 +307,51 @@ a.section-meta:focus-visible {
   line-height: 1.85;
 }
 
+/* ── Now excerpt ─────────────────────────────────────── */
+.now-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  background: var(--border);
+}
+.now-item {
+  background: var(--black);
+  padding: 20px 28px;
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.85;
+  transition: background 0.35s ease;
+}
+.now-item:hover {
+  background: #050504;
+}
+.now-pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 6px var(--accent);
+  flex-shrink: 0;
+  position: relative;
+  top: 1px;
+  animation: pulse 3s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
 /* ── Easter egg ──────────────────────────────────────── */
 .easter-egg {
   display: none;

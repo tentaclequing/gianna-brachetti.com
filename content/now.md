@@ -1,26 +1,26 @@
 ---
 title: "Now"
 description: "What I'm focused on right now."
+highlights:
+  - "Owning the search experience for anonymous users at DeepL"
+  - "Building internal tools at DeepL for SEO QA automation, alerting, and content scoring"
+  - "Writing a framework for AI content governance - separating visibility, efficiency, protection, and licensing"
 ---
 
-*Last updated: April 2026. This is a [/now page](https://nownownow.com/about).*
+*Last updated: May 2026. This is a [/now page](https://nownownow.com/about).*
 
-## Product manager
+## Product management
 
-Owning the search experience for anonymous users at [DeepL](https://www.deepl.com/). Thinking about what discovery means when the user hasn't told you what language they speak yet. Building measurement frameworks that care about engagement, not just traffic. Increasingly interested in how search works differently in health and regulated contexts, where the stakes of a wrong result are higher and the responsibility is more personal - something I first noticed working with medical content at Onmeda and online pharmacies at arvato, and that keeps coming back through family in healthcare.
+Owning the search experience for anonymous users at [DeepL](https://www.deepl.com/). Currently executing a layer to make our pages more readable for traditional and AI search systems, such as structured data implementation, before tackling hairier rendering and page speed problems. Building measurement frameworks that care about engagement, not just traffic.
 
-## Builder
+## Building
 
 Building internal tools at DeepL for teams to support SEO QA automation, alerting, and content scoring. Also building an [MCP server for Audisto](https://github.com/tentaclequing/audisto-mcp) to wire crawl data into AI workflows.
 
-## Gardener
-
-Watching a monstera develop opinions about light. Growing herbs on a small balcony in Cologne. Learning which birds visit and what they prefer - the blackbirds are regulars, the robin is cautious but curious.
-
 ## Writer
 
-Poetry and prose in notebooks that don't have deadlines. Working through what it means to write honestly in a time when machines can produce fluent text faster than I can sharpen a pencil.
+Working on a framework for AI content governance - separating visibility, efficiency, protection, and licensing into distinct layers instead of treating "AI and my website" as one question. Also editing a longer piece on why AI visibility measurement is built on assumptions nobody has tested. Poetry and prose in notebooks that don't have deadlines.
 
-## Human
+## Being human
 
-Reading *Crucial Conversations*. Keeping snails. Trying to remember that not every interesting rabbit hole needs to become a project.
+Reading *Crucial Conversations*. Experimenting with growing dark purple vegetables in my garden. Keeping snails. Trying to remember that not every interesting rabbit hole needs to become a project.

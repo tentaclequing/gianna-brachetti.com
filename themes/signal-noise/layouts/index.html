@@ -100,8 +100,11 @@
   </div>
 </section>
 
-{{- /* ── Recent writing ─────────────────────────────── */ -}}
+{{- /* ── Now excerpt ────────────────────────────────── */ -}}
 <div class="home-content">
+  {{ partial "now-excerpt.html" . }}
+
+  {{- /* ── Recent writing ─────────────────────────────── */ -}}
   {{- $recentPosts := first 4 (sort $writing "Date" "desc") -}}
   {{- if $recentPosts }}
   <section class="reveal" aria-labelledby="writing-heading">
