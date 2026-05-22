@@ -1,5 +1,7 @@
 ---
 title: "CV"
+aliases:
+  - /resume.html
 layout: cv
 description: "Gianna Brachetti-Truskawa - Organic Growth Leader & Search/AI Product Manager"
 noindex: true
