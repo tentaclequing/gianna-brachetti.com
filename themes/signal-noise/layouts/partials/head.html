@@ -23,6 +23,9 @@
 <meta name="tdm-reservation" content="1">
 <meta name="tdm-policy" content="https://gianna-brachetti.com/tdm-policy">
 
+{{- /* A2WF - AI agent access policy */ -}}
+<link rel="siteai" type="application/json" href="/siteai.json">
+
 {{- /* Canonical - use frontmatter canonical if set, otherwise self */ -}}
 <link rel="canonical" href="{{ with .Params.canonical }}{{ . }}{{ else }}{{ .Permalink }}{{ end }}">
 

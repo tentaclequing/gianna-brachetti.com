@@ -85,3 +85,5 @@ User-agent: *
 Allow: /
 
 Sitemap: {{ "sitemap.xml" | absURL }}
+
+SiteAI: {{ "siteai.json" | absURL }}

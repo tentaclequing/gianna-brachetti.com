@@ -1,0 +1,81 @@
+{
+  "@context": "https://schema.org",
+  "specVersion": "1.0",
+  "identity": {
+    "@type": "WebSite",
+    "domain": "https://gianna-brachetti.com",
+    "name": "Gianna Brachetti-Truskawa - Organic Growth, Search & AI",
+    "description": "Long essays, sharp observations and experiments at the intersection of search, AI and security.",
+    "inLanguage": "en",
+    "category": "blog"
+  },
+  "defaults": {
+    "agentAccess": "restricted",
+    "requireIdentification": false,
+    "maxRequestsPerMinute": 30,
+    "respectRobotsTxt": true
+  },
+  "permissions": {
+    "read": {
+      "articles": {
+        "allowed": true,
+        "rateLimit": 20,
+        "note": "Long-form essays and analysis in the writing section."
+      },
+      "aboutInfo": {
+        "allowed": true,
+        "note": "Author bio and professional background."
+      },
+      "contactInfo": {
+        "allowed": true
+      },
+      "speakingInfo": {
+        "allowed": true,
+        "note": "Public speaking engagements and past talks."
+      }
+    },
+    "action": {
+      "contactAuthor": {
+        "allowed": true,
+        "humanVerification": true,
+        "note": "Contact requests require human confirmation."
+      }
+    },
+    "data": {
+      "personalInfo": {
+        "allowed": false
+      },
+      "analyticsData": {
+        "allowed": false
+      }
+    }
+  },
+  "scraping": {
+    "bulkDataExtraction": false,
+    "priceMonitoring": false,
+    "contentReproduction": false,
+    "trainingDataUsage": false
+  },
+  "agentIdentification": {
+    "requireUserAgent": true,
+    "allowAnonymousAgents": true
+  },
+  "humanVerification": {
+    "methods": ["redirect-to-browser"],
+    "requiredFor": ["contactAuthor"]
+  },
+  "discovery": {
+    "robotsTxt": "https://gianna-brachetti.com/robots.txt"
+  },
+  "legal": {
+    "termsUrl": "https://gianna-brachetti.com/tdm-policy",
+    "euAiActCompliance": {
+      "transparencyRequired": false,
+      "riskClassification": "limited"
+    }
+  },
+  "metadata": {
+    "generatedAt": "2026-05-27T08:48:31+00:00",
+    "author": "A2WF Converter (https://a2wf.org)"
+  }
+}
