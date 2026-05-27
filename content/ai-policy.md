@@ -10,6 +10,8 @@ I believe AI governance should be transparent, specific, and honest about its li
 
 This page explains what I have implemented, what I have not yet implemented, what standards I follow, and where I think the industry needs to go. It is modelled on the accessibility statement pattern as a living reference.
 
+This site also serves as a testing ground for AI governance approaches that I can iterate on faster than on a corporate website. What works here informs what I recommend to publishers and organisations.
+
 For the formal rights reservation, see the [Text & Data Mining Policy](/tdm-policy/).
 
 ---
