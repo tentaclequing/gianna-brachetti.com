@@ -5,9 +5,10 @@ highlights:
   - "Owning the search experience for anonymous users at DeepL"
   - "Building internal tools at DeepL for SEO QA automation, alerting, and content scoring"
   - "Writing a framework for AI content governance - separating visibility, efficiency, protection, and licensing"
+  - "Contributing to W3C community groups on AI agent governance and identity"
 ---
 
-*Last updated: May 2026. This is a [/now page](https://nownownow.com/about).*
+*Last updated: 27 May 2026. This is a [/now page](https://nownownow.com/about).*
 
 ## Product management
 
@@ -20,6 +21,10 @@ Building internal tools at DeepL for teams to support SEO QA automation, alertin
 ## Writer
 
 Working on a framework for AI content governance - separating visibility, efficiency, protection, and licensing into distinct layers instead of treating "AI and my website" as one question. Also editing a longer piece on why AI visibility measurement is built on assumptions nobody has tested. Poetry and prose in notebooks that don't have deadlines.
+
+## Web standards work
+
+Contributing to W3C community groups on AI agent governance and identity, alongside published work on AI crawler behaviour (IAB, 2024) and a four-layer content governance framework. Participating as an individual, not on behalf of my employer.
 
 ## Being human
 
