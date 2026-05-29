@@ -6,6 +6,7 @@ highlights:
   - "Building internal tools at DeepL for SEO QA automation, alerting, and content scoring"
   - "Writing a framework for AI content governance - separating visibility, efficiency, protection, and licensing"
   - "Contributing to W3C community groups on AI agent governance and identity"
+  - "Setting up self-hosted LLM inference on a VPS (Ollama + Open Web UI)"
 ---
 
 *Last updated: 27 May 2026. This is a [/now page](https://nownownow.com/about).*
