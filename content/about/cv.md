@@ -3,20 +3,20 @@ title: "CV"
 aliases:
   - /resume.html
 layout: cv
-description: "Gianna Brachetti-Truskawa - Organic Growth Leader & Search/AI Product Manager"
+description: "Gianna Brachetti-Truskawa - Senior Product Manager, AI Products & Search"
 noindex: true
 pdf:
   url: "/cv/gianna-brachetti-truskawa-cv.pdf"
   filename: "gianna-brachetti-truskawa-cv.pdf"
 print_contact: "workwith@gianna-brachetti.com  |  +49 175 1220760  |  Cologne, Germany"
-print_roles: "Search Experience Product Manager"
+print_roles: "Senior Product Manager, AI Products & Search"
 last_updated: "April 2026"
 cv_name: "Gianna Brachetti-Truskawa"
 roles:
-  - "Organic Growth Leader"
-  - "Search & AI Product Manager"
-  - "Multilingual Strategist"
-profile: "Product manager and organic growth leader with 17+ years in international search, now working where search, AI, and security overlap. Has managed web platforms with up to 900,000 daily active users. Published multi-level AI crawler governance with the IAB. Sees teams like an octopus: multiple independent, intelligent minds that align and grow as one organism. Cross-functional leadership across engineering, product, and marketing in 30+ language markets."
+  - "Senior Product Manager"
+  - "AI Products & Search"
+  - "Startup to Scale · Multilingual"
+profile: "Product manager and organic growth leader with 17+ years in international search, spanning early-stage startups, scale-ups, and enterprise organisations. Native German speaker. Has managed web platforms with up to 900,000 daily active users. Published multi-level AI crawler governance with the IAB. Sees teams like an octopus: multiple independent, intelligent minds that align and grow as one organism. Cross-functional leadership across engineering, product, and marketing in 30+ language markets."
 experience:
   - title: "Senior Product Manager, Search & CMS"
     company: "DeepL SE"
@@ -24,20 +24,22 @@ experience:
     period: "2022 - Present"
     location: "Cologne"
     bullets:
-      - "Leading a cross-functional team of 7 (engineers, QA, product designer, content strategist) and managing freelancers, owning organic user growth and **search experience** strategy. Grew organic traffic by 200% within the first year."
+      - "Joined as the company's first dedicated PM for organic and paid search. Leading a cross-functional team of 7 (engineers, QA, product designer, content strategist) and managing freelancers, owning **new user growth** and **search experience** strategy across organic and paid channels. Grew organic traffic by 200% within the first year."
       - "Owning the **search experience for anonymous web users** - discovery, content surfacing, and **conversion flows** across 30+ language markets. Initially also product manager for **Linguee, DeepL's linguistic search engine**."
       - "Owning the content pipeline for landing, comparison, and conversion pages. Establishing cross-functional SEO alignment across the entire company, bringing together engineering, product, and marketing to resolve structural growth blockers."
       - "Working as product manager with a dedicated engineering team, shipping technical **SEO**, **CRO**, and **Product Update Notifications**. Owning and prioritising the tech SEO backlog. Practising agile, test-driven, and spec-driven development."
-      - "Building measurement and attribution dashboards (SQL, Metabase) to track organic impact on engagement and conversion. Running **A/B tests** (Statsig) to validate growth hypotheses and inform **conversion rate optimisation**."
+      - "Building measurement and attribution dashboards (SQL, Metabase, Databricks) to track user acquisition across organic and paid channels. Migrated the reporting infrastructure from Clickhouse to Databricks, including building a migration tool to port dashboards and queries. Running **A/B tests** (Statsig) to validate growth hypotheses and inform **conversion rate optimisation**."
       - "Built an internal search for the website based on **Lunr** as an experiment to improve content discovery."
-      - "Helping teams adopt and understand AI capabilities: built an automated **prompt engineering framework** (**n8n**, **OpenRouter**), custom **Claude Code skills**, and a Claude-to-Gemini skill porter. Built an internal LLM visibility tracker for competitive intelligence (hackathon, early 2024) before commercial tools offered this."
+      - "Helping teams adopt and understand AI capabilities: built an automated **prompt engineering framework** (**n8n**, **OpenRouter**), custom **Claude Code skills**, and a Claude-to-Gemini skill porter. Shipped an open-source **MCP server for Audisto API** to integrate crawl data into AI-assisted SEO workflows."
+      - "Runs systematic **competitive intelligence** across the market: monitoring competitor HTML, site architecture, product changes, ad placement, and hiring signals to detect strategic direction early and reverse-engineer how search and AI systems respond. Built an internal **LLM visibility tracker** (hackathon, 2024) before commercial tools offered this capability."
+      - "Authored a multi-level AI crawler governance framework published by the IAB (2024), drawing on direct observation of AI crawler behaviour across DeepL's global web presence."
       - "Introduced frontend e2e testing at the company, including specific SEO QA automation with SpeedCurve, Audisto, Screaming Frog, Ahrefs, and Playwright for continuous quality monitoring."
   - title: "VP of SEO"
     company: "KaFe Rocks Ltd (acquired by Gaming Innovation Group)"
     period: "2019 - 2022"
     location: "Malta / Remote"
     bullets:
-      - "C-level SEO leadership for an international iGaming affiliate managing **70+ domains** in a **YMYL niche** where advertising restrictions meant 99% of traffic and revenue depended on organic search."
+      - "C-level SEO leadership at a high-growth iGaming startup, managing an affiliate portfolio of **70+ domains** in a **YMYL niche** where advertising restrictions meant 99% of traffic and revenue depended on organic search."
       - "Grew and stabilised the portfolio and launched a new domain with a community-driven content model."
       - "Built and mentored the SEO and QA teams from scratch, establishing the technical excellence, domain management practices, and bot detection capabilities that made sustained growth possible. Introduced frontend end-to-end testing for SEO quality assurance."
       - "Built systems and honeypots to detect and defend against fraudulent DMCA notices, content scraping, and copying - protecting the company's organic assets in a market where competitors actively attack each other's rankings."
@@ -54,7 +56,7 @@ experience:
     period: "2017"
     location: "Cologne / Paris"
     bullets:
-      - "Staff role reporting directly to the Managing Directors (Stabsstelle der GF). Led team of international SEO managers across the group's European properties, including user-generated content platforms (gofeminin.de, sofeminine.co.uk and locale variants) and editorially produced **medical content (Onmeda.de** and international equivalents)."
+      - "Staff role reporting directly to the Managing Directors (Stabsstelle der GF). Led team of international SEO managers across the group's **ad-funded European digital media properties**, including user-generated content platforms (gofeminin.de, sofeminine.co.uk and locale variants) and editorially produced **medical content (Onmeda.de** and international equivalents)."
       - "Educated and guided large editorial teams on SEO best practices for both the UGC and medical content properties, driving content quality and search performance without formal line authority."
       - "Designed and implemented server log monitoring and analysis process for crawl behaviour insights at scale."
       - "Managed programmatic SEO for scaled content across multiple European markets."
@@ -66,6 +68,7 @@ experience:
       - "Managed SEO and **search experience** for **Chefkoch.de, Germany's largest recipe search engine** with a 65 million URL estate."
       - "Fine-tuned and tested the on-site search (powered by **Solr**), including **autocomplete**, result ranking, and **alternative suggestions for zero-result queries**, using search result data, user behaviour signals, and **A/B tests** to improve relevance and discovery."
       - "Applied **data-driven** analysis of search behaviour and **conversion rate optimisation** to feed insights back into content decisions and product features."
+      - "Established a systematic **competitive intelligence** practice: monitoring competitor sites at HTML level for changes in wording, site architecture, ad placements, and markup to detect product decisions early and reverse-engineer how search systems respond to those changes."
       - "Selected by **Google** as the first company in Germany to test new **structured data** markup formats (Schema.org/JSON-LD) before they became official search features. Led the implementation and spearheaded adoption across Bertelsmann companies. Achieved over 100% visibility gain through Rich Results and AMP."
       - "Designed and built a context-sensitive affiliate product placement feature that programmatically adapted to the user's search query and the recipe they were viewing, creating a new revenue stream for the company."
       - "Drove programmatic SEO for scaled recipe and category page generation."
@@ -122,5 +125,5 @@ publications:
 memberships:
   - "WiCyS - Women in Cybersecurity (since 2025)"
   - "Women4Cyber Foundation (since 2025)"
-elsewhere: "Building an [MCP server for Audisto](https://github.com/tentaclequing/audisto-mcp) to integrate crawl data into AI-assisted workflows. Personal connection to **healthcare**: half my family works in the sector. I have proofread and corrected **medical research papers**, helped write SOPs for hospitals, and run smaller security tests in my free time. Volunteer in geriatric psychiatry (2004-2005). Faculty board member, TH Koeln (2011-2012). Former freelance translator (DE/EN/FR/IT)."
+elsewhere: "Personal connection to **healthcare**: half my family works in the sector. I have proofread and corrected **medical research papers**, helped write SOPs for hospitals, and run smaller security tests in my free time. Volunteer in geriatric psychiatry (2004-2005). Faculty board member, TH Koeln (2011-2012). Former freelance translator (DE/EN/FR/IT)."
 ---
