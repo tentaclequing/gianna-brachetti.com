@@ -16,7 +16,7 @@ Owning the search experience for anonymous users at [DeepL](https://www.deepl.co
 
 ## Building
 
-Building internal tools at DeepL for teams to support SEO QA automation, alerting, and content scoring. Also building an [MCP server for Audisto](https://github.com/tentaclequing/audisto-mcp) to wire crawl data into AI workflows.
+Building internal tools at DeepL for teams to support SEO QA automation, alerting, and content scoring. Also building an [MCP server for Audisto](https://github.com/tentaclequing/audisto-mcp) to wire crawl data into AI workflows. Setting up self-hosted LLM inference on a VPS - Ollama with Open Web UI - to have a private, always-available model for daily productivity without routing everything through commercial APIs.
 
 ## Writer
 
