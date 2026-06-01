@@ -1,0 +1,55 @@
+{{- $src := .Get "src" -}}
+{{- $alt := .Get "alt" | default "" -}}
+{{- $caption := .Get "caption" | default "" -}}
+{{- $loading := .Get "loading" | default "lazy" -}}
+{{- $widths := slice 320 640 960 1280 -}}
+
+{{- $img := .Page.Resources.GetMatch $src -}}
+{{- if $img -}}
+
+{{- $fallback := $img -}}
+{{- if gt $img.Width 960 -}}
+  {{- $fallback = $img.Resize "960x webp" -}}
+{{- else -}}
+  {{- $fallback = $img.Resize (printf "%dx webp" $img.Width) -}}
+{{- end -}}
+
+{{- $srcsetWebP := slice -}}
+{{- $srcsetOrig := slice -}}
+{{- range $w := $widths -}}
+  {{- if ge $img.Width $w -}}
+    {{- $resized := $img.Resize (printf "%dx webp" $w) -}}
+    {{- $srcsetWebP = $srcsetWebP | append (printf "%s %dw" $resized.RelPermalink $w) -}}
+    {{- $resizedOrig := $img.Resize (printf "%dx" $w) -}}
+    {{- $srcsetOrig = $srcsetOrig | append (printf "%s %dw" $resizedOrig.RelPermalink $w) -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $srcsetWebP = $srcsetWebP | append (printf "%s %dw" ($img.Resize (printf "%dx webp" $img.Width)).RelPermalink $img.Width) -}}
+{{- $srcsetOrig = $srcsetOrig | append (printf "%s %dw" $img.RelPermalink $img.Width) -}}
+
+<figure class="content-figure" role="img" aria-label="{{ $alt }}">
+  <picture>
+    <source
+      type="image/webp"
+      srcset="{{ delimit $srcsetWebP ", " }}"
+      sizes="(max-width: 680px) calc(100vw - 40px), 640px">
+    <source
+      srcset="{{ delimit $srcsetOrig ", " }}"
+      sizes="(max-width: 680px) calc(100vw - 40px), 640px">
+    <img
+      src="{{ $fallback.RelPermalink }}"
+      alt="{{ $alt }}"
+      width="{{ $fallback.Width }}"
+      height="{{ $fallback.Height }}"
+      loading="{{ $loading }}"
+      decoding="async">
+  </picture>
+  {{- with $caption }}
+  <figcaption>{{ . | markdownify }}</figcaption>
+  {{- end }}
+</figure>
+
+{{- else -}}
+<!-- figure shortcode: image "{{ $src }}" not found in page bundle -->
+{{- end -}}

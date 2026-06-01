@@ -566,6 +566,31 @@
   margin: 3em 0;
 }
 
+/* --- Figures (responsive images) --- */
+.content-figure {
+  margin: 2.4em 0;
+  padding: 0;
+}
+.content-figure img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+}
+.content-figure figcaption {
+  font-family: "Fira Code", monospace;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  margin-top: 10px;
+  line-height: 1.6;
+}
+.content-figure figcaption::before {
+  content: "// ";
+  color: var(--accent);
+}
+
 /* --- Post footer --- */
 .post-footer {
   margin-top: 80px;
