@@ -66,3 +66,6 @@
 {{ with .OutputFormats.Get "RSS" }}
 <link rel="alternate" type="application/rss+xml" title="~/gianna" href="{{ .Permalink }}">
 {{ end }}
+
+{{- /* Ahrefs Web Analytics - must remain last in <head> */ -}}
+<script src="https://analytics.ahrefs.com/analytics.js" data-key="nlFa4hxUMv38DVAaCQZlSw" async></script>
