@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#000000" />
+    <title>{{ .Title }} · ~/gianna</title>
+    {{- with .Description | default .Site.Params.description }}
+    <meta name="description" content="{{ . }}" />
+    {{- end }} {{- if .Params.noindex }}
+    <meta name="robots" content="noindex, follow, noai, noimageai" />
+    {{- else }}
+    <meta name="robots" content="index, follow, noai, noimageai" />
+    {{- end }}
+    <meta name="tdm-reservation" content="1" />
+    <link
+      rel="canonical"
+      href="{{ with .Params.canonical }}{{ . }}{{ else }}{{ .Permalink }}{{ end }}"
+    />
+    <meta property="og:title" content="{{ .Title }}" />
+    <meta
+      property="og:description"
+      content="{{ .Description | default .Site.Params.description }}"
+    />
+    <meta property="og:url" content="{{ .Permalink }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="~/gianna" />
+    <script
+      src="https://analytics.ahrefs.com/analytics.js"
+      data-key="nlFa4hxUMv38DVAaCQZlSw"
+      async
+    ></script>
+  </head>
+  <body>
+    {{- .Content -}}
+  </body>
+</html>
