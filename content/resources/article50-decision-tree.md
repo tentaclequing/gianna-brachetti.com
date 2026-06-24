@@ -314,7 +314,7 @@ date: 2026-06-16
 <h2 class="sr-only">Decision tree: disclosure label or editorial responsibility under EU AI Act Article 50(4)?</h2>
 
 <div class="header">
-  <div class="header-eyebrow">EU AI Act · <a class="ref" href="https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32024R1689" target="_blank" rel="noopener">Art. 50(4)</a> · Decision guide</div>
+  <div class="header-eyebrow">EU AI Act · <a class="ref" href="https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32024R1689" target="_blank" rel="noopener">Art. 50(4)</a> · AI-generated text</div>
   <div class="header-title">Does your team need a disclosure label<br>— or can you claim <em>editorial responsibility</em>?</div>
   <div class="header-rule">
     <div class="header-rule-line"></div>
