@@ -280,6 +280,15 @@ date: 2026-06-16
   }
   .reading-link:hover { color: var(--accent); border-bottom-color: var(--accent); }
 
+  .scope-note {
+    font-size: 11px;
+    color: var(--muted);
+    border-left: 2px solid var(--border);
+    padding: 8px 14px;
+    margin-bottom: 28px;
+    line-height: 1.6;
+  }
+
   .source-note {
     margin-top: 28px;
     font-size: 10px;
@@ -322,6 +331,8 @@ date: 2026-06-16
     <div class="header-rule-line"></div>
   </div>
 </div>
+
+<div class="scope-note">This guide assumes you are subject to the EU AI Act. If you are established outside the EU but your AI-generated content is accessible to EU readers on matters of public interest, the obligation applies to you as well.</div>
 
 <div class="flow">
   <div class="col-label main-label">The path</div>

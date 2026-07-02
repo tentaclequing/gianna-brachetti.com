@@ -8,6 +8,8 @@ draft: false
 description: "What publishers and content teams need to do under Article 50(4) of the EU AI Act: determining scope, applying a label, and using the official EU icons."
 ---
 
+{{< highlight >}}If your residency is outside of the EU, but the EU AI Act would apply to your content, and that content is made accessible to EU readers, this applies to you as well.{{< /highlight >}}
+
 Article 50(4) of the EU AI Act requires publishers to label AI-generated text on matters of public interest. The obligation applies from 2 August 2026. Here's what you need to do:
 
 - **Determine whether your content needs a label.** Not all AI-generated content is in scope, and there is an editorial responsibility exemption that removes the obligation but transfers liability. Work through the conditions before applying anything. [Decision guide &rarr;](https://gianna-brachetti.com/resources/article50-decision-tree/)
