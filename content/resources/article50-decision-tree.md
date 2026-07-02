@@ -267,7 +267,7 @@ date: 2026-06-16
     color: var(--muted);
     white-space: nowrap;
     flex-shrink: 0;
-    width: 88px;
+    width: 110px;
   }
   .reading-link {
     font-size: 11px;
