@@ -503,7 +503,7 @@ date: 2026-06-16
   <strong>Source:</strong> <a class="ref" href="https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32024R1689" target="_blank" rel="noopener">EU AI Act, Regulation (EU) 2024/1689, Article 50(4)</a>. Code of Practice and official EU label icons published 10 June 2026. Commission guidelines: draft May 2026, final expected before 2 Aug 2026.
 </div>
 <div class="disclaimer">
-  Gianna Brachetti-Truskawa is an SEO and AI governance professional, not a lawyer. This guide is for informational purposes only and does not constitute legal advice. No liability is accepted for decisions made on the basis of this content. Consult a qualified legal professional for advice specific to your situation.
+  This guide is for informational purposes only and does not constitute legal advice. No liability is accepted for decisions made on the basis of this content. Consult a qualified legal professional for advice specific to your situation.
 </div>
 
 <footer>
