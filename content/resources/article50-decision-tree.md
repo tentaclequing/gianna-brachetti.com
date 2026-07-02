@@ -403,7 +403,8 @@ date: 2026-06-16
         <li>Add the <a class="ref" href="https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32024R1689" target="_blank" rel="noopener">Art. 50(4)</a> label to AI-generated public-interest content</li>
         <li>Errors remain attributed to the AI system</li>
         <li>No review process documentation required</li>
-        <li>Final label guidelines expected before 2 Aug 2026</li>
+        <li>Official EU AI label icons published 10 June 2026 - <a class="ref" href="https://digital-strategy.ec.europa.eu/en/policies/eu-icons-labelling-ai-generated-content" target="_blank" rel="noopener">download free</a></li>
+        <li>Sign the Code of Practice by 22 July 2026 for presumption of compliance</li>
       </ul>
     </div>
     <div class="outcome o-resp">
@@ -428,11 +429,15 @@ date: 2026-06-16
   <ul class="reading-list">
     <li class="reading-item">
       <span class="reading-tag">Official source</span>
-      <a class="reading-link" href="https://digital-strategy.ec.europa.eu/en/library/draft-guidelines-implementation-transparency-obligations-certain-ai-systems-under-article-50-ai-act" target="_blank" rel="noopener">European Commission - Draft guidelines on Article 50 transparency obligations (May 2026)</a>
+      <a class="reading-link" href="https://digital-strategy.ec.europa.eu/en/policies/code-practice-ai-generated-content" target="_blank" rel="noopener">European Commission - Code of Practice on marking and labelling of AI-generated content (June 2026)</a>
+    </li>
+    <li class="reading-item">
+      <span class="reading-tag">Official - icons</span>
+      <a class="reading-link" href="https://digital-strategy.ec.europa.eu/en/policies/eu-icons-labelling-ai-generated-content" target="_blank" rel="noopener">European Commission - Official EU AI label icons (free download)</a>
     </li>
     <li class="reading-item">
       <span class="reading-tag">For legal teams</span>
-      <a class="reading-link" href="https://www.twobirds.com/en/insights/2026/taking-the-eu-ai-act-to-practice-reading-the-commissions-draft-article-50-guidelines" target="_blank" rel="noopener">Bird & Bird - Reading the Commission's draft Article 50 guidelines</a>
+      <a class="reading-link" href="https://www.twobirds.com/en/insights/2026/taking-the-eu-ai-act-to-practice-the-final-transparency-code-of-practice" target="_blank" rel="noopener">Bird & Bird - The final Transparency Code of Practice</a>
     </li>
     <li class="reading-item">
       <span class="reading-tag">For marketers</span>
@@ -446,7 +451,7 @@ date: 2026-06-16
 </div>
 
 <div class="source-note">
-  <strong>Source:</strong> <a class="ref" href="https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32024R1689" target="_blank" rel="noopener">EU AI Act, Regulation (EU) 2024/1689, Article 50(4)</a>. Draft Commission guidelines published May 2026; final version expected before 2 Aug 2026. Visualisation for illustrative purposes only - not legal advice.
+  <strong>Source:</strong> <a class="ref" href="https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32024R1689" target="_blank" rel="noopener">EU AI Act, Regulation (EU) 2024/1689, Article 50(4)</a>. Code of Practice and official EU label icons published 10 June 2026. Commission guidelines: draft May 2026, final expected before 2 Aug 2026. Visualisation for illustrative purposes only - not legal advice.
 </div>
 
 <footer>
