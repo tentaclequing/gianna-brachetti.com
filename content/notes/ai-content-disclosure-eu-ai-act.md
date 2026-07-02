@@ -3,11 +3,10 @@ title: "AI content disclosure under the EU AI Act"
 date: 2026-07-02
 status: fresh
 tags: [eu-ai-act, ai-governance, content]
+type_label: AI-assisted
 draft: false
 description: "What publishers and content teams need to do under Article 50(4) of the EU AI Act: determining scope, applying a label, and using the official EU icons."
 ---
-
-{{< highlight label="AI-assisted" >}}{{< /highlight >}}
 
 Article 50(4) of the EU AI Act requires publishers to label AI-generated text on matters of public interest. The obligation applies from 2 August 2026. What that requires in practice:
 
