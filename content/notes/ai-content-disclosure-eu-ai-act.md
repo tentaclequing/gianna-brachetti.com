@@ -12,11 +12,11 @@ Article 50(4) of the EU AI Act requires publishers to label AI-generated text on
 
 - **Determine whether your content needs a label.** Not all AI-generated content is in scope, and there is an editorial responsibility exemption that removes the obligation but transfers liability. Work through the conditions before applying anything. [Decision guide &rarr;](https://gianna-brachetti.com/resources/article50-decision-tree/)
 
-- **Apply a label.** The EU Code of Practice requires plain language and allows one abbreviation: "AI." "AI-generated content" is the Code's own example wording. It goes at the top, in the byline area or before the headline. A footer disclosure does not satisfy "at first exposure." Research published in 2026 found that long disclosures, including tool names and oversight workflows, performed worse on reader trust than brief labels.
-
-- **Add the official icon.** The Commission published three free icons on 10 June 2026: Basic, Fully AI-Generated, and Partially AI-Modified. SVG and PNG, light and dark variants, 24px minimum. [Download at the EU icons page &rarr;](https://digital-strategy.ec.europa.eu/en/policies/eu-icons-labelling-ai-generated-content) The icon alone does not establish compliance.
+- **Apply a label.** The EU Code of Practice requires plain language and allows one abbreviation: "AI." "AI-generated content" is the Code's own example wording. It goes at the top, in the byline area or before the headline. A footer disclosure does not satisfy "at first exposure." The Commission published three free icons on 10 June 2026 - Basic, Fully AI-Generated, and Partially AI-Modified - to accompany it. [Download &rarr;](https://digital-strategy.ec.europa.eu/en/policies/eu-icons-labelling-ai-generated-content) The icon alone does not establish compliance.
 
 - **Sign the Code of Practice.** If your organisation deploys AI for content generation systematically, signing gives you presumption of compliance and shifts enforcement focus to Code adherence rather than the underlying legal obligations. Signatories are publicly listed. The deadline is 22 July 2026. [How to sign &rarr;](https://digital-strategy.ec.europa.eu/en/library/how-sign-code-practice-transparency-ai-generated-content)
+
+<small>ℹ <a href="https://arxiv.org/abs/2601.09620">Research published in 2026</a> found that long disclosures, including tool names and oversight workflows, performed worse on reader trust than brief labels.</small>
 
 ---
 
