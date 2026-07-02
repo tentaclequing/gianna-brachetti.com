@@ -14,7 +14,7 @@ Article 50(4) of the EU AI Act requires publishers to label AI-generated text on
 
 - **Apply a label.** The EU Code of Practice requires plain language and allows one abbreviation: "AI." "AI-generated content" is the Code's own example wording. It goes at the top, in the byline area or before the headline. A footer disclosure does not satisfy "at first exposure." The Commission published three free icons on 10 June 2026 - Basic, Fully AI-Generated, and Partially AI-Modified - to accompany it. [Download &rarr;](https://digital-strategy.ec.europa.eu/en/policies/eu-icons-labelling-ai-generated-content) The icon alone does not establish compliance.
 
-- **Sign the Code of Practice.** If your organisation deploys AI for content generation systematically, signing gives you presumption of compliance and shifts enforcement focus to Code adherence rather than the underlying legal obligations. Signatories are publicly listed. The deadline is 22 July 2026. [How to sign &rarr;](https://digital-strategy.ec.europa.eu/en/library/how-sign-code-practice-transparency-ai-generated-content)
+- **Sign the Code of Practice by 22 July 2026.** If your organisation deploys AI for content generation systematically, signing gives you presumption of compliance and shifts enforcement focus to Code adherence rather than the underlying legal obligations. Signatories are publicly listed. [How to sign &rarr;](https://digital-strategy.ec.europa.eu/en/library/how-sign-code-practice-transparency-ai-generated-content)
 
 <small>ℹ <a href="https://arxiv.org/abs/2601.09620">Research published in 2026</a> found that long disclosures, including tool names and oversight workflows, performed worse on reader trust than brief labels.</small>
 
