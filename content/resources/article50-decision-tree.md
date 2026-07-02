@@ -432,7 +432,7 @@ date: 2026-06-16
       <a class="reading-link" href="https://digital-strategy.ec.europa.eu/en/policies/code-practice-ai-generated-content" target="_blank" rel="noopener">European Commission - Code of Practice on marking and labelling of AI-generated content (June 2026)</a>
     </li>
     <li class="reading-item">
-      <span class="reading-tag">Official - icons</span>
+      <span class="reading-tag">Official icons</span>
       <a class="reading-link" href="https://digital-strategy.ec.europa.eu/en/policies/eu-icons-labelling-ai-generated-content" target="_blank" rel="noopener">European Commission - Official EU AI label icons (free download)</a>
     </li>
     <li class="reading-item">
