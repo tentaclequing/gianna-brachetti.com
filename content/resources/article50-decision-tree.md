@@ -404,7 +404,7 @@ date: 2026-06-16
         <li>Errors remain attributed to the AI system</li>
         <li>No review process documentation required</li>
         <li>Official EU AI label icons published 10 June 2026 - <a class="ref" href="https://digital-strategy.ec.europa.eu/en/policies/eu-icons-labelling-ai-generated-content" target="_blank" rel="noopener">download free</a></li>
-        <li>Sign the Code of Practice by 22 July 2026 for presumption of compliance</li>
+        <li>Sign the Code of Practice by 22 July 2026 for presumption of compliance - <a class="ref" href="https://digital-strategy.ec.europa.eu/en/library/how-sign-code-practice-transparency-ai-generated-content" target="_blank" rel="noopener">how to sign</a></li>
       </ul>
     </div>
     <div class="outcome o-resp">

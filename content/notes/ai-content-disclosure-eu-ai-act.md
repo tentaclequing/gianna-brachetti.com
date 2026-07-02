@@ -16,6 +16,8 @@ Article 50(4) of the EU AI Act requires publishers to label AI-generated text on
 
 - **Add the official icon.** The Commission published three free icons on 10 June 2026: Basic, Fully AI-Generated, and Partially AI-Modified. SVG and PNG, light and dark variants, 24px minimum. [Download at the EU icons page &rarr;](https://digital-strategy.ec.europa.eu/en/policies/eu-icons-labelling-ai-generated-content) The icon alone does not establish compliance.
 
+- **Sign the Code of Practice.** If your organisation deploys AI for content generation systematically, signing gives you presumption of compliance and shifts enforcement focus to Code adherence rather than the underlying legal obligations. Signatories are publicly listed. The deadline is 22 July 2026. [How to sign &rarr;](https://digital-strategy.ec.europa.eu/en/library/how-sign-code-practice-transparency-ai-generated-content)
+
 ---
 
 *Drafted with AI assistance. Research, editorial decisions, and all final wording by Gianna Brachetti-Truskawa.*
