@@ -20,6 +20,8 @@ Article 50(4) of the EU AI Act requires publishers to label AI-generated text on
 
 <small>ℹ <a href="https://arxiv.org/abs/2601.09620">Research published in 2026</a> found that long disclosures, including tool names and oversight workflows, performed worse on reader trust than brief labels.</small>
 
+The editorial responsibility exemption in Article 50(4) is narrow: it asks whether a named person substantively reviewed the content. The broader question of what "meaningful human oversight" means in practice runs through the entire EU AI Act, particularly Article 14. If your organisation uses AI beyond content generation, that concept is worth understanding. [Practitioner-friendly overview &rarr;](https://www.linkedin.com/pulse/eu-ai-act-isnt-really-its-governance-samyak-jain-asopc/)
+
 ---
 
 *Drafted with AI assistance. Research, editorial decisions, and all final wording by Gianna Brachetti-Truskawa.*
