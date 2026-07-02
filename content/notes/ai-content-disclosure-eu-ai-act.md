@@ -23,3 +23,5 @@ Article 50(4) of the EU AI Act requires publishers to label AI-generated text on
 ---
 
 *Drafted with AI assistance. Research, editorial decisions, and all final wording by Gianna Brachetti-Truskawa.*
+
+<small>Gianna Brachetti-Truskawa is an SEO and AI governance professional, not a lawyer. This note is for informational purposes only and does not constitute legal advice. No liability is accepted for decisions made on the basis of this content. Consult a qualified legal professional for advice specific to your situation.</small>

@@ -299,6 +299,40 @@ date: 2026-06-16
   .source-note a.ref { color: rgba(138,138,130,0.6); }
   .source-note a.ref:hover { color: var(--accent); }
 
+  .disclaimer {
+    margin-top: 14px;
+    font-size: 10px;
+    color: rgba(138,138,130,0.5);
+    line-height: 1.8;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+  }
+
+  .print-bar {
+    display: flex;
+    justify-content: flex-end;
+    margin: 24px 0 0;
+  }
+  .print-button {
+    font-family: "Fira Code", monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: none;
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .print-button:hover { color: var(--accent); border-color: var(--accent); }
+
+  @media print {
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+    .further-reading { display: none !important; }
+    .print-bar { display: none !important; }
+  }
+
   footer {
     margin-top: 20px;
     padding: 20px 0 44px;
@@ -435,6 +469,10 @@ date: 2026-06-16
   </div>
 </div>
 
+<div class="print-bar">
+  <button class="print-button" onclick="window.print()">&#x2193; Save as PDF</button>
+</div>
+
 <div class="further-reading">
   <div class="further-reading-label">Further reading</div>
   <ul class="reading-list">
@@ -462,7 +500,10 @@ date: 2026-06-16
 </div>
 
 <div class="source-note">
-  <strong>Source:</strong> <a class="ref" href="https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32024R1689" target="_blank" rel="noopener">EU AI Act, Regulation (EU) 2024/1689, Article 50(4)</a>. Code of Practice and official EU label icons published 10 June 2026. Commission guidelines: draft May 2026, final expected before 2 Aug 2026. Visualisation for illustrative purposes only - not legal advice.
+  <strong>Source:</strong> <a class="ref" href="https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32024R1689" target="_blank" rel="noopener">EU AI Act, Regulation (EU) 2024/1689, Article 50(4)</a>. Code of Practice and official EU label icons published 10 June 2026. Commission guidelines: draft May 2026, final expected before 2 Aug 2026.
+</div>
+<div class="disclaimer">
+  Gianna Brachetti-Truskawa is an SEO and AI governance professional, not a lawyer. This guide is for informational purposes only and does not constitute legal advice. No liability is accepted for decisions made on the basis of this content. Consult a qualified legal professional for advice specific to your situation.
 </div>
 
 <footer>
