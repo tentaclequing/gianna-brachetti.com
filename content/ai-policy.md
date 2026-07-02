@@ -59,7 +59,7 @@ Transparency means being honest about gaps.
 
 **No bot tracking or verification.** This site is hosted on GitHub Pages, which provides no server access logs. I cannot see which crawlers visit, how often, or whether they respect the `robots.txt` directives. I have no way to detect non-compliant crawlers in real time.
 
-**No server-side enforcement.** Without a CDN or application layer (such as Cloudflare), there is no mechanism to block requests at the infrastructure level, serve HTTP 402 responses to AI crawlers, or implement rate limiting.
+**No server-side enforcement.** Without a CDN or application layer, there is no mechanism to block requests at the infrastructure level, serve HTTP 402 responses to AI crawlers, or implement rate limiting. Cloudflare now offers [granular AI bot controls](https://blog.cloudflare.com/content-independence-day-ai-options/) on all plans including Free - three-category toggles (Search, Agent, Training) with WAF enforcement and managed robots.txt with Content Use Signals. This would close the enforcement gap. However, it would also place an intermediary between this site and its visitors, with Cloudflare's classification system deciding which bots fall into which category. I am evaluating whether the enforcement benefit outweighs the intermediary trade-off, and whether the multi-purpose crawler logic - which blocks Googlebot entirely if you block Training - is acceptable for a small site that depends on search visibility.
 
 **No content fingerprinting.** I do not currently track whether my content appears in AI training datasets or model outputs.
 
@@ -86,4 +86,4 @@ If you believe an AI system is using my content in violation of the TDM reservat
 
 ---
 
-*Last updated: May 2026*
+*Last updated: July 2026*
