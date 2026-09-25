@@ -2,7 +2,7 @@
 title: "If it's possible in theory, it likely already happened in reality - or how to make a better cheese sandwich"
 slug: "cheesy-llms-txt"
 date: 2026-09-25
-type_label: deep analysis
+type_label: essay
 tags: [ai, security, agents, llms-txt, supply-chain, governance]
 description: "llms.txt became an attack vector, humans can't keep up with agent approval prompts, and dashboards miss what matters. A walkthrough of why agentic AI security fails - and how the Swiss cheese model from safety engineering can help."
 tldr: |
