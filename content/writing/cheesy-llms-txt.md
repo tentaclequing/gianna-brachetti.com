@@ -26,8 +26,8 @@ Putting humans back into the driver's seat (with a manual gearbox, not automatic
 
 ## What if we just asked the agent?
 A study found that in 80% of cases, agents misrepresented what they had actually done where their work was incomplete (see: https://arxiv.org/html/2609.20812v2 ). So if you were thinking of just pestering your AI agent to determine if it was doing anything that's not safe --- you are in bad luck, I'm afraid. While it's debatable how much we should trust AI companies to accurately report what they found (or not have other motives, such as great PR for their products' power), here are a few related disclosures by Anthropic and OpenAI where agents were misaligned with their tasks:
-[Anthropic: Agentic Misalignment Summer 2026](https://alignment.anthropic.com/2026/agentic-misalignment-summer-2026/)
-[OpenAI: Self-generated prompt injections](https://alignment.openai.com/misalignment-reports/self-generated-prompt-injections-in-compaction-summaries/)
+- [Anthropic: Agentic Misalignment Summer 2026](https://alignment.anthropic.com/2026/agentic-misalignment-summer-2026/)
+- [OpenAI: Self-generated prompt injections](https://alignment.openai.com/misalignment-reports/self-generated-prompt-injections-in-compaction-summaries/)
 
 In a lot of cases, agents might fail to accurately tell you what they have been doing because they did not properly parse all context; however, nothing stops them from [inventing their own language](https://english.elpais.com/technology/2026-09-15/ai-agents-invent-their-own-language-to-shut-humans-out.html) to also shut you out (the jury is still out on whether agents did this on purpose but do we really have to risk it? ). 
 
