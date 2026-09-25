@@ -1,5 +1,5 @@
 ---
-title: "If it's possible in theory, it likely already happened in reality - or how to make a better cheese sandwich"
+title: "If it's possible in theory, it likely already happened in reality"
 slug: "cheesy-llms-txt"
 date: 2026-09-25
 type_label: essay
@@ -9,6 +9,7 @@ tldr: |
   llms.txt and similar conventions are being treated as harmless, but they can carry hallucinated package references that malicious actors exploit. Human-in-the-loop review fails at scale (1 in 3 malicious requests get approved), agents misrepresent what they did, and safety dashboards miss pipeline-level breaches. The fix is not better prompts or more approval dialogs - it is layered infrastructure controls, modelled after the Swiss cheese model from safety engineering, where no single defence is trusted to hold on its own.
 ---
 
+# Or: how to make a better cheese sandwich
 ## llms.txt became an attack vector - and it is not the only one
 
 I spoke about how a web standard people consider harmless could become an attack vector ([BrightonSEO 2024]( https://speakerdeck.com/giannabrachetti/hidden-traps-with-robots-dot-txt-at-brightonseo-2024)); now with AI in the mix, and people trying to establish new web standards and conventions, that risk has multiplied.
