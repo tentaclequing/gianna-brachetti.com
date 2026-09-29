@@ -468,6 +468,18 @@
   margin-bottom: 1.8em;
 }
 
+.post-body ul,
+.post-body ol {
+  margin-bottom: 1.8em;
+  padding-left: 1.4em;
+}
+.post-body li {
+  margin-bottom: 0.4em;
+}
+.post-body li:last-child {
+  margin-bottom: 0;
+}
+
 .post-body h2 {
   font-family: "Cormorant Garamond", serif;
   font-weight: 400;

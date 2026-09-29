@@ -24,6 +24,7 @@ We've got five challenges when estimating dark AI traffic:
 4. Practically no pass-through-rates from mobile AI apps to web URLs
 5. Fluctuation for all of these
 
+
 Regarding the second challenge:  At the time of writing, I am not aware of any AI platform other than ChatGPT making a notable difference between referrer pass-through-rates on free tier vs. paid tier users. ChatGPT seems to strip referrers off inline links in paid tiers, keeps them in free tiers, but keeps adding UTM source parameters to links in citations at the end of a response for all tiers.
 
 ## Estimating AI referrer pass-through-rates
@@ -56,6 +57,7 @@ Let me be up front about the downsides of this model:
 - Where we do see referrers, platforms with very low pass-through rates give us so few data points that the extrapolation is fragile.
 - We run calculations based on estimates others made, or our own tests with very few data points - ideally we'd run larger studies to make better estimates. (If any of you wanted to cooperate and run a study - drop me a message on LinkedIn!)
 
+
 Is a bad guess better than no guess? I think it is, as long as we keep in mind that it's a guess and update our approach as soon as there are more defensible findings. 
 
 ### Validating with user research
@@ -80,6 +82,7 @@ Two things to watch if you do this:
 1. **Adjust your multiplier.** If you're now counting UTM-recovered sessions as observed, your ChatGPT pass-through rate effectively increases. Recalculate: `(referrer-attributed sessions + UTM-recovered sessions) / estimated total = new blended rate`. Don't apply the old 35% multiplier to the expanded observed count, or you'll double-count.
 2. **This only recovers citation clicks, not inline clicks.** Paid-tier inline links still vanish entirely. The UTM recovery narrows the gap but doesn't close it.
 
+
 If your analytics stack doesn't capture UTM parameters at the session level, this approach doesn't apply and the original per-platform rates remain your best estimate.
 
 ## Cross-checking with bot crawl data
@@ -90,6 +93,7 @@ CDNs like [Cloudflare classify AI bot traffic by purpose](https://developers.clo
 - **Training**: training data collection (not user-facing)
 - **Search**: bots collecting or indexing web content
 - **Agent**: automated activity acting on a person's behalf, such as chat fetch bots and browser-use agents
+
 
 (If you don't have a CDN Enterprise plan, you'll need to classify bots yourself via reverse DNS lookups and a mapping table.)
 
@@ -105,6 +109,7 @@ If we read the crawl-to-referral ratio as a conversion rate in Marketing, we mig
 - **Changes in query fan-outs:** The LLM might decompose one user prompt into multiple different sub-queries, and process these as web searches, which can trigger the AI bot to request URLs to your site more than once. One user interaction can trigger many of those requests but might only lead to maximum one actual user visit to your site. 
 - **Changes in referrer suppression:** We already mentioned that gap earlier. Whether referrers are sent with a request depends on the platforms and browsers we don't own - and there is quite some fluctuation. Sometimes new referrers appear, sometimes more are stripped.
 - **Agent workflows:** AI agents can do multi-step tasks on a user's behalf, and that could include them researching the web autonomously. These are classified as Agents separately by Cloudflare - and as agent usage grows, so are requests that might never lead to a human visiting your site, since they might not be surfaced to the human in the process. 
+
 
 You cannot separate these causes from server logs alone - do take them into account when analysing the ratio. It's still worth having that data, though: You can use the changes in ratio to detect trends. If things change sharply from one day to another, poke into whether there's been a prompt tracking batch running (you really should only do these in bursts and then make an annotation in your dashboards accordingly - but you can only control this for your own tracking, not if you showed up in someone else's), or a technical issue (eg. bot requests being blocked on purpose or accidentally, data warehouse issues such as a script importing the logs failing, and so on).
 
@@ -142,6 +147,7 @@ It's well worth cross-verifying agentic versus meat proxy (ahem: human) hits by 
 	- [On the Internet, Nobody Knows You’re an LLM Bot: Unmasking Web Agents with Multi-Layer Fingerprinting (CNRS/Inria, June 2026)](https://arxiv.org/pdf/2606.30119)
 - [GDPR and ePrivacy alert](https://matomo.org/blog/2026/01/privacy-regulations-changes-2026-analytics/): As with any type of tracking or user profiling, please check with your data protection officer or lawyer what you need to disclose, and how users can consent to or opt out of it.
 - **Cryptographic verification:** The major AI providers (OpenAI, Anthropic, Perplexity) sign their bot requests via Web Bot Auth. If you're with a CDN who support cryptographic verification, you get 100% certainty for those bot access requests - if not, you'll have to implement it yourself. [Find the specs here.](https://specification.website/spec/agent-readiness/web-bot-auth/) {{< sidenote >}} How this works: The operator (eg. Anthropic) generates a signing keypair and publishes the public key at a well-known HTTPS location. The agent signs request headers with the private key. The receiving server fetches the public key and verifies the signature. If it checks out, you know with cryptographic certainty which operator sent the request, regardless of what the user-agent string says. [See RFC 9421](https://datatracker.ietf.org/doc/rfc9421/) or [Akamai's highly accessible explanation](https://www.akamai.com/blog/security/2025/nov/redefine-trust-web-bot-authentication).{{< /sidenote >}}
+
 
 
 This was a fun exercise to build, and in our case, it gave us a few interesting insights.
