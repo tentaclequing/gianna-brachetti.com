@@ -84,27 +84,52 @@ sync_all() {
 deploy() {
   cd "$HUGO_ROOT" || exit 1
 
-  # Check for changes
-  local changes=$(git status --porcelain content/)
+  # Stage only non-draft content (repo is public; drafts must not be committed)
+  local staged=0
+  local skipped=0
+  for f in $(find content/ -name '*.md' -newer .git/index -o -name '*.md' ! -path '*/.git/*' | sort -u); do
+    [ -f "$f" ] || continue
+    # Skip files without frontmatter or with draft: true (repo is public)
+    if ! head -1 "$f" | grep -q '^---'; then
+      skipped=$((skipped + 1))
+      continue
+    fi
+    if head -10 "$f" | grep -q '^draft: *true'; then
+      skipped=$((skipped + 1))
+      continue
+    fi
+    git add "$f"
+    staged=$((staged + 1))
+  done
+
+  # Also stage non-md content files (images, etc.) that changed
+  for f in $(git status --porcelain content/ | grep -v '\.md$' | awk '{print $2}'); do
+    [ -f "$f" ] || continue
+    git add "$f"
+    staged=$((staged + 1))
+  done
+
+  local changes=$(git diff --cached --name-only)
   if [ -z "$changes" ]; then
-    echo "No content changes to deploy."
+    [ "$skipped" -gt 0 ] && echo "Skipped $skipped draft(s). No publishable changes to deploy."
+    [ "$skipped" -eq 0 ] && echo "No content changes to deploy."
     return 0
   fi
 
   echo ""
-  echo "Changes to deploy:"
-  echo "$changes"
+  echo "Changes to deploy ($staged file(s), $skipped draft(s) skipped):"
+  git diff --cached --stat
   echo ""
   read -p "Commit and push these changes? [y/N] " confirm
   case "$confirm" in
     [yY]|[yY][eE][sS])
-      git add content/
       git commit -m "Update website content"
       git push
       echo "Deployed."
       ;;
     *)
-      echo "Skipped. Changes are staged locally - commit manually when ready."
+      git reset HEAD -- content/ > /dev/null
+      echo "Skipped. Nothing was committed."
       ;;
   esac
 }
