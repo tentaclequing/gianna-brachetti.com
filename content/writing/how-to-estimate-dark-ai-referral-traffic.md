@@ -1,7 +1,7 @@
 ---
 title: "How to estimate dark AI referral traffic"
 date: 2026-09-29
-description: "A per-platform model for estimating the AI referral traffic your analytics can't see, cross-checked against bot crawl data."
+description: "A per-platform method for estimating the AI referral traffic your analytics can't see, cross-checked against bot crawl data."
 draft: false
 ---
 
@@ -10,9 +10,9 @@ _Note: I implemented this in May 2026; Microsoft Clarity have since introduced a
 You might have felt the same fate if you work in an agency or inhouse:
 The board and everyone around them has an increasing appetite to measure "AI visibility", and keep pushing you to provide them with scores, or asking you to defend fantasy metrics of yet another SEO suite they have been testing.
 So you'd like to look into one of the two actual data points you have available - referral traffic. There's just one broad number making the rounds: an estimated 30% of referrers are actually passed through by LLMs. {{< sidenote >}} It's been widely quoted, and people seem to have translated that into "70% of direct traffic must be AI traffic" - [that assumption is wrong](https://buttondown.com/davidrosam/archive/everyone-quotes-60-nobody-measured-it/), and is exactly why you need to weight this per model.{{< /sidenote >}}
-However, every LLM handles referrers differently, so which LLM is driving most of the traffic to your site might change that number quite a bit - if you treated them all the same way, your calculations are simpler but you might over- or undercount substantially. This is why, when faced with the same problem, I created a model to have a better estimate, and I'll walk you through the process here so you can build your own.
+However, every LLM handles referrers differently, so which LLM is driving most of the traffic to your site might change that number quite a bit - if you treated them all the same way, your calculations are simpler but you might over- or undercount substantially. This is why, when faced with the same problem, I created a correction method to have a better estimate, and I'll walk you through the process here so you can build your own.
 Fair warning: the numbers I use are rough. Some come from published research, some from brief tests I ran, some from things I read and forgot to bookmark. I am showing you the process of how to get to a workable estimate, not presenting a study. The value is in weighting per platform and cross-checking against your own data, not in copying my numbers. Sometimes you just need a number you can defend in a meeting and update when better data comes along.
-While [GA4 is labelling some AI traffic automatically](https://www.searchenginejournal.com/ga4s-ai-assistant-channel-undercounts-your-ai-traffic-how-to-build-one-that-doesnt/580133/) by now, it is undercounting, and not labelling all LLMs. You'd still benefit from making your own data model. 
+While [GA4 is labelling some AI traffic automatically](https://www.searchenginejournal.com/ga4s-ai-assistant-channel-undercounts-your-ai-traffic-how-to-build-one-that-doesnt/580133/) by now, it is undercounting, and not labelling all LLMs. You'd still benefit from making your own estimation. 
 
 
 ## Challenges when estimating dark AI traffic
@@ -52,7 +52,7 @@ Any estimate I found, I summarised in a table and added that table as an info bo
 
 ### Downsides
 
-Let me be up front about the downsides of this model: 
+Let me be up front about the downsides of this approach: 
 - This only allows you to measure and extrapolate from platforms that send any referrers at all, not from zero. 
 - Where we do see referrers, platforms with very low pass-through rates give us so few data points that the extrapolation is fragile.
 - We run calculations based on estimates others made, or our own tests with very few data points - ideally we'd run larger studies to make better estimates. (If any of you wanted to cooperate and run a study - drop me a message on LinkedIn!)
@@ -66,8 +66,8 @@ If you want to improve on these estimates for your own site, there's one thing y
 
 ## What about browsers and mobile apps?
 
-When I started building this model, I assumed I'd need a separate correction layer for browsers stripping referrers - but I do not think it's necessary after some research:
-Desktop browsers all default to strict-origin-when-cross-origin, which still sends the domain. The referrer disappears on mobile, where AI apps use embedded WebViews that drop the header during the app-to-web handoff. Most AI apps don't opt in to preserving it, so mobile pass-through rates are near-zero for most platforms (Perplexity being the outlier at ~70% as per [SearchPilot (April 2026), "AI Platform Click Referrer Reference"](https://www.searchpilot.com/hubfs/pdfs/ai-traffic-source-reference.pdf) based on Loamly data (446k visits, Feb 2026)). Our data model above already factored that in (it's derived from all observed traffic across all device types).
+When I started building this, I assumed I'd need a separate correction layer for browsers stripping referrers - but I do not think it's necessary after some research:
+Desktop browsers all default to strict-origin-when-cross-origin, which still sends the domain. The referrer disappears on mobile, where AI apps use embedded WebViews that drop the header during the app-to-web handoff. Most AI apps don't opt in to preserving it, so mobile pass-through rates are near-zero for most platforms (Perplexity being the outlier at ~70% as per [SearchPilot (April 2026), "AI Platform Click Referrer Reference"](https://www.searchpilot.com/hubfs/pdfs/ai-traffic-source-reference.pdf) based on Loamly data (446k visits, Feb 2026)). Our estimation above already factored that in (it's derived from all observed traffic across all device types).
 
 What _is_ worth watching: if the mobile/desktop split for a platform shifts significantly (say, ChatGPT releases a better mobile web experience that bypasses the app), the blended pass-through rate for that platform might change, too. Take the rates in the table as snapshots and revisit them every now and then.
 
