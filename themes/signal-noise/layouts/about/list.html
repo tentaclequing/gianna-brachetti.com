@@ -123,7 +123,7 @@
     {{ range . }}
     <div class="fact-cell">
       <p class="fact-label">{{ .label }}</p>
-      <p class="fact-value{{ with .colour }} {{ . }}{{ end }}">{{ .value }}</p>
+      <p class="fact-value{{ with .colour }} {{ . }}{{ end }}">{{ .value | markdownify }}</p>
     </div>
     {{ end }}
   </div>

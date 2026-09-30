@@ -10,7 +10,7 @@ facts:
   - label: "based"
     value: "somewhere with good internet"
   - label: "background"
-    value: "ex-DeepL · AI Governance Collective"
+    value: "ex-DeepL · [AI Governance Collective](https://www.aigovcollective.com/)"
     colour: "accent"
   - label: "primary tools"
     value: "Obsidian / terminal / browser devtools"

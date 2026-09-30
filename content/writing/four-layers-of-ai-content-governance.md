@@ -279,7 +279,7 @@ Start by separating the questions. Then decide, content type by content type, wh
 
 ---
 
-*Gianna Brachetti-Truskawa is a senior product manager specialising in organic growth (SEO / GEO), AI governance, and security. Previously at DeepL, and a member of the AI Governance Collective. They have published on AI crawler governance with the IAB and write about how machines read the web, agentic security, and the evolution of SEO and GEO. [More about Gianna](https://gianna-brachetti.com/about)*
+*Gianna Brachetti-Truskawa is a senior product manager specialising in organic growth (SEO / GEO), AI governance, and security. Previously at DeepL, and a member of the [AI Governance Collective](https://www.aigovcollective.com/). They have published on AI crawler governance with the IAB and write about how machines read the web, agentic security, and the evolution of SEO and GEO. [More about Gianna](https://gianna-brachetti.com/about)*
 
 ---
 
