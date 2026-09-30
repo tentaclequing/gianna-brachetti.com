@@ -42,7 +42,7 @@ contact:
 
 I've been thinking about how information moves through systems for 17 years now - crawlers, indexes, language models, people. I work in organic growth and search experience optimisation, which means I care about the user first and the algorithm second. Most of my time goes to where **search meets security meets language**, reading signals others have stopped looking for.
 
-Most recently, I was doing product management for search and organic growth at DeepL. I think about *how machines read the web* for a living, which turns out to be exactly the right lens for understanding AI right now - something I wrote about in my [IAB paper on multi-level AI crawler governance](https://datatracker.ietf.org/doc/slides-aicontrolws-proposal-multi-level-approach-to-managing-ai-crawler-behavior-and-content-protection/). The attack surfaces and the optimisation surfaces are closer together than most practitioners want to admit.
+Most recently, I was a senior product manager for search and organic growth at DeepL. I think about *how machines read the web* for a living, which turns out to be exactly the right lens for understanding AI right now - something I wrote about in my [IAB paper on multi-level AI crawler governance](https://datatracker.ietf.org/doc/slides-aicontrolws-proposal-multi-level-approach-to-managing-ai-crawler-behavior-and-content-protection/). The attack surfaces and the optimisation surfaces are closer together than most practitioners want to admit.
 
 I notice patterns. I go deep on things that interest me and lose track of time. I find certain kinds of precision genuinely pleasurable - the right word, the correctly specified schema, the elegantly minimal robots.txt. I also find a lot of things funny that other people find dry.
 
