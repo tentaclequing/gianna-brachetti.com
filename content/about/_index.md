@@ -9,8 +9,8 @@ roles:
 facts:
   - label: "based"
     value: "somewhere with good internet"
-  - label: "working at"
-    value: "DeepL, since 2022"
+  - label: "background"
+    value: "ex-DeepL · AI Governance Collective"
     colour: "accent"
   - label: "primary tools"
     value: "Obsidian / terminal / browser devtools"
@@ -21,7 +21,7 @@ currently:
   - "Reading: Crucial Conversations ([see what else I read](/reads/))"
   - "Thinking about what \"organic growth\" means when AI answers don't have URLs to click"
   - "Growing a monstera that has opinions about being moved"
-  - "Building internal tooling for SEO content scoring and AI workflow automation"
+  - "Building an SEO scoring tool that's honest about what it can and can't detect"
 work:
   status: "not taking on new clients"
   headline: "I work best on problems<br>*other people have stopped finding interesting.*"
@@ -40,10 +40,10 @@ contact:
     url: "https://github.com/tentaclequing"
 ---
 
-I've been thinking about how information moves through systems for 17 years now. Crawlers, indexes, language models, people. I work in organic growth and search experience optimisation, which means I care about the user first and the algorithm second. Most of my time goes to where **search meets security**, reading signals others have stopped looking for.
+I've been thinking about how information moves through systems for 17 years now - crawlers, indexes, language models, people. I work in organic growth and search experience optimisation, which means I care about the user first and the algorithm second. Most of my time goes to where **search meets security meets language**, reading signals others have stopped looking for.
 
-My day job is product management for search and organic growth at DeepL. I think about *how machines read the web* for a living, which turns out to be exactly the right lens for understanding AI right now - something I wrote about in my [IAB paper on multi-level AI crawler governance](https://datatracker.ietf.org/doc/slides-aicontrolws-proposal-multi-level-approach-to-managing-ai-crawler-behavior-and-content-protection/). The attack surfaces and the optimisation surfaces are closer together than most practitioners want to admit. I care about understanding and shaping the web standards that govern this space, not just working within them.
+Most recently, I was doing product management for search and organic growth at DeepL. I think about *how machines read the web* for a living, which turns out to be exactly the right lens for understanding AI right now - something I wrote about in my [IAB paper on multi-level AI crawler governance](https://datatracker.ietf.org/doc/slides-aicontrolws-proposal-multi-level-approach-to-managing-ai-crawler-behavior-and-content-protection/). The attack surfaces and the optimisation surfaces are closer together than most practitioners want to admit.
 
-I notice patterns. I go deep on things that interest me and lose track of time. I find certain kinds of precision genuinely pleasurable - the right word, the correctly specified schema, the elegantly minimal robots.txt. I love grammatical systems: how languages encode meaning differently, how markup languages do the same thing for machines. I also find a lot of things funny that other people find dry.
+I notice patterns. I go deep on things that interest me and lose track of time. I find certain kinds of precision genuinely pleasurable - the right word, the correctly specified schema, the elegantly minimal robots.txt. I also find a lot of things funny that other people find dry.
 
-Outside of work I grow things slowly. Plants and herbs in the garden, snails in terrariums, ideas in notebooks. An octopus solves problems with arms that think independently. A snail navigates entirely by touch. There's a kind of distributed intelligence in both that I find more interesting than any AI architecture I've read about.
+Outside of work I grow things slowly - plants on windowsills, snails in terrariums, ideas in notebooks. An octopus solves problems with arms that think independently. A snail navigates entirely by touch. There's a kind of distributed intelligence in both that I find more interesting than any AI architecture I've read about.

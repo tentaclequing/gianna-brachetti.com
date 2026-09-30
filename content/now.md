@@ -2,30 +2,30 @@
 title: "Now"
 description: "What I'm focused on right now."
 highlights:
-  - "Owning the search experience for anonymous users at DeepL"
-  - "Building internal tools at DeepL for SEO QA automation, alerting, and content scoring"
-  - "Writing a framework for AI content governance - separating visibility, efficiency, protection, and licensing"
+  - "Between roles after four years at DeepL - exploring what product management looks like with AI deeply in the build process"
+  - "Experimenting with LoRa mesh networking and off-grid communication nodes"
+  - "Member of the AI Governance Collective, preparing for the AIGP certification"
   - "Contributing to W3C community groups on AI agent governance and identity"
-  - "Setting up self-hosted LLM inference on a VPS (Ollama + Open Web UI)"
+  - "Writing about how machines read the web and the blind spots in AI traffic measurement"
 ---
 
-*Last updated: 27 May 2026. This is a [/now page](https://nownownow.com/about).*
+*Last updated: 30 September 2026. This is a [/now page](https://nownownow.com/about).*
 
 ## Product management
 
-Owning the search experience for anonymous users at [DeepL](https://www.deepl.com/). Currently executing a layer to make our pages more readable for traditional and AI search systems, such as structured data implementation, before tackling hairier rendering and page speed problems. Building measurement frameworks that care about engagement, not just traffic.
+Between roles after four years at [DeepL](https://www.deepl.com/) (2022-2026), where I owned the search experience and organic growth for 30+ language markets. Exploring what product management looks like when AI tooling is deeply embedded in the build process, from spec-driven development to measurement.
 
 ## Building
 
-Building internal tools at DeepL for teams to support SEO QA automation, alerting, and content scoring. Also building an [MCP server for Audisto](https://github.com/tentaclequing/audisto-mcp) to wire crawl data into AI workflows. Setting up self-hosted LLM inference on a VPS - Ollama with Open Web UI - to have a private, always-available model for daily productivity without routing everything through commercial APIs.
+Experimenting with LoRa mesh networking and off-grid communication nodes. Exploring building MCP servers for crawling applications. Running self-hosted LLM inference on a VPS with Ollama and Open Web UI for private, always-available AI without routing everything through commercial APIs.
 
-## Writer
+## Writing
 
-Working on a framework for AI content governance - separating visibility, efficiency, protection, and licensing into distinct layers instead of treating "AI and my website" as one question. Also editing a longer piece on why AI visibility measurement is built on assumptions nobody has tested. Poetry and prose in notebooks that don't have deadlines.
+Writing about how machines read the web, agentic security, and the blind spots in AI traffic measurement. Recently published a piece on [estimating dark AI referral traffic](/writing/how-to-estimate-dark-ai-referral-traffic/). Poetry and prose in notebooks that don't have deadlines.
 
-## Web standards work
+## Web standards and governance
 
-Contributing to W3C community groups on AI agent governance and identity, alongside published work on AI crawler behaviour (IAB, 2024) and a four-layer content governance framework. Participating as an individual, not on behalf of my employer.
+Member of the AI Governance Collective. Contributing to W3C community groups on AI agent governance and identity, alongside published work on AI crawler behaviour (IAB, 2024). Preparing for the AIGP certification. Participating as an individual.
 
 ## Being human
 
