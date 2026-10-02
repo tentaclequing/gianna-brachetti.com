@@ -6,7 +6,7 @@ page_label: "on the record"
 page_headline: "On the record"
 page_desc: "Talks, interviews and publications on SEO, language AI, and the security implications of how machines read the web. Occasionally I go off-script. That's usually the good part."
 invite_email: "hello@gianna-brachetti.com"
-invite_text: "I speak on search, AI, language and the security angles where they intersect. Talks are always written from scratch - I don't reuse slides. If the topic fits and the audience is curious, send a note."
+invite_text: "I speak on search, AI, language and the security angles where they overlap. Talks are always written from scratch - I don't reuse slides. If the topic fits and the audience is curious, send a note."
 talks:
   - title: "Panel: The Future of AI in E-Commerce"
     conference: "MultichannelDay 2025"

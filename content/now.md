@@ -2,18 +2,18 @@
 title: "Now"
 description: "What I'm focused on right now."
 highlights:
-  - "Between roles after four years at DeepL - exploring what product management looks like with AI deeply in the build process"
-  - "Experimenting with LoRa mesh networking and off-grid communication nodes"
-  - "Member of the [AI Governance Collective](https://www.aigovcollective.com/), preparing for the AIGP certification"
+  - "Focused on AI governance and compliance in healthcare after four years at DeepL"
+  - "Completing an intensive programme on applied AI governance in healthcare"
+  - "Member of the [AI Governance Collective](https://www.aigovcollective.com/), preparing for the AIGP certification (January 2027)"
   - "Contributing to W3C community groups on AI agent governance and identity"
   - "Writing about how machines read the web and the blind spots in AI traffic measurement"
 ---
 
 *Last updated: 30 September 2026. This is a [/now page](https://nownownow.com/about).*
 
-## Product management
+## AI governance
 
-Between roles after four years at [DeepL](https://www.deepl.com/) (2022-2026), where I owned the search experience and organic growth for 30+ language markets. Exploring what product management looks like when AI tooling is deeply embedded in the build process, from spec-driven development to measurement.
+Between roles after four years at [DeepL](https://www.deepl.com/) (2022-2026), where I owned organic growth and became the cross-functional lead for AI governance: risk assessment, policy, and compliance for AI systems across 30+ language markets. Now focused on bringing that experience to healthcare, where the stakes are highest and the frameworks are still being built.
 
 ## Building
 
@@ -25,7 +25,11 @@ Writing about how machines read the web, agentic security, and the blind spots i
 
 ## Web standards and governance
 
-Member of the [AI Governance Collective](https://www.aigovcollective.com/). Contributing to W3C community groups on AI agent governance and identity, alongside published work on AI crawler behaviour (IAB, 2024). Preparing for the AIGP certification. Participating as an individual.
+Member of the [AI Governance Collective](https://www.aigovcollective.com/), currently completing an intensive programme on applied AI governance and compliance in healthcare. Contributing to W3C community groups on AI agent governance and identity, alongside published work on AI crawler behaviour (IAB, 2024). Preparing for the AIGP certification (January 2027). Participating as an individual.
+
+## Conferences
+
+Recently attended the IT-Sicherheitstag on digital sovereignty in Dortmund (2026), focused on AI governance and resilience in critical infrastructure.
 
 ## Being human
 

@@ -1,4 +1,4 @@
 ---
 title: "~/gianna"
-description: "Long essays, sharp observations and experiments at the intersection of search, AI and security."
+description: "Long essays, sharp observations and experiments where search, AI and security overlap."
 ---

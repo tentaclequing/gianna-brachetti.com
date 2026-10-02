@@ -1,9 +1,9 @@
 ---
 title: "About Gianna"
-description: "Gianna Brachetti-Truskawa - organic growth leader, search & AI product manager, cephalopod enthusiast."
+description: "Gianna Brachetti-Truskawa - organic growth with AI governance, search & AI product manager, cephalopod enthusiast."
 layout: list
 roles:
-  - "organic growth leader"
+  - "organic growth & AI governance"
   - "search & AI product manager"
   - "language nerd"
 facts:
@@ -21,14 +21,12 @@ currently:
   - "Reading: Crucial Conversations ([see what else I read](/reads/))"
   - "Thinking about what \"organic growth\" means when AI answers don't have URLs to click"
   - "Growing a monstera that has opinions about being moved"
-  - "Building an SEO scoring tool that's honest about what it can and can't detect"
+  - "Working on AI governance frameworks for regulated industries"
 work:
-  status: "not taking on new clients"
+  status: "focused on AI governance in healthcare"
   headline: "I work best on problems<br>*other people have stopped finding interesting.*"
   body: |
-    My consultancy days are behind me. I'm not available for projects, retainers, or the kind of engagement that starts with a discovery call and ends with a slide deck.
-
-    What I do have: deep SEO infrastructure knowledge, genuine security instincts, a working understanding of how language models read the web, and the patience to think carefully before saying anything. That mix doesn't come up often. When it does, it tends to matter.
+    I bring together organic growth strategy and AI governance - building visibility that holds up under scrutiny, particularly in regulated environments like healthcare. Deep SEO infrastructure knowledge, genuine security instincts, a working understanding of how language models read the web, and the patience to think carefully before saying anything. That mix doesn't come up often. When it does, it tends to matter.
   offer: "If you have something that genuinely couldn't be solved by anyone with a standard toolset - **the kind of problem that's been sitting in a drawer because it's too weird to brief properly** - that's the one worth sending. No guarantees, but those are the ones I read twice."
 contact:
   - label: "email"
@@ -40,9 +38,9 @@ contact:
     url: "https://github.com/tentaclequing"
 ---
 
-I've been thinking about how information moves through systems for 17 years now - crawlers, indexes, language models, people. I work in organic growth and search experience optimisation, which means I care about the user first and the algorithm second. Most of my time goes to where **search meets security meets language**, reading signals others have stopped looking for.
+I've been thinking about how information moves through systems for 17 years now - crawlers, indexes, language models, people. I work in organic growth and AI governance, which means I know how to make things visible *and* how to make sure they're done responsibly. Most of my time goes to where **growth meets governance meets language** - reading signals others have stopped looking for.
 
-Most recently, I was a senior product manager for search and organic growth at DeepL. I think about *how machines read the web* for a living, which turns out to be exactly the right lens for understanding AI right now - something I wrote about in my [IAB paper on multi-level AI crawler governance](https://datatracker.ietf.org/doc/slides-aicontrolws-proposal-multi-level-approach-to-managing-ai-crawler-behavior-and-content-protection/). The attack surfaces and the optimisation surfaces are closer together than most practitioners want to admit.
+Most recently, I was a senior product manager at DeepL, where I owned organic growth and became the cross-functional point of contact for AI governance: risk assessment, compliance, and internal policy for AI systems. I think about *how machines read the web* for a living, which turns out to be exactly the right lens for governing AI responsibly - something I wrote about in my [IAB paper on multi-level AI crawler governance](https://datatracker.ietf.org/doc/slides-aicontrolws-proposal-multi-level-approach-to-managing-ai-crawler-behavior-and-content-protection/). The attack surfaces and the governance surfaces are closer together than most practitioners want to admit.
 
 I notice patterns. I go deep on things that interest me and lose track of time. I find certain kinds of precision genuinely pleasurable - the right word, the correctly specified schema, the elegantly minimal robots.txt. I also find a lot of things funny that other people find dry.
 
