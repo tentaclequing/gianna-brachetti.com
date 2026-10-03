@@ -1,3 +1,7 @@
+---
+draft: true
+---
+
 # Or: how to make a better cheese sandwich
 ## llms.txt became an attack vector - and it is not the only one
 
