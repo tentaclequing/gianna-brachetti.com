@@ -23,7 +23,7 @@ currently:
   - "Growing a monstera that has opinions about being moved"
   - "Working on AI governance frameworks for regulated industries"
 work:
-  status: "focused on AI governance in healthcare"
+  status: "focused on AI governance in the public sector"
   headline: "I work best on problems<br>*other people have stopped finding interesting.*"
   body: |
     My background is translation studies, SEO, and product management, which sounds scattered until you see what connects it: I reverse engineer things. Translation taught me to take apart how meaning works across languages. SEO taught me to take apart how machines read content. Product management made me obnoxious about hypotheses and testing. Security is where I ended up caring most, because how systems are built determines who gets hurt when they fail, especially with AI in the mix.

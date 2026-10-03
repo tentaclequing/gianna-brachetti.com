@@ -4,7 +4,7 @@ description: "What I'm focused on right now."
 now_summary: "Exploring AI governance in the public sector, self-hosting AI infrastructure exclusively on EU servers, and preparing my garden for winter hibernation. Still unable to update my printer's firmware."
 ---
 
-*Last updated: 30 September 2026. This is a [/now page](https://nownownow.com/about).*
+*Last updated: 3 October 2026. This is a [/now page](https://nownownow.com/about).*
 
 ## AI governance
 
