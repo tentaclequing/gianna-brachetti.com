@@ -4,9 +4,9 @@ description: "Talks, interviews, articles and papers on SEO, AI, language, and s
 layout: list
 page_label: "on the record"
 page_headline: "On the record"
-page_desc: "Talks, interviews and publications on SEO, language AI, and the security implications of how machines read the web. Occasionally I go off-script. That's usually the good part."
-invite_email: "hello@gianna-brachetti.com"
-invite_text: "I speak on search, AI, language and the security angles where they overlap. Talks are always written from scratch - I don't reuse slides. If the topic fits and the audience is curious, send a note."
+page_desc: "Everything I've said on a stage from 2017 to 2025; the topics have moved on since then, and I probably have, too."
+empty_state: "the monstera is taller.<br>the calendar is open."
+invite_text: "Currently on a break from speaking. That said, I am easy to convince. [Reach out on LinkedIn](https://www.linkedin.com/in/gianna-brachetti-truskawa/)."
 talks:
   - title: "Panel: The Future of AI in E-Commerce"
     conference: "MultichannelDay 2025"

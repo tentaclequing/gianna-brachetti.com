@@ -21,6 +21,6 @@ Code snippets in articles are provided as-is and may be used freely.
 
 ## AI disclosure
 
-Parts of this site's design and some content editing were done with AI assistance (Claude Code by Anthropic). The writing, ideas, and creative direction are mine. I believe in being transparent about how tools are used, including this one.
+Parts of this site's design and some content editing were done with AI assistance (Claude Code by Anthropic). The writing, ideas, and creative direction are mine.
 
 For how this site governs AI crawler and agent access to its content, see the [AI policy](/ai-policy/).

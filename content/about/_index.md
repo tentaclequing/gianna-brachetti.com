@@ -26,8 +26,8 @@ work:
   status: "focused on AI governance in healthcare"
   headline: "I work best on problems<br>*other people have stopped finding interesting.*"
   body: |
-    I bring together organic growth strategy and AI governance - building visibility that holds up under scrutiny, particularly in regulated environments like healthcare. Deep SEO infrastructure knowledge, genuine security instincts, a working understanding of how language models read the web, and the patience to think carefully before saying anything. That mix doesn't come up often. When it does, it tends to matter.
-  offer: "If you have something that genuinely couldn't be solved by anyone with a standard toolset - **the kind of problem that's been sitting in a drawer because it's too weird to brief properly** - that's the one worth sending. No guarantees, but those are the ones I read twice."
+    My background is translation studies, SEO, and product management, which sounds scattered until you see what connects it: I reverse engineer things. Translation taught me to take apart how meaning works across languages. SEO taught me to take apart how machines read content. Product management made me obnoxious about hypotheses and testing. Security is where I ended up caring most, because how systems are built determines who gets hurt when they fail, especially with AI in the mix.
+  offer: "If you have **the kind of problem that's been sitting in a drawer because it's too weird to brief properly**, that's the one worth sending."
 contact:
   - label: "email"
     url: "mailto:hello@gianna-brachetti.com"
@@ -38,7 +38,7 @@ contact:
     url: "https://github.com/tentaclequing"
 ---
 
-I've been thinking about how information moves through systems for 17 years now - crawlers, indexes, language models, people. I work in organic growth and AI governance, which means I know how to make things visible *and* how to make sure they're done responsibly. Most of my time goes to where **growth meets governance meets language** - reading signals others have stopped looking for.
+I've been thinking about how information moves through systems for 17 years now - crawlers, indexes, language models, and the people who speak different languages on either side. Translation studies gave me that last part: navigating between cultures, registers, and the human languages I work in. I work in organic growth and AI governance, which means I know how to make things visible *and* how to make sure they're done responsibly. Most of my time goes to where **growth meets governance meets language** - rummaging around in the mud at the bottom of systems to see what's actually down there.
 
 Most recently, I was a senior product manager at DeepL, where I owned organic growth and became the cross-functional point of contact for AI governance: risk assessment, compliance, and internal policy for AI systems. I think about *how machines read the web* for a living, which turns out to be exactly the right lens for governing AI responsibly - something I wrote about in my [IAB paper on multi-level AI crawler governance](https://datatracker.ietf.org/doc/slides-aicontrolws-proposal-multi-level-approach-to-managing-ai-crawler-behavior-and-content-protection/). The attack surfaces and the governance surfaces are closer together than most practitioners want to admit.
 

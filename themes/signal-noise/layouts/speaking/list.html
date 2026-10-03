@@ -1,11 +1,12 @@
 {{ define "main" }}
 
 <div class="page-wrap speaking-wrap">
-
   {{/* Page header */}}
   <header class="page-header">
     <p class="page-label">on the record</p>
-    <h1 class="page-title">{{ .Params.page_headline | default "Hear me speak" | safeHTML }}</h1>
+    <h1 class="page-title">
+      {{ .Params.page_headline | default "Hear me speak" | safeHTML }}
+    </h1>
     {{ with .Description }}
     <p class="page-desc">{{ . }}</p>
     {{ end }}
@@ -14,27 +15,33 @@
   {{/* Upcoming */}}
   <section aria-labelledby="upcoming-label">
     <div class="section-rule">
-      <span class="section-rule-label" id="upcoming-label">transmission pending</span>
+      <span class="section-rule-label" id="upcoming-label"
+        >transmission pending</span
+      >
       <div class="section-rule-line" aria-hidden="true"></div>
     </div>
 
-    {{ $upcoming := where (.Params.talks | default slice) "upcoming" true }}
-    {{ if $upcoming }}
+    {{ $upcoming := where (.Params.talks | default slice) "upcoming" true }} {{
+    if $upcoming }}
     <div class="upcoming-live">
       {{ range $upcoming }}
       <article class="talk-entry">
         <div class="talk-event">
           <p class="talk-conf">{{ .conference }}</p>
           <p class="talk-location">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
             {{ .location }}
           </p>
           <span class="talk-date-chip">{{ .date }}</span>
         </div>
         <div class="talk-content">
           <h2 class="talk-title">{{ .title }}</h2>
-          {{ with .description }}<p class="talk-desc">{{ . }}</p>{{ end }}
-          {{ with .tags }}
+          {{ with .description }}
+          <p class="talk-desc">{{ . }}</p>
+          {{ end }} {{ with .tags }}
           <div class="talk-tags">
             {{ range . }}<span class="talk-tag">{{ . }}</span>{{ end }}
           </div>
@@ -46,70 +53,62 @@
     {{ else }}
     <div class="upcoming-empty" aria-label="No upcoming events">
       <span class="upcoming-year" aria-hidden="true">{{ now.Year }}</span>
-      <p class="upcoming-empty-text">
-        {{ .Params.empty_state | default "the monstera is taller.<br>the calendar is open." | safeHTML }}
-      </p>
+      <p class="upcoming-empty-text">{{ .Params.empty_state | safeHTML }}</p>
       <p class="upcoming-invite">
-        <span>if you have a room worth the problem</span>
+        <span>easy to convince</span>
         <span class="arr" aria-hidden="true">&rarr;</span>
-        {{ partial "email-link.html" (dict "class" "" "label" "get in touch") }}
+        <a href="https://www.linkedin.com/in/gianna-brachetti-truskawa/"
+          >reach out on LinkedIn</a
+        >
       </p>
     </div>
     {{ end }}
   </section>
 
-  {{/* Past talks - grouped by year */}}
-  {{ $past := where (.Params.talks | default slice) "upcoming" "ne" true }}
-  {{ if $past }}
+  {{/* Past talks - grouped by year */}} {{ $past := where (.Params.talks |
+  default slice) "upcoming" "ne" true }} {{ if $past }}
   <section aria-labelledby="past-label">
     <div class="section-rule">
       <span class="section-rule-label" id="past-label">past transmissions</span>
       <div class="section-rule-line" aria-hidden="true"></div>
     </div>
 
-    {{ $years := slice }}
-    {{ range $past }}
-      {{ $y := .year | default "Unknown" }}
-      {{ if not (in $years $y) }}
-        {{ $years = $years | append $y }}
-      {{ end }}
-    {{ end }}
-
-    {{ range $year := $years }}
+    {{ $years := slice }} {{ range $past }} {{ $y := .year | default "Unknown"
+    }} {{ if not (in $years $y) }} {{ $years = $years | append $y }} {{ end }}
+    {{ end }} {{ range $year := $years }}
     <div class="year-group">
       <p class="year-stamp" aria-label="Year {{ $year }}">{{ $year }}</p>
 
-      {{ range $past }}
-        {{ if eq (.year | default "Unknown") $year }}
-        <article class="talk-entry">
-          <div class="talk-event">
-            <p class="talk-conf">{{ .conference }}</p>
-            <p class="talk-location">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              {{ .location }}
-            </p>
-            <span class="talk-date-chip">{{ .date }}</span>
+      {{ range $past }} {{ if eq (.year | default "Unknown") $year }}
+      <article class="talk-entry">
+        <div class="talk-event">
+          <p class="talk-conf">{{ .conference }}</p>
+          <p class="talk-location">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+            {{ .location }}
+          </p>
+          <span class="talk-date-chip">{{ .date }}</span>
+        </div>
+        <div class="talk-content">
+          <h2 class="talk-title">{{ .title }}</h2>
+          {{ with .description }}
+          <p class="talk-desc">{{ . }}</p>
+          {{ end }} {{ with .tags }}
+          <div class="talk-tags">
+            {{ range . }}<span class="talk-tag">{{ . }}</span>{{ end }}
           </div>
-          <div class="talk-content">
-            <h2 class="talk-title">{{ .title }}</h2>
-            {{ with .description }}<p class="talk-desc">{{ . }}</p>{{ end }}
-            {{ with .tags }}
-            <div class="talk-tags">
-              {{ range . }}<span class="talk-tag">{{ . }}</span>{{ end }}
-            </div>
-            {{ end }}
-          </div>
-        </article>
-        {{ end }}
-      {{ end }}
+          {{ end }}
+        </div>
+      </article>
+      {{ end }} {{ end }}
     </div>
     {{ end }}
   </section>
-  {{ end }}
-
-  {{/* Publications */}}
-  {{ $pubs := .Params.publications | default slice }}
-  {{ if $pubs }}
+  {{ end }} {{/* Publications */}} {{ $pubs := .Params.publications | default
+  slice }} {{ if $pubs }}
   <section aria-labelledby="publications-label">
     <div class="section-rule">
       <span class="section-rule-label" id="publications-label">published</span>
@@ -121,15 +120,23 @@
       <div class="talk-event">
         <p class="talk-conf">{{ .publication }}</p>
         <p class="talk-location">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 20h9" />
+            <path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
+          </svg>
           {{ .type | default "article" }}
         </p>
         <span class="talk-date-chip">{{ .date }}</span>
       </div>
       <div class="talk-content">
-        <h2 class="talk-title">{{ with .url }}<a href="{{ . }}" rel="noopener noreferrer">{{ end }}{{ .title }}{{ with .url }}</a>{{ end }}</h2>
-        {{ with .description }}<p class="talk-desc">{{ . }}</p>{{ end }}
-        {{ with .tags }}
+        <h2 class="talk-title">
+          {{ with .url }}<a href="{{ . }}" rel="noopener noreferrer"
+            >{{ end }}{{ .title }}{{ with .url }}</a
+          >{{ end }}
+        </h2>
+        {{ with .description }}
+        <p class="talk-desc">{{ . }}</p>
+        {{ end }} {{ with .tags }}
         <div class="talk-tags">
           {{ range . }}<span class="talk-tag">{{ . }}</span>{{ end }}
         </div>
@@ -138,21 +145,13 @@
     </article>
     {{ end }}
   </section>
-  {{ end }}
-
-  {{/* Invite footer */}}
+  {{ end }} {{/* Invite footer */}}
   <div class="speaking-footer">
     <p class="sf-label">// invite</p>
     <p class="sf-text">
-      {{ with .Params.invite_text }}{{ . | markdownify }}{{ else }}
-      I speak on search, AI, language and the security angles where they intersect.
-      Talks are always written from scratch.
-      If the topic fits and the audience is curious,
-      {{ partial "email-link.html" (dict "class" "" "label" "send a note") }}.
-      {{ end }}
+      {{ with .Params.invite_text }}{{ . | markdownify }}{{ end }}
     </p>
   </div>
-
 </div>
 
 {{ end }}

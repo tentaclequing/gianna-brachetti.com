@@ -85,11 +85,10 @@
 <section class="hero" aria-label="Introduction">
   {{- partial "octopus.html" . -}}
 
-  <p class="hero-label" role="doc-subtitle">signal source</p>
-  <h1 class="hero-headline">Signal, noise, and the things I notice in between.</h1>
+  <h1 class="hero-headline">Traffic, and the things I notice in between.</h1>
   <div class="hero-meta">
     <p class="hero-desc">
-      Guides and observations on search, AI, and the occasionally unsettling security rabbit hole.
+      Observations on what happens with our data, and the occasional security rabbit hole.
     </p>
     {{/* Hero stats removed - low numbers telegraph "new site" */}}
   </div>
@@ -104,7 +103,7 @@
   {{- if $recentPosts }}
   <section class="reveal" aria-labelledby="writing-heading">
     <div class="section-header">
-      <h2 class="section-title" id="writing-heading">recent transmissions</h2>
+      <h2 class="section-title" id="writing-heading" title="Long-form articles">dives</h2>
       <a class="section-meta" href="{{ "writing" | relURL }}">view all &rarr;</a>
     </div>
     <div class="posts-grid">
@@ -124,7 +123,7 @@
   {{- if $recentNotes }}
   <section class="reveal" aria-labelledby="garden-heading">
     <div class="section-header">
-      <h2 class="section-title" id="garden-heading">signal fragments</h2>
+      <h2 class="section-title" id="garden-heading" title="Short-form notes">pebbles</h2>
       <a class="section-meta" href="{{ "notes" | relURL }}">view all &rarr;</a>
     </div>
     <div class="garden-grid">

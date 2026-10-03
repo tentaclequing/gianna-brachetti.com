@@ -1,16 +1,10 @@
-{{- $now := .Site.GetPage "/now" -}} {{- if and $now $now.Params.highlights -}}
+{{- $now := .Site.GetPage "/now" -}} {{- if $now -}} {{- $summary :=
+$now.Params.now_summary -}} {{- if $summary -}}
 <section class="reveal now-excerpt" aria-labelledby="now-heading">
   <div class="section-header">
     <h2 class="section-title" id="now-heading">currently</h2>
     <a class="section-meta" href="{{ $now.Permalink }}">full /now &rarr;</a>
   </div>
-  <ul class="now-list">
-    {{- range $now.Params.highlights }}
-    <li class="now-item">
-      <span class="now-pulse" aria-hidden="true"></span>
-      <span>{{ . }}</span>
-    </li>
-    {{- end }}
-  </ul>
+  <p class="now-summary">{{ $summary | markdownify }}</p>
 </section>
-{{- end -}}
+{{- end -}} {{- end -}}

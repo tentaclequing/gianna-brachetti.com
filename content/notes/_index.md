@@ -1,8 +1,8 @@
 ---
-title: "Signal fragments"
-description: "Half-formed ideas, working notes, and things I keep returning to."
+title: "Pebbles"
+description: "Short notes and half-finished thoughts."
 layout: list
-page_label: "digital garden"
+page_label: "all pebbles"
 sitemap:
   disable: true
 ---

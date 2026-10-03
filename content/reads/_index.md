@@ -1,9 +1,9 @@
 ---
 title: "People I read"
-description: "A blogroll for the post-blogroll era. People whose thinking I find worth your time."
+description: "People whose work I keep coming back to."
 layout: list
 page_label: "// people I read"
-intro: "Remember blog rolls? This is that. People whose work I keep coming back to, and why. No algorithms, no affiliate links, just signal."
+intro: "Remember blog rolls? This is mine."
 reads:
   - name: "Jono Alderson"
     url: "https://www.jonoalderson.com/"
