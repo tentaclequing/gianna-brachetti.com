@@ -1,6 +1,6 @@
 ---
 title: "Built"
-description: "Tools, frameworks, papers, and the occasional proof of concept. Some shipped, some taught me something, all of them mine."
+description: "Mostly teams, frameworks, and infrastructure."
 layout: list
 page_label: "~/built"
 page_headline: "A few of the things<br>I <em>built</em> over my career"
