@@ -13,7 +13,7 @@ description: I started playing with Meshtastic and the parallels to AI search hi
 
 I recently got myself into a new rabbit hole - [Meshtastic](https://meshtastic.org/). It's cheap, talks to other radios over LoRa, and does not require internet or cell towers, consuming very little energy. Okay, the amount of information it can transmit is limited, too - but it's a fun exercise in resilience and decentralised networks that I find extremely fascinating-
 
-And the more I set it up, the more it reminded me of something else entirely.
+And the more I set it up, the more it reminded me of something else ...
 
 <!--more-->
 
