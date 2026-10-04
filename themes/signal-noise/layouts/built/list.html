@@ -1,0 +1,54 @@
+{{ define "main" }}
+
+<div class="page-wrap built-wrap">
+  <header class="page-header">
+    <p class="page-label">{{ .Params.page_label | default "~/built" }}</p>
+    <h1 class="page-title">
+      {{ .Params.page_headline | default "Built" | safeHTML }}
+    </h1>
+    {{ with .Description }}
+    <p class="page-desc">{{ . }}</p>
+    {{ end }}
+  </header>
+
+  {{ range .Params.sections }}
+  <section aria-labelledby="built-{{ .label | urlize }}">
+    <div class="section-rule">
+      <span class="section-rule-label" id="built-{{ .label | urlize }}">{{ .label }}</span>
+      <div class="section-rule-line" aria-hidden="true"></div>
+    </div>
+
+    {{ range .items }}
+    <article class="built-item">
+      <div class="built-year">
+        {{- $parts := split .year " - " -}}
+        {{- if gt (len $parts) 1 -}}
+          <span>{{ index $parts 0 }}</span><br><span class="built-year-to">- {{ index $parts 1 }}</span>
+        {{- else -}}
+          <span>{{ .year }}</span>
+        {{- end -}}
+      </div>
+      <div class="built-body">
+        <h2 class="built-name">
+          {{- with .url }}<a href="{{ . }}"{{ if hasPrefix . "http" }} rel="noopener noreferrer"{{ end }}>{{ end -}}
+          {{ .name }}
+          {{- with .url }}</a>{{ end -}}
+        </h2>
+        <p class="built-desc">
+          {{- .desc -}}
+          {{- if and .link_text .link_url }} <a href="{{ .link_url }}">{{ .link_text }}</a>{{ end -}}
+        </p>
+      </div>
+    </article>
+    {{ end }}
+  </section>
+  {{ end }}
+
+  {{ with .Params.footer_text }}
+  <div class="built-footer">
+    <span class="built-footer-text">{{ . }}</span>
+  </div>
+  {{ end }}
+</div>
+
+{{ end }}

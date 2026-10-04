@@ -256,13 +256,25 @@
   font-size: 1.1em;
 }
 
+/* Quick navigation block (top of about page) */
+.about-quicknav {
+  margin-bottom: 36px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 /* CV nudge link */
 .cv-nudge {
   display: flex;
   align-items: baseline;
   gap: 16px;
-  padding-top: 24px;
-  border-top: 1px solid var(--border);
+}
+.cv-nudge-links {
+  font-size: 11px;
+  color: var(--muted);
 }
 .cv-nudge-text {
   font-size: 11px;

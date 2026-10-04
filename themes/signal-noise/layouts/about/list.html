@@ -1,121 +1,144 @@
-{{ define "main" }}
-
-{{- $siteURL := .Site.BaseURL | strings.TrimSuffix "/" -}}
+{{ define "main" }} {{- $siteURL := .Site.BaseURL | strings.TrimSuffix "/" -}}
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "ProfilePage",
-      "@id": "{{ .Permalink }}",
-      "url": "{{ .Permalink }}",
-      "name": "{{ .Title }}",
-      "description": "{{ .Description | default .Site.Params.description }}",
-      "isPartOf": {
-        "@id": "{{ $siteURL }}/#website"
-      },
-      "mainEntity": {
-        "@id": "{{ $siteURL }}/#person"
-      },
-      "inLanguage": "en"
-    },
-    {
-      "@type": "Person",
-      "@id": "{{ $siteURL }}/#person",
-      "name": "Gianna Brachetti-Truskawa",
-      "givenName": "Gianna",
-      "familyName": "Brachetti-Truskawa",
-      "url": "{{ .Permalink }}",
-      "description": "{{ .Description | default .Site.Params.description }}",
-      "jobTitle": "Senior Product Manager",
-      "homeLocation": {
-        "@type": "City",
-        "name": "Cologne",
-        "containedInPlace": {
-          "@type": "Country",
-          "name": "Germany"
-        }
-      },
-      "knowsAbout": [
-        "Product Management",
-        "Organic Growth",
-        "SEO",
-        "Generative Engine Optimisation",
-        "Technical SEO",
-        "Search Experience",
-        "AI Crawler Governance",
-        "AI Governance",
-        "Content Management Systems",
-        "Structured Data",
-        "Web Standards",
-        "Prompt Engineering",
-        "Context Engineering"
-      ],
-      "knowsLanguage": [
-        {
-          "@type": "Language",
-          "name": "German",
-          "alternateName": "de"
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ProfilePage",
+        "@id": "{{ .Permalink }}",
+        "url": "{{ .Permalink }}",
+        "name": "{{ .Title }}",
+        "description": "{{ .Description | default .Site.Params.description }}",
+        "isPartOf": {
+          "@id": "{{ $siteURL }}/#website"
         },
-        {
-          "@type": "Language",
-          "name": "English",
-          "alternateName": "en"
+        "mainEntity": {
+          "@id": "{{ $siteURL }}/#person"
         },
-        {
-          "@type": "Language",
-          "name": "French",
-          "alternateName": "fr"
-        },
-        {
-          "@type": "Language",
-          "name": "Italian",
-          "alternateName": "it"
-        },
-        {
-          "@type": "Language",
-          "name": "Turkish",
-          "alternateName": "tr"
-        }
-      ],
-      "alumniOf": {
-        "@type": "CollegeOrUniversity",
-        "name": "TH Koeln - Cologne University of Applied Sciences",
-        "url": "https://www.th-koeln.de/"
+        "inLanguage": "en"
       },
-      "sameAs": [
-        "https://www.linkedin.com/in/gianna-brachetti-truskawa/",
-        "https://github.com/tentaclequing"
-      ],
-      "email": "mailto:hello@gianna-brachetti.com"
-    }
-  ]
-}
+      {
+        "@type": "Person",
+        "@id": "{{ $siteURL }}/#person",
+        "name": "Gianna Brachetti-Truskawa",
+        "givenName": "Gianna",
+        "familyName": "Brachetti-Truskawa",
+        "url": "{{ .Permalink }}",
+        "description": "{{ .Description | default .Site.Params.description }}",
+        "jobTitle": "Senior Product Manager",
+        "homeLocation": {
+          "@type": "City",
+          "name": "Cologne",
+          "containedInPlace": {
+            "@type": "Country",
+            "name": "Germany"
+          }
+        },
+        "knowsAbout": [
+          "Product Management",
+          "Organic Growth",
+          "SEO",
+          "Generative Engine Optimisation",
+          "Technical SEO",
+          "Search Experience",
+          "AI Crawler Governance",
+          "AI Governance",
+          "Content Management Systems",
+          "Structured Data",
+          "Web Standards",
+          "Prompt Engineering",
+          "Context Engineering"
+        ],
+        "knowsLanguage": [
+          {
+            "@type": "Language",
+            "name": "German",
+            "alternateName": "de"
+          },
+          {
+            "@type": "Language",
+            "name": "English",
+            "alternateName": "en"
+          },
+          {
+            "@type": "Language",
+            "name": "French",
+            "alternateName": "fr"
+          },
+          {
+            "@type": "Language",
+            "name": "Italian",
+            "alternateName": "it"
+          },
+          {
+            "@type": "Language",
+            "name": "Turkish",
+            "alternateName": "tr"
+          }
+        ],
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "TH Koeln - Cologne University of Applied Sciences",
+          "url": "https://www.th-koeln.de/"
+        },
+        "sameAs": [
+          "https://www.linkedin.com/in/gianna-brachetti-truskawa/",
+          "https://github.com/tentaclequing"
+        ],
+        "email": "mailto:hello@gianna-brachetti.com"
+      }
+    ]
+  }
 </script>
 
 <div class="about-wrap">
-
   <div class="about-header">
     <div class="identity">
-      <div class="hair-swatch" aria-label="Colour palette: henna red and electric blue">
+      <div
+        class="hair-swatch"
+        aria-label="Colour palette: henna red and electric blue"
+      >
         <div class="swatch-red" title="henna red"></div>
         <div class="swatch-blue" title="electric blue"></div>
-        <p class="swatch-label">colour<br>palette</p>
+        <p class="swatch-label">colour<br />palette</p>
       </div>
       <div class="identity-text">
-        <p class="identity-label">signal source</p>
+        <p class="identity-label">whoami</p>
         <h1 class="identity-name">Gianna Brachetti-Truskawa</h1>
         <p class="identity-role">
-          {{ with .Params.roles }}
-            {{ range $i, $r := . }}{{ if $i }}<span class="sep">/</span>{{ end }}{{ $r }}{{ end }}
-          {{ end }}
+          {{ with .Params.roles }} {{ range $i, $r := . }}{{ if $i }}<span
+            class="sep"
+            >/</span
+          >{{ end }}{{ $r }}{{ end }} {{ end }}
         </p>
       </div>
     </div>
 
-    <div class="about-body">
-      {{ .Content }}
+    <div class="about-quicknav">
+      <div class="cv-nudge">
+        <span class="cv-nudge-text">Curious about the background?</span>
+        <span class="cv-nudge-links">
+          Read on below, or
+          <a class="cv-nudge-link" href="{{ "about/cv/" | relURL }}">
+            view full CV <span class="arr">&rarr;</span>
+          </a>
+        </span>
+      </div>
+      <div class="cv-nudge">
+        <span class="cv-nudge-text">Prefer to hear me talk?</span>
+        <a class="cv-nudge-link" href="{{ "speaking/" | relURL }}">
+          see me speak <span class="arr">&rarr;</span>
+        </a>
+      </div>
+      <div class="cv-nudge">
+        <span class="cv-nudge-text">Want to see what I built?</span>
+        <a class="cv-nudge-link" href="{{ "built/" | relURL }}">
+          things I built <span class="arr">&rarr;</span>
+        </a>
+      </div>
     </div>
+
+    <div class="about-body">{{ .Content }}</div>
   </div>
 
   {{ with .Params.facts }}
@@ -123,82 +146,54 @@
     {{ range . }}
     <div class="fact-cell">
       <p class="fact-label">{{ .label }}</p>
-      <p class="fact-value{{ with .colour }} {{ . }}{{ end }}">{{ .value | markdownify }}</p>
+      <p class="fact-value{{ with .colour }} {{ . }}{{ end }}">
+        {{ .value | markdownify }}
+      </p>
     </div>
     {{ end }}
   </div>
-  {{ end }}
-
-  {{ with .Params.body_extra }}
-  <div class="about-body">
-    {{ . | markdownify }}
-  </div>
-  {{ end }}
-
-  {{ with .Params.currently }}
+  {{ end }} {{ with .Params.body_extra }}
+  <div class="about-body">{{ . | markdownify }}</div>
+  {{ end }} {{ with .Params.currently }}
   <div class="currently" aria-label="Currently section">
     <p class="currently-label">// currently</p>
     {{ range . }}
     <p class="currently-item">{{ . | markdownify }}</p>
     {{ end }}
   </div>
-  {{ end }}
-
-  {{/* Work with me */}}
-  {{ with .Params.work }}
+  {{ end }} {{/* Work with me */}} {{ with .Params.work }}
   <section class="work-block" id="work-with-me" aria-labelledby="work-heading">
     <p class="work-label" id="work-heading">work with me</p>
 
-    <p class="work-status">{{ .status | default "not taking on new clients" }}</p>
+    <p class="work-status">
+      {{ .status | default "not taking on new clients" }}
+    </p>
 
     {{ with .headline }}
     <h2 class="work-headline">{{ . | markdownify }}</h2>
+    {{ end }} {{ with .body }}
+    <div class="work-body">{{ . | markdownify }}</div>
+    {{ end }} {{ with .offer }}
+    <div class="work-offer" role="note">{{ . | markdownify }}</div>
     {{ end }}
-
-    {{ with .body }}
-    <div class="work-body">
-      {{ . | markdownify }}
-    </div>
-    {{ end }}
-
-    {{ with .offer }}
-    <div class="work-offer" role="note">
-      {{ . | markdownify }}
-    </div>
-    {{ end }}
-
-    <div class="cv-nudge">
-      <span class="cv-nudge-text">Curious about the background?</span>
-      <a class="cv-nudge-link" href="{{ "about/cv/" | relURL }}">
-        view full CV <span class="arr">&rarr;</span>
-      </a>
-    </div>
-
-    <div class="cv-nudge" style="margin-top: 12px;">
-      <span class="cv-nudge-text">Prefer to hear me talk?</span>
-      <a class="cv-nudge-link" href="{{ "speaking/" | relURL }}">
-        see me speak <span class="arr">&rarr;</span>
-      </a>
-    </div>
   </section>
-  {{ end }}
-
-  {{/* Contact */}}
-  {{ with .Params.contact }}
+  {{ end }} {{/* Contact */}} {{ with .Params.contact }}
   <div class="contact-block">
     <p class="contact-label">// get in touch</p>
     <div class="contact-links">
-      {{ range . }}
-        {{- if hasPrefix .url "mailto:" }}
-      {{ partial "email-link.html" (dict "class" (cond (.primary) "contact-link primary" "contact-link") "label" .label) }}
-        {{- else }}
-      <a class="contact-link{{ if .primary }} primary{{ end }}" href="{{ .url }}" rel="noopener noreferrer">{{ .label }}</a>
-        {{- end }}
-      {{ end }}
+      {{ range . }} {{- if hasPrefix .url "mailto:" }} {{ partial
+      "email-link.html" (dict "class" (cond (.primary) "contact-link primary"
+      "contact-link") "label" .label) }} {{- else }}
+      <a
+        class="contact-link{{ if .primary }} primary{{ end }}"
+        href="{{ .url }}"
+        rel="noopener noreferrer"
+        >{{ .label }}</a
+      >
+      {{- end }} {{ end }}
     </div>
   </div>
   {{ end }}
-
 </div>
 
 {{ end }}
