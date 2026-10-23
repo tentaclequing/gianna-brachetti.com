@@ -34,41 +34,35 @@
   (function () {
     var wrap = document.getElementById("found-survey");
     if (!wrap) return;
-    wrap.hidden = true;
-
     var stored = false;
     try {
       stored = localStorage.getItem("found-answered");
     } catch (e) {}
-    if (stored) return;
+    if (stored) {
+      wrap.hidden = true;
+      return;
+    }
 
-    function init() {
-      if (window.AhrefsAnalytics == null) return;
-      wrap.hidden = false;
+    var btns = wrap.querySelectorAll(".found-btn");
+    var prompt = document.getElementById("found-prompt");
+    var thanks = document.getElementById("found-thanks");
 
-      var btns = wrap.querySelectorAll(".found-btn");
-      var prompt = document.getElementById("found-prompt");
-      var thanks = document.getElementById("found-thanks");
+    btns.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var source = btn.getAttribute("data-source");
 
-      btns.forEach(function (btn) {
-        btn.addEventListener("click", function () {
-          var source = btn.getAttribute("data-source");
+        if (window.AhrefsAnalytics != null) {
           window.AhrefsAnalytics.sendEvent("found", {
             props: { source: source, page: location.pathname },
           });
-          prompt.hidden = true;
-          thanks.hidden = false;
-          try {
-            localStorage.setItem("found-answered", "1");
-          } catch (e) {}
-        });
-      });
-    }
+        }
 
-    if (window.AhrefsAnalytics != null) {
-      init();
-    } else {
-      window.addEventListener("load", init);
-    }
+        prompt.hidden = true;
+        thanks.hidden = false;
+        try {
+          localStorage.setItem("found-answered", "1");
+        } catch (e) {}
+      });
+    });
   })();
 </script>
