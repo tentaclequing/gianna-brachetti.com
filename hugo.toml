@@ -8,19 +8,19 @@ ignoreFiles = ['content/Archive']
 
 [languages]
   [languages.en]
-    languageCode = "en"
-    languageName = "English"
+    locale = "en"
+    label = "English"
     weight = 1
   [languages.de]
-    languageCode = "de"
-    languageName = "Deutsch"
+    locale = "de"
+    label = "Deutsch"
     weight = 2
     contentDir = "content/de"
 
 [[module.mounts]]
   source = "content"
   target = "content"
-  excludeFiles = ["Archive/**"]
+  files = ["!Archive/**"]
 
 [taxonomies]
   tag = "tags"
