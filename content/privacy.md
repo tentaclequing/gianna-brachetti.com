@@ -15,9 +15,9 @@ Email: hello@gianna-brachetti.com
 
 ## 2. Overview of data processing
 
-This website does not use cookies, tracking, or advertising. No user accounts or newsletter subscriptions exist. The site does not embed external content (social media widgets, videos, or externally hosted fonts). Fonts are self-hosted.
+This website does not use cookies or advertising. No user accounts or newsletter subscriptions exist. The site does not embed external content (social media widgets, videos, or externally hosted fonts). Fonts are self-hosted.
 
-The site uses a cookie-free web analytics tool for audience measurement (see Section 3a).
+A cookie-free web analytics tool is used for audience measurement (see Section 3a). It does not create visitor profiles or store personal data.
 
 ## 3. Hosting
 

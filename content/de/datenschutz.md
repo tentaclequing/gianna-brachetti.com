@@ -13,9 +13,9 @@ E-Mail: hello@gianna-brachetti.com
 
 ## 2. Übersicht der Datenverarbeitung
 
-Diese Website verwendet keine Cookies, kein Tracking und keine Werbung. Es existieren keine Benutzerkonten oder Newsletter-Anmeldungen. Die Seite bindet keine externen Inhalte ein (Social-Media-Widgets, Videos oder extern gehostete Schriftarten). Schriftarten werden selbst gehostet.
+Diese Website verwendet keine Cookies und keine Werbung. Es existieren keine Benutzerkonten oder Newsletter-Anmeldungen. Die Seite bindet keine externen Inhalte ein (Social-Media-Widgets, Videos oder extern gehostete Schriftarten). Schriftarten werden selbst gehostet.
 
-Die Seite nutzt ein cookiefreies Webanalyse-Tool zur Reichweitenmessung (siehe Abschnitt 3a).
+Zur Reichweitenmessung wird ein cookiefreies Webanalyse-Tool eingesetzt (siehe Abschnitt 3a). Es erstellt keine Besucherprofile und speichert keine personenbezogenen Daten.
 
 ## 3. Hosting
 
