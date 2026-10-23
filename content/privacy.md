@@ -15,7 +15,9 @@ Email: hello@gianna-brachetti.com
 
 ## 2. Overview of data processing
 
-This website does not use cookies, analytics, tracking, or advertising. No user accounts, contact forms, or newsletter subscriptions exist. The site does not embed external content (social media widgets, videos, or externally hosted fonts).
+This website does not use cookies, tracking, or advertising. No user accounts or newsletter subscriptions exist. The site does not embed external content (social media widgets, videos, or externally hosted fonts). Fonts are self-hosted.
+
+The site uses a cookie-free web analytics tool for audience measurement (see Section 3a).
 
 ## 3. Hosting
 
@@ -24,6 +26,16 @@ This website is hosted on **GitHub Pages** (GitHub Inc., 88 Colin P. Kelly Jr. S
 Legal basis: Art. 6(1)(f) GDPR (legitimate interest in the reliable provision of the website).
 
 Data transfer to the USA is covered by the EU-US Data Privacy Framework adequacy decision.
+
+## 3a. Web analytics
+
+This website uses **Ahrefs Web Analytics**, a cookie-free audience measurement tool provided by Ahrefs Pte. Ltd. (Singapore). The tool collects aggregated page view and referral source data. It does not set cookies, does not use local storage, and does not collect or store personal data. No visitor profiles are created.
+
+The referral source (the domain of the website you visited before arriving here) is categorised into broad channels (e.g. "search engine", "social media", "AI assistant") for traffic analysis. The full referral URL is not stored.
+
+Legal basis: Art. 6(1)(f) GDPR (legitimate interest in understanding how visitors find the website, in order to improve its content and reach).
+
+Data is processed by Ahrefs Pte. Ltd. in Singapore. The transfer is covered by Standard Contractual Clauses (SCCs) pursuant to Art. 46(2)(c) GDPR. For details, see the [Ahrefs Privacy Policy](https://ahrefs.com/privacy).
 
 ## 4. DNS and email
 
@@ -68,4 +80,4 @@ No automated decision-making or profiling within the meaning of Art. 22 GDPR tak
 
 ## 9. Changes to this privacy policy
 
-This privacy policy was last updated on 8 April 2026. It may be updated to reflect changes in data processing or legal requirements.
+This privacy policy was last updated on 24 October 2026. It may be updated to reflect changes in data processing or legal requirements.

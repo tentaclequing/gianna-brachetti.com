@@ -1,0 +1,70 @@
+{{- if eq .Section "writing" -}}
+<aside
+  class="found-survey"
+  id="found-survey"
+  aria-label="How did you find this article?"
+>
+  <div class="found-prompt" id="found-prompt">
+    <span class="found-label">🐙 Quick experiment</span>
+    <p class="found-question">Aye, stranger, how did you land here?</p>
+    <div class="found-options" role="group">
+      <button class="found-btn" data-source="search" type="button">
+        search engine
+      </button>
+      <button class="found-btn" data-source="ai" type="button">
+        AI assistant
+      </button>
+      <button class="found-btn" data-source="social" type="button">
+        social media
+      </button>
+      <button class="found-btn" data-source="shared" type="button">
+        someone shared a link
+      </button>
+      <button class="found-btn" data-source="talk" type="button">
+        conference / talk
+      </button>
+      <button class="found-btn" data-source="other" type="button">other</button>
+    </div>
+  </div>
+  <div class="found-thanks" id="found-thanks" hidden>
+    <span class="found-label">🐙</span>
+    <p class="found-question">Got it. Thanks for the data point.</p>
+  </div>
+</aside>
+<script>
+  (function () {
+    var wrap = document.getElementById("found-survey");
+    if (!wrap) return;
+    var stored = false;
+    try {
+      stored = localStorage.getItem("found-answered");
+    } catch (e) {}
+    if (stored) {
+      wrap.hidden = true;
+      return;
+    }
+
+    var btns = wrap.querySelectorAll(".found-btn");
+    var prompt = document.getElementById("found-prompt");
+    var thanks = document.getElementById("found-thanks");
+
+    btns.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var source = btn.getAttribute("data-source");
+
+        if (window.AhrefsAnalytics != null) {
+          window.AhrefsAnalytics.sendEvent("found", {
+            props: { source: source, page: location.pathname },
+          });
+        }
+
+        prompt.hidden = true;
+        thanks.hidden = false;
+        try {
+          localStorage.setItem("found-answered", "1");
+        } catch (e) {}
+      });
+    });
+  })();
+</script>
+{{- end -}}
