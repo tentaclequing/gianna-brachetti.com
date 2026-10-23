@@ -27,7 +27,9 @@
   </div>
   <div class="found-thanks" id="found-thanks" hidden>
     <span class="found-label">🐙</span>
-    <p class="found-question">Got it. Thanks for the data point.</p>
+    <p class="found-question" id="found-msg">
+      Got it. Thanks for the data point.
+    </p>
   </div>
 </aside>
 <script>
@@ -47,18 +49,26 @@
     var prompt = document.getElementById("found-prompt");
     var thanks = document.getElementById("found-thanks");
 
+    var msg = document.getElementById("found-msg");
+
     btns.forEach(function (btn) {
       btn.addEventListener("click", function () {
         var source = btn.getAttribute("data-source");
+        var sent = false;
 
         if (window.AhrefsAnalytics != null) {
           window.AhrefsAnalytics.sendEvent("found", {
             props: { source: source, page: location.pathname },
           });
+          sent = true;
         }
 
         prompt.hidden = true;
         thanks.hidden = false;
+        if (!sent) {
+          msg.textContent =
+            "Your browser blocked the tracking script, so this did not land. But thanks for trying.";
+        }
         try {
           localStorage.setItem("found-answered", "1");
         } catch (e) {}
