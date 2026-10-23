@@ -27,52 +27,48 @@
   </div>
   <div class="found-thanks" id="found-thanks" hidden>
     <span class="found-label">🐙</span>
-    <p class="found-question" id="found-msg">
-      Got it. Thanks for the data point.
-    </p>
+    <p class="found-question">Got it. Thanks for the data point.</p>
   </div>
 </aside>
 <script>
   (function () {
     var wrap = document.getElementById("found-survey");
     if (!wrap) return;
+    wrap.hidden = true;
+
     var stored = false;
     try {
       stored = localStorage.getItem("found-answered");
     } catch (e) {}
-    if (stored) {
-      wrap.hidden = true;
-      return;
-    }
+    if (stored) return;
 
-    var btns = wrap.querySelectorAll(".found-btn");
-    var prompt = document.getElementById("found-prompt");
-    var thanks = document.getElementById("found-thanks");
+    function init() {
+      if (window.AhrefsAnalytics == null) return;
+      wrap.hidden = false;
 
-    var msg = document.getElementById("found-msg");
+      var btns = wrap.querySelectorAll(".found-btn");
+      var prompt = document.getElementById("found-prompt");
+      var thanks = document.getElementById("found-thanks");
 
-    btns.forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        var source = btn.getAttribute("data-source");
-        var sent = false;
-
-        if (window.AhrefsAnalytics != null) {
+      btns.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var source = btn.getAttribute("data-source");
           window.AhrefsAnalytics.sendEvent("found", {
             props: { source: source, page: location.pathname },
           });
-          sent = true;
-        }
-
-        prompt.hidden = true;
-        thanks.hidden = false;
-        if (!sent) {
-          msg.textContent =
-            "Your browser blocked the tracking script, so this did not land. But thanks for trying.";
-        }
-        try {
-          localStorage.setItem("found-answered", "1");
-        } catch (e) {}
+          prompt.hidden = true;
+          thanks.hidden = false;
+          try {
+            localStorage.setItem("found-answered", "1");
+          } catch (e) {}
+        });
       });
-    });
+    }
+
+    if (window.AhrefsAnalytics != null) {
+      init();
+    } else {
+      window.addEventListener("load", init);
+    }
   })();
 </script>
