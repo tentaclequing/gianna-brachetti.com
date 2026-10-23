@@ -17,11 +17,6 @@ ignoreFiles = ['content/Archive']
     weight = 2
     contentDir = "content/de"
 
-[[module.mounts]]
-  source = "content"
-  target = "content"
-  files = ["!Archive/**"]
-
 [taxonomies]
   tag = "tags"
 
