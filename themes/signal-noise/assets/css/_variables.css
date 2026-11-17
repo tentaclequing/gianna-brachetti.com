@@ -10,5 +10,14 @@
   --spreading: #ff1f3d;
   --settled: #565650;
   --safe-bottom: env(safe-area-inset-bottom, 0px);
-  --col: 680px;
+  --col: 1080px;
+
+  --text-2xs: 0.944rem;
+  --text-xs: 1.056rem;
+  --text-sm: 1.111rem;
+  --text-md: 1.167rem;
+  --text-base: 1.222rem;
+  --text-lg: 1.278rem;
+  --text-xl: 1.389rem;
+  --text-2xl: 1.611rem;
 }

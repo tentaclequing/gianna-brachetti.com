@@ -42,7 +42,7 @@
 }
 
 .identity-label {
-  font-size: 11px;
+  font-size: var(--text-xs);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--accent-red);
@@ -54,14 +54,14 @@
 }
 .identity-name {
   font-family: "Cormorant Garamond", serif;
-  font-size: clamp(36px, 6vw, 64px);
+  font-size: clamp(2rem, 6vw, 3.556rem);
   font-weight: 300;
   line-height: 1.05;
   letter-spacing: -0.02em;
   margin-bottom: 6px;
 }
 .identity-role {
-  font-size: 12px;
+  font-size: var(--text-sm);
   color: var(--muted);
   margin-bottom: 0;
 }
@@ -72,7 +72,7 @@
 
 /* Body copy */
 .about-body {
-  font-size: 14px;
+  font-size: var(--text-base);
   line-height: 1.95;
   color: #c0c0b8;
 }
@@ -112,7 +112,7 @@
   padding: 28px;
 }
 .fact-label {
-  font-size: 11px;
+  font-size: var(--text-xs);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--muted);
@@ -120,7 +120,7 @@
 }
 .fact-value {
   font-family: "Cormorant Garamond", serif;
-  font-size: 17px;
+  font-size: var(--text-lg);
   font-weight: 400;
   color: var(--white);
   line-height: 1.4;
@@ -139,14 +139,14 @@
   margin: 48px 0;
 }
 .currently-label {
-  font-size: 11px;
+  font-size: var(--text-xs);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 20px;
 }
 .currently-item {
-  font-size: 13px;
+  font-size: var(--text-md);
   color: var(--muted);
   line-height: 2.1;
   display: flex;
@@ -165,7 +165,7 @@
   margin-top: 52px;
 }
 .work-label {
-  font-size: 11px;
+  font-size: var(--text-xs);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--muted);
@@ -185,7 +185,7 @@
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  font-size: 11px;
+  font-size: var(--text-xs);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--muted);
@@ -203,7 +203,7 @@
 
 .work-headline {
   font-family: "Cormorant Garamond", serif;
-  font-size: clamp(22px, 3.5vw, 30px);
+  font-size: clamp(1.222rem, 3.5vw, 1.667rem);
   font-weight: 300;
   line-height: 1.25;
   color: var(--white);
@@ -216,7 +216,7 @@
 }
 
 .work-body {
-  font-size: 14px;
+  font-size: var(--text-base);
   color: var(--muted);
   line-height: 1.95;
   max-width: 520px;
@@ -230,7 +230,7 @@
 }
 
 .work-offer {
-  font-size: 13px;
+  font-size: var(--text-md);
   color: var(--muted);
   line-height: 1.8;
   padding: 20px 24px;
@@ -241,7 +241,7 @@
 }
 .work-offer::before {
   content: "//";
-  font-size: 10px;
+  font-size: var(--text-2xs);
   letter-spacing: 0.1em;
   color: var(--accent-red);
   position: absolute;
@@ -273,15 +273,15 @@
   gap: 16px;
 }
 .cv-nudge-links {
-  font-size: 11px;
+  font-size: var(--text-xs);
   color: var(--muted);
 }
 .cv-nudge-text {
-  font-size: 11px;
+  font-size: var(--text-xs);
   color: var(--muted);
 }
 .cv-nudge-link {
-  font-size: 11px;
+  font-size: var(--text-xs);
   color: var(--muted);
   text-decoration: none;
   letter-spacing: 0.15em;
@@ -298,7 +298,7 @@
 }
 .cv-nudge-link .arr {
   margin-left: 5px;
-  font-size: 10px;
+  font-size: var(--text-2xs);
 }
 
 /* Contact */
@@ -309,7 +309,7 @@
   margin-bottom: 80px;
 }
 .contact-label {
-  font-size: 11px;
+  font-size: var(--text-xs);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--muted);
@@ -321,7 +321,7 @@
   gap: 12px;
 }
 .contact-link {
-  font-size: 11px;
+  font-size: var(--text-xs);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   text-decoration: none;
@@ -364,7 +364,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 11px;
+  font-size: var(--text-xs);
   letter-spacing: 0.15em;
 }
 .breadcrumb a {
@@ -399,14 +399,14 @@
   margin-bottom: 48px;
 }
 .download-bar-label {
-  font-size: 11px;
+  font-size: var(--text-xs);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--muted);
 }
 .download-btn {
   font-family: "Fira Code", monospace;
-  font-size: 11px;
+  font-size: var(--text-xs);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   text-decoration: none;
@@ -443,7 +443,7 @@
   margin-bottom: 48px;
 }
 .cv-label {
-  font-size: 11px;
+  font-size: var(--text-xs);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--accent-red);
@@ -455,7 +455,7 @@
 }
 .cv-name {
   font-family: "Cormorant Garamond", serif;
-  font-size: clamp(28px, 5.5vw, 72px);
+  font-size: clamp(1.556rem, 5.5vw, 4rem);
   font-weight: 300;
   line-height: 1.04;
   letter-spacing: -0.025em;
@@ -463,7 +463,7 @@
   white-space: nowrap;
 }
 .cv-role {
-  font-size: 12px;
+  font-size: var(--text-sm);
   color: var(--muted);
   margin-bottom: 28px;
 }
@@ -477,7 +477,7 @@
   gap: 8px;
 }
 .cv-contact-chip {
-  font-size: 11px;
+  font-size: var(--text-xs);
   letter-spacing: 0.15em;
   color: var(--muted);
   text-decoration: none;
@@ -508,7 +508,7 @@
   border-bottom: 1px solid var(--border);
 }
 .cv-section-title {
-  font-size: 11px;
+  font-size: var(--text-xs);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--accent);
@@ -521,7 +521,7 @@
 }
 
 .cv-summary {
-  font-size: 13px;
+  font-size: var(--text-md);
   color: #b8b8b0;
   line-height: 1.9;
   padding: 20px 0;
@@ -541,19 +541,19 @@
 }
 .entry-title {
   font-family: "Cormorant Garamond", serif;
-  font-size: 20px;
+  font-size: var(--text-xl);
   font-weight: 400;
   color: var(--white);
   margin-bottom: 2px;
   line-height: 1.2;
 }
 .entry-company {
-  font-size: 12px;
+  font-size: var(--text-sm);
   color: var(--accent);
   margin-bottom: 2px;
 }
 .entry-company-desc {
-  font-size: 11px;
+  font-size: var(--text-xs);
   color: var(--muted);
   font-style: italic;
   margin-bottom: 12px;
@@ -563,7 +563,7 @@
   padding: 0;
 }
 .entry-bullets li {
-  font-size: 13px;
+  font-size: var(--text-md);
   color: #b0b0a8;
   line-height: 1.75;
   padding-left: 14px;
@@ -581,7 +581,7 @@
   flex-shrink: 0;
 }
 .entry-period {
-  font-size: 11px;
+  font-size: var(--text-xs);
   letter-spacing: 0.15em;
   color: var(--muted);
   white-space: nowrap;
@@ -589,7 +589,7 @@
   margin-bottom: 4px;
 }
 .entry-location {
-  font-size: 11px;
+  font-size: var(--text-xs);
   color: var(--muted);
   white-space: nowrap;
   display: block;
@@ -608,7 +608,7 @@
   padding: 18px 20px;
 }
 .skill-label {
-  font-size: 11px;
+  font-size: var(--text-xs);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--muted);
@@ -616,7 +616,7 @@
   display: block;
 }
 .skill-value {
-  font-size: 12px;
+  font-size: var(--text-sm);
   color: var(--white);
   line-height: 1.7;
 }
@@ -635,17 +635,17 @@
 }
 .edu-degree {
   font-family: "Cormorant Garamond", serif;
-  font-size: 18px;
+  font-size: var(--text-lg);
   font-weight: 400;
   color: var(--white);
   margin-bottom: 2px;
 }
 .edu-school {
-  font-size: 11px;
+  font-size: var(--text-xs);
   color: var(--muted);
 }
 .edu-year {
-  font-size: 11px;
+  font-size: var(--text-xs);
   color: var(--muted);
   white-space: nowrap;
   text-align: right;
@@ -658,7 +658,7 @@
   margin: 0;
 }
 .cv-pub-item {
-  font-size: 12px;
+  font-size: var(--text-sm);
   color: var(--muted);
   line-height: 1.85;
   padding: 12px 0;
@@ -679,7 +679,7 @@
 
 /* Elsewhere */
 .cv-elsewhere {
-  font-size: 12px;
+  font-size: var(--text-sm);
   color: var(--muted);
   line-height: 1.85;
   padding: 20px 0;
@@ -707,7 +707,7 @@
   gap: 16px;
 }
 .back-to-about-link {
-  font-size: 11px;
+  font-size: var(--text-xs);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--muted);
@@ -721,18 +721,18 @@
   color: var(--accent);
 }
 .back-to-about-link .arr {
-  font-size: 12px;
+  font-size: var(--text-sm);
   transition: transform 0.2s;
 }
 .back-to-about-link:hover .arr {
   transform: translateX(-3px);
 }
 .back-to-about-note {
-  font-size: 10px;
+  font-size: var(--text-2xs);
   color: var(--dim);
   font-style: italic;
   font-family: "Cormorant Garamond", serif;
-  font-size: 13px;
+  font-size: var(--text-md);
 }
 
 /* ── Speaking page ────────────────────────────────── */
@@ -754,7 +754,7 @@
   border-bottom: 1px solid var(--border);
 }
 .page-label {
-  font-size: 11px;
+  font-size: var(--text-xs);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--accent-red);
@@ -766,7 +766,7 @@
 }
 .page-title {
   font-family: "Cormorant Garamond", serif;
-  font-size: clamp(40px, 7vw, 80px);
+  font-size: clamp(2.222rem, 7vw, 4.444rem);
   font-weight: 300;
   line-height: 1.04;
   letter-spacing: -0.02em;
@@ -777,7 +777,7 @@
   color: var(--muted);
 }
 .page-desc {
-  font-size: 13px;
+  font-size: var(--text-md);
   color: var(--muted);
   line-height: 1.9;
   max-width: 480px;
@@ -792,7 +792,7 @@
   margin-bottom: 0;
 }
 .section-rule-label {
-  font-size: 11px;
+  font-size: var(--text-xs);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--muted);
@@ -814,7 +814,7 @@
   gap: 12px;
 }
 .upcoming-year {
-  font-size: 11px;
+  font-size: var(--text-xs);
   letter-spacing: 0.15em;
   color: var(--dim);
   display: flex;
@@ -830,14 +830,14 @@
 }
 .upcoming-empty-text {
   font-family: "Cormorant Garamond", serif;
-  font-size: clamp(20px, 3.2vw, 26px);
+  font-size: clamp(1.111rem, 3.2vw, 1.444rem);
   font-weight: 300;
   font-style: italic;
   color: var(--muted);
   line-height: 1.3;
 }
 .upcoming-invite {
-  font-size: 11px;
+  font-size: var(--text-xs);
   color: var(--muted);
   letter-spacing: 0.15em;
   display: flex;
@@ -859,7 +859,7 @@
 }
 .upcoming-invite .arr {
   color: var(--dim);
-  font-size: 10px;
+  font-size: var(--text-2xs);
 }
 
 /* When upcoming IS populated */
@@ -874,7 +874,7 @@
 }
 .year-stamp {
   font-family: "Cormorant Garamond", serif;
-  font-size: 11px;
+  font-size: var(--text-xs);
   letter-spacing: 0.15em;
   color: var(--muted);
   display: flex;
@@ -904,14 +904,14 @@
 }
 
 .talk-conf {
-  font-size: 12px;
+  font-size: var(--text-sm);
   color: var(--white);
   line-height: 1.4;
   margin-bottom: 4px;
   font-weight: 400;
 }
 .talk-location {
-  font-size: 11px;
+  font-size: var(--text-xs);
   color: var(--muted);
   letter-spacing: 0.15em;
   display: flex;
@@ -931,7 +931,7 @@
 }
 .talk-date-chip {
   display: inline-block;
-  font-size: 11px;
+  font-size: var(--text-xs);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--accent-red);
@@ -939,7 +939,7 @@
 }
 .talk-title {
   font-family: "Cormorant Garamond", serif;
-  font-size: clamp(18px, 2.8vw, 22px);
+  font-size: clamp(1rem, 2.8vw, 1.222rem);
   font-weight: 400;
   color: var(--white);
   line-height: 1.2;
@@ -958,7 +958,7 @@
   color: var(--white);
 }
 .talk-desc {
-  font-size: 13px;
+  font-size: var(--text-md);
   color: var(--muted);
   line-height: 1.85;
   margin-bottom: 0;
@@ -970,7 +970,7 @@
   margin-top: 14px;
 }
 .talk-tag {
-  font-size: 11px;
+  font-size: var(--text-xs);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   border: 1px solid var(--muted);
@@ -985,14 +985,14 @@
   margin-top: 48px;
 }
 .sf-label {
-  font-size: 11px;
+  font-size: var(--text-xs);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--muted);
   margin-bottom: 16px;
 }
 .sf-text {
-  font-size: 13px;
+  font-size: var(--text-md);
   color: var(--muted);
   line-height: 1.9;
   max-width: 440px;
@@ -1032,7 +1032,7 @@
 }
 .read-name {
   font-family: "Cormorant Garamond", serif;
-  font-size: 22px;
+  font-size: var(--text-2xl);
   font-weight: 400;
   line-height: 1.2;
   margin-bottom: 6px;
@@ -1046,7 +1046,7 @@
   color: var(--accent);
 }
 .read-why {
-  font-size: 13px;
+  font-size: var(--text-md);
   color: var(--muted);
   line-height: 1.75;
   max-width: 520px;
@@ -1060,7 +1060,7 @@
   gap: 8px;
 }
 .read-highlights li {
-  font-size: 11px;
+  font-size: var(--text-xs);
   letter-spacing: 0.15em;
 }
 .read-highlights a {
@@ -1080,7 +1080,7 @@
 }
 .read-url {
   font-family: "Fira Code", monospace;
-  font-size: 10px;
+  font-size: var(--text-2xs);
   color: var(--dim);
   white-space: nowrap;
 }

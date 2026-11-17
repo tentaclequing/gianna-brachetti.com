@@ -14,7 +14,7 @@
 }
 
 .sidenote {
-  font-size: 12px;
+  font-size: var(--text-sm);
   color: var(--muted);
   line-height: 1.7;
   display: block;
