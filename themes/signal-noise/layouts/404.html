@@ -9,6 +9,7 @@
     <meta name="robots" content="noindex" />
     <meta name="theme-color" content="#000000" />
     <title>404 - signal lost &middot; ~/gianna</title>
+    <link rel="icon" href="/favicon.ico" sizes="any" />
     {{- $fonts := resources.Get "css/_fonts.css" | minify -}}
     <style>
       {{ $fonts.Content | safeCSS }}
@@ -31,11 +32,19 @@
         padding: 0;
         box-sizing: border-box;
       }
+      html {
+        font-size: 100%;
+      }
+      @media (min-width: 900px) {
+        html {
+          font-size: 112.5%;
+        }
+      }
       body {
         background: var(--black);
         color: var(--white);
         font-family: "Fira Code", monospace;
-        font-size: 13px;
+        font-size: 1.278rem;
         line-height: 1.75;
         -webkit-font-smoothing: antialiased;
         min-height: 100svh;
@@ -64,7 +73,7 @@
       }
       .nav-name {
         font-family: "Fira Code", monospace;
-        font-size: 12px;
+        font-size: 1.278rem;
         font-weight: 300;
         letter-spacing: 0.12em;
         color: var(--white);
@@ -79,7 +88,7 @@
         list-style: none;
       }
       .nav-links a {
-        font-size: 10px;
+        font-size: 1.056rem;
         letter-spacing: 0.18em;
         text-transform: uppercase;
         color: var(--muted);
@@ -148,7 +157,7 @@
       }
       .bnav-label {
         font-family: "Fira Code", monospace;
-        font-size: 9px;
+        font-size: 0.778rem;
         letter-spacing: 0.14em;
         text-transform: uppercase;
       }
@@ -169,8 +178,8 @@
         transform: translateY(-50%);
         font-family: "Bricolage Grotesque", sans-serif;
         font-size: clamp(180px, 28vw, 340px);
-        font-weight: 300;
-        font-style: italic;
+        font-weight: 400;
+        font-style: normal;
         color: transparent;
         -webkit-text-stroke: 1px var(--border);
         line-height: 1;
@@ -225,7 +234,7 @@
         fill: none;
       }
       .status-line {
-        font-size: 10px;
+        font-size: 1.056rem;
         letter-spacing: 0.22em;
         text-transform: uppercase;
         color: var(--accent-red);
@@ -239,7 +248,7 @@
       }
       .not-found h1 {
         font-family: "Bricolage Grotesque", sans-serif;
-        font-weight: 300;
+        font-weight: 400;
         font-size: clamp(42px, 7vw, 88px);
         line-height: 1.05;
         letter-spacing: -0.02em;
@@ -260,7 +269,7 @@
         animation: slide-up 0.7s ease 0.44s forwards;
       }
       .terminal-line {
-        font-size: 11px;
+        font-size: 1.111rem;
         color: var(--muted);
         line-height: 2.2;
       }
@@ -283,7 +292,7 @@
       }
       .nav-btn {
         font-family: "Fira Code", monospace;
-        font-size: 11px;
+        font-size: 1.056rem;
         letter-spacing: 0.12em;
         text-transform: uppercase;
         text-decoration: none;
@@ -337,14 +346,14 @@
         align-items: center;
       }
       .footer-left {
-        font-size: 11px;
+        font-size: 1.167rem;
         color: var(--muted);
       }
       .footer-left .name {
         color: var(--white);
       }
       .footer-right {
-        font-size: 10px;
+        font-size: 1.056rem;
         color: var(--dim);
         letter-spacing: 0.1em;
       }
