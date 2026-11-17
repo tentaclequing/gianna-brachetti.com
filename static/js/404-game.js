@@ -317,6 +317,7 @@
       pearlThrowTimer: 0,
       hasShell: false,
       shellCrackTimer: 0,
+      invincible: 0,
       ink: 0,
       eyeTargetX: 2,
       eyeTargetY: 0,
@@ -375,8 +376,7 @@
     // Game speed
     const baseSpeed = CRAWL_SPEED + Math.min(distance / 3000, 3);
     if (octo.sprinting) {
-      gameSpeed =
-        Math.max(baseSpeed, SPRINT_SPEED) + Math.min(distance / 3000, 2);
+      gameSpeed = baseSpeed * 1.8;
     } else if (octo.swimming) {
       gameSpeed = Math.max(baseSpeed, SWIM_SPEED);
     } else {
@@ -404,6 +404,7 @@
 
     // Shell crack timer
     if (octo.shellCrackTimer > 0) octo.shellCrackTimer--;
+    if (octo.invincible > 0) octo.invincible--;
 
     // Pearl throw timer
     if (octo.pearlThrowTimer > 0) octo.pearlThrowTimer--;
@@ -678,31 +679,99 @@
 
   function drawShellOnOcto(bodyColor) {
     ctx.save();
-    // Shell sits on top/around the octopus
-    const shellColor = gray(90);
-    const shellHighlight = gray(120);
 
-    // Shell body (conch-like)
-    ctx.fillStyle = shellColor;
+    // Classic coiled snail shell (logarithmic spiral, like a garden snail)
+    // Centre sits behind/above octopus, opening faces down-right
+    var cx = -10;
+    var cy = -10;
+    var maxR = 22;
+
+    // Protective glow
+    var glowPulse = Math.sin(frameCount * 0.06) * 0.1 + 0.2;
+    ctx.fillStyle = gray(110, glowPulse);
     ctx.beginPath();
-    ctx.ellipse(0, -8, 20, 16, -0.1, Math.PI * 0.8, Math.PI * 2.2);
+    ctx.arc(cx, cy, maxR + 5, 0, Math.PI * 2);
     ctx.fill();
 
-    // Shell spiral detail
-    ctx.strokeStyle = shellHighlight;
-    ctx.lineWidth = 1;
+    // Outer shell shape (slightly oval, tilted)
+    var shellGrad = ctx.createRadialGradient(cx - 3, cy - 3, 2, cx, cy, maxR);
+    shellGrad.addColorStop(0, gray(155));
+    shellGrad.addColorStop(0.4, gray(125));
+    shellGrad.addColorStop(0.75, gray(95));
+    shellGrad.addColorStop(1, gray(75));
+    ctx.fillStyle = shellGrad;
     ctx.beginPath();
-    ctx.arc(2, -10, 8, Math.PI * 0.5, Math.PI * 1.8);
-    ctx.stroke();
+    ctx.ellipse(cx, cy, maxR, maxR - 2, 0.15, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Shell outline
+    ctx.strokeStyle = gray(70, 0.7);
+    ctx.lineWidth = 1.5;
     ctx.beginPath();
-    ctx.arc(3, -11, 5, Math.PI * 0.5, Math.PI * 1.6);
+    ctx.ellipse(cx, cy, maxR, maxR - 2, 0.15, 0, Math.PI * 2);
     ctx.stroke();
 
-    // Shell opening (where the octopus peeks out)
-    ctx.fillStyle = gray(30);
+    // Logarithmic spiral (the defining feature)
+    ctx.strokeStyle = gray(60, 0.6);
+    ctx.lineWidth = 1.2;
     ctx.beginPath();
-    ctx.ellipse(10, -4, 8, 10, 0.2, 0, Math.PI * 2);
+    var a = 2.0;
+    var b = 0.18;
+    var started = false;
+    for (var t = 0; t < 14; t += 0.08) {
+      var r = a * Math.exp(b * t);
+      if (r > maxR - 2) break;
+      var px = cx + r * Math.cos(t + 0.5);
+      var py = cy + r * Math.sin(t + 0.5);
+      if (!started) {
+        ctx.moveTo(px, py);
+        started = true;
+      } else ctx.lineTo(px, py);
+    }
+    ctx.stroke();
+
+    // Growth bands (concentric arcs following the spiral)
+    ctx.strokeStyle = gray(100, 0.3);
+    ctx.lineWidth = 0.7;
+    for (var bi = 0; bi < 5; bi++) {
+      var bandAngle = 1.0 + bi * 1.1;
+      var r1 = a * Math.exp(b * bandAngle);
+      var r2 = a * Math.exp(b * (bandAngle + 5));
+      if (r2 > maxR) r2 = maxR - 1;
+      ctx.beginPath();
+      ctx.moveTo(
+        cx + r1 * Math.cos(bandAngle + 0.5),
+        cy + r1 * Math.sin(bandAngle + 0.5),
+      );
+      ctx.quadraticCurveTo(
+        cx + (r1 + r2) * 0.4 * Math.cos(bandAngle + 1.5),
+        cy + (r1 + r2) * 0.4 * Math.sin(bandAngle + 1.5),
+        cx + r2 * Math.cos(bandAngle + 0.5 + Math.PI * 0.6),
+        cy + r2 * Math.sin(bandAngle + 0.5 + Math.PI * 0.6),
+      );
+      ctx.stroke();
+    }
+
+    // Highlight (top-left light catch)
+    ctx.strokeStyle = gray(170, 0.35);
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.arc(cx, cy, maxR - 3, Math.PI * 1.1, Math.PI * 1.6);
+    ctx.stroke();
+
+    // Opening (where octopus peeks out, lower-right of shell)
+    var openX = cx + maxR * 0.65;
+    var openY = cy + maxR * 0.55;
+    ctx.fillStyle = gray(20);
+    ctx.beginPath();
+    ctx.ellipse(openX, openY, 8, 11, 0.4, 0, Math.PI * 2);
     ctx.fill();
+    // Lip around opening
+    ctx.strokeStyle = gray(110, 0.6);
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.ellipse(openX, openY, 9, 12, 0.4, Math.PI * 0.6, Math.PI * 2.0);
+    ctx.stroke();
 
     ctx.restore();
   }
@@ -2193,24 +2262,73 @@
   function spawnShell() {
     shells.push({
       x: W + 20,
-      y: floorY - 8,
-      w: 16,
-      h: 12,
+      y: floorY - 12,
+      w: 26,
+      h: 20,
     });
   }
 
   function drawShellPickup(s) {
     ctx.save();
     ctx.translate(s.x, s.y);
-    ctx.fillStyle = gray(80);
+
+    // Glow to make it stand out
+    var pulse = Math.sin(frameCount * 0.05) * 0.15 + 0.85;
+    ctx.fillStyle = gray(120, 0.2 * pulse);
     ctx.beginPath();
-    ctx.ellipse(0, 0, s.w * 0.5, s.h * 0.4, 0.1, 0, Math.PI * 2);
+    ctx.arc(0, 0, s.w * 0.7, 0, Math.PI * 2);
     ctx.fill();
-    ctx.strokeStyle = gray(100);
-    ctx.lineWidth = 0.8;
+
+    // Shell body
+    ctx.fillStyle = gray(110, pulse);
     ctx.beginPath();
-    ctx.arc(1, -1, 4, 0.5, Math.PI * 1.5);
+    ctx.ellipse(
+      0,
+      -2,
+      s.w * 0.5,
+      s.h * 0.45,
+      0.1,
+      Math.PI * 0.9,
+      Math.PI * 2.1,
+    );
+    ctx.fill();
+
+    // Shell ribs
+    ctx.strokeStyle = gray(140, 0.6);
+    ctx.lineWidth = 1;
+    for (var ri = 0; ri < 5; ri++) {
+      var ang = Math.PI * 1.0 + ri * 0.22;
+      ctx.beginPath();
+      ctx.moveTo(0, -2);
+      ctx.lineTo(Math.cos(ang) * s.w * 0.45, -2 + Math.sin(ang) * s.h * 0.4);
+      ctx.stroke();
+    }
+
+    // Spiral
+    ctx.strokeStyle = gray(150, 0.7);
+    ctx.lineWidth = 1.2;
+    ctx.beginPath();
+    ctx.arc(2, -4, 6, Math.PI * 0.4, Math.PI * 1.8);
     ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(3, -5, 3.5, Math.PI * 0.5, Math.PI * 1.6);
+    ctx.stroke();
+
+    // Outline
+    ctx.strokeStyle = gray(130, 0.5);
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.ellipse(
+      0,
+      -2,
+      s.w * 0.5,
+      s.h * 0.45,
+      0.1,
+      Math.PI * 0.9,
+      Math.PI * 2.1,
+    );
+    ctx.stroke();
+
     ctx.restore();
   }
 
@@ -2344,14 +2462,14 @@
   function drawHUD() {
     if (state !== "playing") return;
 
-    ctx.fillStyle = gray(90);
-    ctx.font = "16px 'Courier New', monospace";
+    ctx.fillStyle = gray(160);
+    ctx.font = "bold 18px 'Courier New', monospace";
     ctx.textAlign = "left";
     ctx.fillText(`DEPTH ${score}m`, 16, 30);
 
-    ctx.fillStyle = gray(50);
-    ctx.font = "13px 'Courier New', monospace";
-    ctx.fillText(ZONE_NAMES[currentZone], 16, 48);
+    ctx.fillStyle = gray(90);
+    ctx.font = "14px 'Courier New', monospace";
+    ctx.fillText(ZONE_NAMES[currentZone], 16, 50);
 
     // Stamina bar (only when not full)
     if (octo.stamina < MAX_STAMINA) {
@@ -2368,15 +2486,15 @@
 
     // Pearl indicator
     if (octo.hasPearl) {
-      ctx.fillStyle = rgb(PEARL_COLOR, 0.6);
-      ctx.font = "13px 'Courier New', monospace";
+      ctx.fillStyle = rgb(PEARL_COLOR, 0.8);
+      ctx.font = "14px 'Courier New', monospace";
       ctx.textAlign = "left";
       ctx.fillText("PEARL [E to throw]", 16, 68);
     }
 
     // Score
-    ctx.fillStyle = gray(80);
-    ctx.font = "15px 'Courier New', monospace";
+    ctx.fillStyle = gray(140);
+    ctx.font = "bold 16px 'Courier New', monospace";
     ctx.textAlign = "left";
     ctx.fillText("SCORE " + score, 16, octo.hasPearl ? 88 : 72);
 
@@ -2389,21 +2507,32 @@
       ctx.fillRect(16, inkY, inkBarW, inkBarH);
       ctx.fillStyle = "rgba(80,60,120,0.8)";
       ctx.fillRect(16, inkY, inkBarW * (octo.ink / 10), inkBarH);
-      ctx.fillStyle = gray(70);
-      ctx.font = "12px 'Courier New', monospace";
+      ctx.fillStyle = gray(110);
+      ctx.font = "13px 'Courier New', monospace";
       ctx.fillText("INK", 82, inkY + inkBarH);
+    }
+
+    // Shell armour indicator
+    if (octo.hasShell) {
+      var shellPulse = Math.sin(frameCount * 0.06) * 0.15 + 0.85;
+      ctx.fillStyle = gray(150, shellPulse);
+      ctx.font = "14px 'Courier New', monospace";
+      ctx.textAlign = "left";
+      var shellY = octo.hasPearl ? 108 : 92;
+      if (typeof octo.ink !== "undefined") shellY += 16;
+      ctx.fillText("SHELL ARMOUR", 16, shellY);
     }
 
     // Controls hint
     {
-      ctx.fillStyle = gray(90, 0.8);
-      ctx.font = "14px 'Courier New', monospace";
+      ctx.fillStyle = gray(140, 0.9);
+      ctx.font = "15px 'Courier New', monospace";
       ctx.textAlign = "right";
       var cx = W - 16;
-      var cy = H - 64;
+      var cy = H - 70;
       ctx.fillText("SPACE swim  SHIFT sprint", cx, cy);
-      ctx.fillText("C camo  E clutch/throw", cx, cy + 16);
-      ctx.fillText("Q ink spray  DOWN dive", cx, cy + 32);
+      ctx.fillText("C camo  E clutch/throw", cx, cy + 20);
+      ctx.fillText("Q ink spray  DOWN dive", cx, cy + 40);
     }
   }
 
@@ -2572,15 +2701,17 @@
   function die(killerType) {
     if (octo.hasShell) {
       octo.hasShell = false;
-      octo.shellCrackTimer = 20;
-      for (let i = 0; i < 6; i++) {
+      octo.shellCrackTimer = 30;
+      octo.invincible = 60;
+      deathFlash = 8;
+      for (let i = 0; i < 10; i++) {
         addParticle(
-          octo.x + rand(-10, 10),
-          octo.y + rand(-10, 5),
-          rand(-2, 2),
-          rand(-2, 1),
-          rand(1, 3),
-          20,
+          octo.x + rand(-15, 15),
+          octo.y + rand(-15, 10),
+          rand(-3, 3),
+          rand(-3, 1),
+          rand(1.5, 4),
+          25,
           false,
         );
       }
@@ -2829,11 +2960,9 @@
     // --- Collision checks ---
 
     // Obstacles vs octopus
-    if (!octo.camouflaged) {
+    if (!octo.camouflaged && octo.invincible <= 0) {
       for (const o of obstacles) {
-        // Pufferfish only hurts when inflated (spines out)
         if (o.type === "pufferfish" && o.inflateAmount < 0.5) continue;
-        // Moray only hurts when lunging
         if (o.type === "moray" && o.state === "hiding") continue;
 
         if (collides(octo.x, octo.y - 6, 28, 22, o.x, o.y, o.w, o.h)) {
@@ -2908,10 +3037,10 @@
     }
 
     // Shell pickup
-    if (!octo.hasShell && octo.crawling && !octo.camouflaged) {
+    if (!octo.hasShell && !octo.camouflaged) {
       for (let i = shells.length - 1; i >= 0; i--) {
         const s = shells[i];
-        if (Math.abs(octo.x - s.x) < 20 && Math.abs(octo.y - s.y) < 25) {
+        if (Math.abs(octo.x - s.x) < 30 && Math.abs(octo.y - s.y) < 35) {
           octo.hasShell = true;
           shells.splice(i, 1);
           break;
@@ -3170,7 +3299,13 @@
     drawInkClouds();
 
     // Octopus
-    if (octo.alive) drawOcto();
+    if (octo.alive) {
+      if (octo.invincible > 0 && Math.floor(frameCount / 3) % 2 === 0) {
+        ctx.globalAlpha = 0.4;
+      }
+      drawOcto();
+      ctx.globalAlpha = 1;
+    }
 
     // Death flash
     if (deathFlash > 0) {
