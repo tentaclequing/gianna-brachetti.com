@@ -1,7 +1,7 @@
 ## ADDED Requirements
 
 ### Requirement: About page layout
-The about page (`/about/`) SHALL display: identity block with hair swatch (red + blue colour blocks), label (`> signal source`), name (Gianna Brachetti-Truskawa), role line (SEO strategist / AI researcher / language nerd), body copy, fact grid (2x2 on desktop, 1-col on mobile), "currently" section (accent-blue left border), "work with me" section, and contact links.
+The about page (`/about/`) SHALL display: identity block with hair swatch (red + blue colour blocks), label (`> signal source`), name (Gianna Brachetti), role line (SEO strategist / AI researcher / language nerd), body copy, fact grid (2x2 on desktop, 1-col on mobile), "currently" section (accent-blue left border), "work with me" section, and contact links.
 
 #### Scenario: About page renders all sections
 - **WHEN** the about page is visited
@@ -29,7 +29,7 @@ The CV page (`/about/cv/`) SHALL display: breadcrumb navigation (~/gianna / abou
 - **THEN** all sections render: breadcrumb, download bar, header, profile, experience, skills, education, elsewhere
 
 ### Requirement: CV PDF download
-The CV page SHALL include a sticky download bar with a button linking to a pre-generated PDF file. The button SHALL have `download` attribute with filename `Gianna-Brachetti-Truskawa_CV.pdf`.
+The CV page SHALL include a sticky download bar with a button linking to a pre-generated PDF file. The button SHALL have `download` attribute with filename `Gianna-Brachetti_CV.pdf`.
 
 #### Scenario: PDF download works
 - **WHEN** user clicks the download PDF button
@@ -82,11 +82,11 @@ The about page SHALL include a `<script type="application/ld+json">` block conta
 - **THEN** the HTML contains a JSON-LD script block with `@type: Person`, the author's name, job title, and `sameAs` array with LinkedIn and GitHub URLs
 
 ### Requirement: About page H1 shows full name
-The about page H1 heading SHALL display the full name "Gianna Brachetti-Truskawa", regardless of the page `title` field in front matter.
+The about page H1 heading SHALL display the full name "Gianna Brachetti", regardless of the page `title` field in front matter.
 
 #### Scenario: Full name in H1
 - **WHEN** the about page is visited
-- **THEN** the H1 element contains "Gianna Brachetti-Truskawa"
+- **THEN** the H1 element contains "Gianna Brachetti"
 
 ### Requirement: About page roles from frontmatter
 The about page SHALL render role descriptions from an array field in the page's front matter (e.g. `roles: [SEO strategist, AI researcher, language nerd]`), not hardcoded in the template.

@@ -4,7 +4,7 @@
 
 {{- $title := .Title -}}
 {{- if .IsHome -}}
-  <title>Gianna Brachetti-Truskawa - Organic Growth, Search &amp; AI</title>
+  <title>Gianna Brachetti - Organic Growth, Search &amp; AI</title>
 {{- else -}}
   <title>{{ $title }} · ~/gianna</title>
 {{- end -}}
@@ -61,7 +61,8 @@
 {{- $print := resources.Get "css/_print.css" -}}
 {{- $built := resources.Get "css/_built.css" -}}
 {{- $survey := resources.Get "css/_survey.css" -}}
-{{- $css := slice $fonts $vars $reset $typo $grain $cursor $nav $footer $home $post $note $page $four04 $sidenote $print $built $survey | resources.Concat "css/main.css" | minify | fingerprint -}}
+{{- $services := resources.Get "css/_services.css" -}}
+{{- $css := slice $fonts $vars $reset $typo $grain $cursor $nav $footer $home $post $note $page $four04 $sidenote $print $built $survey $services | resources.Concat "css/main.css" | minify | fingerprint -}}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
 
 {{- /* RSS */ -}}

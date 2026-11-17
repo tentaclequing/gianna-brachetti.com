@@ -20,9 +20,9 @@
       {
         "@type": "Person",
         "@id": "{{ $siteURL }}/#person",
-        "name": "Gianna Brachetti-Truskawa",
+        "name": "Gianna Brachetti",
         "givenName": "Gianna",
-        "familyName": "Brachetti-Truskawa",
+        "familyName": "Brachetti",
         "url": "{{ .Permalink }}",
         "description": "{{ .Description | default .Site.Params.description }}",
         "jobTitle": "Senior Product Manager",
@@ -105,7 +105,7 @@
       </div>
       <div class="identity-text">
         <p class="identity-label">whoami</p>
-        <h1 class="identity-name">Gianna Brachetti-Truskawa</h1>
+        <h1 class="identity-name">Gianna Brachetti</h1>
         <p class="identity-role">
           {{ with .Params.roles }} {{ range $i, $r := . }}{{ if $i }}<span
             class="sep"

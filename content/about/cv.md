@@ -1,11 +1,11 @@
 ---
 title: "CV"
 layout: cv
-description: "Gianna Brachetti-Truskawa - AI Governance, Compliance & Organic Growth"
+description: "Gianna Brachetti - AI Governance, Compliance & Organic Growth"
 noindex: true
 # pdf: parked until real PDF is generated
 last_updated: "October 2026"
-cv_name: "Gianna Brachetti-Truskawa"
+cv_name: "Gianna Brachetti"
 roles:
   - "AI Governance & Compliance"
   - "Organic Growth & Search Strategy"

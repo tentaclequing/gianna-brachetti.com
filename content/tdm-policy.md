@@ -7,13 +7,13 @@ description: "Rights reservation and licensing policy for text and data mining, 
 
 ## Copyright & Rights Reservation
 
-All content published on this website - including but not limited to articles, notes, frameworks, methodologies, code, and structured data - is the original work of **Gianna Brachetti-Truskawa** and is protected under:
+All content published on this website - including but not limited to articles, notes, frameworks, methodologies, code, and structured data - is the original work of **Gianna Brachetti** and is protected under:
 
 - German copyright law ([*Urheberrechtsgesetz*](https://www.gesetze-im-internet.de/urhg/), UrhG)
 - [EU Directive on Copyright in the Digital Single Market](https://eur-lex.europa.eu/eli/dir/2019/790/oj) (DSM Directive 2019/790)
 - The [Berne Convention for the Protection of Literary and Artistic Works](https://www.wipo.int/treaties/en/ip/berne/)
 
-Gianna Brachetti-Truskawa. All rights reserved.
+Gianna Brachetti. All rights reserved.
 
 ---
 

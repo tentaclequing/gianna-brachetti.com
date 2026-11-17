@@ -65,7 +65,7 @@ talks:
     description: "SEO Quality Assurance: How to Protect Your Rankings. Podcast with Fabian Jaeckert and Benjamin O'Daniel on how technical errors can tank rankings, why companies must invest in SEO QA, worst-case failures, and how to monitor and report across 60+ sites."
     tags: [seo, qa, process]
     upcoming: false
-  - title: "SEO QA with Gianna Brachetti-Truskawa"
+  - title: "SEO QA with Gianna Brachetti"
     conference: "Search with Candour (Podcast)"
     location: "Episode 106"
     date: "November 2023"

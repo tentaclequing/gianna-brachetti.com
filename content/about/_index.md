@@ -1,6 +1,6 @@
 ---
 title: "About Gianna"
-description: "Gianna Brachetti-Truskawa - organic growth with AI governance, search & AI product manager, cephalopod enthusiast."
+description: "Gianna Brachetti - organic growth with AI governance, search & AI product manager, cephalopod enthusiast."
 layout: list
 roles:
   - "organic growth & AI governance"

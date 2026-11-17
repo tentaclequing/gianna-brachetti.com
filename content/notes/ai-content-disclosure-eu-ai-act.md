@@ -24,6 +24,6 @@ The editorial responsibility exemption in Article 50(4) asks whether a named per
 
 ---
 
-*Drafted with AI assistance. Research, editorial decisions, and all final wording by Gianna Brachetti-Truskawa.*
+*Drafted with AI assistance. Research, editorial decisions, and all final wording by Gianna Brachetti.*
 
 <small>This note is for informational purposes only and does not constitute legal advice. No liability is accepted for decisions made on the basis of this content. Consult a qualified legal professional for advice specific to your situation.</small>

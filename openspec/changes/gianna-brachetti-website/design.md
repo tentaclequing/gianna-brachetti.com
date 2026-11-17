@@ -1,6 +1,6 @@
 ## Context
 
-Personal website for Gianna Brachetti-Truskawa at gianna-brachetti.com. The design phase is complete: 10 self-contained HTML prototypes exist in `Design/` covering every page type. The build phase translates these prototypes into a Hugo theme with an Obsidian-compatible content pipeline, deployed via GitHub Pages.
+Personal website for Gianna Brachetti at gianna-brachetti.com. The design phase is complete: 10 self-contained HTML prototypes exist in `Design/` covering every page type. The build phase translates these prototypes into a Hugo theme with an Obsidian-compatible content pipeline, deployed via GitHub Pages.
 
 The user already runs Hugo for hadal-zone, so the toolchain is familiar. Hugo is installed locally. The site prioritises fast loading, accessibility (WCAG 2.1 AA), and personality.
 

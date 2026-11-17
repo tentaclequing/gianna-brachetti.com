@@ -8,7 +8,7 @@ noindex: true
 
 ## 1. Controller
 
-Gianna Brachetti-Truskawa
+Gianna Brachetti
 Düsseldorfer Str. 147
 51063 Köln, Germany
 Email: hello@gianna-brachetti.com

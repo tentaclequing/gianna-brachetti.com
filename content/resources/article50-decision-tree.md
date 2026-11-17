@@ -509,7 +509,7 @@ date: 2026-06-16
 <footer>
   <span class="name">🐙 ~/gianna-brachetti.com</span>
   <span class="footer-sep">&middot;</span>
-  <span>&copy; Gianna Brachetti-Truskawa 2026.</span>
+  <span>&copy; Gianna Brachetti 2026.</span>
   <span class="footer-sep">&middot;</span>
   <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>
   <span class="footer-sep">&middot;</span>

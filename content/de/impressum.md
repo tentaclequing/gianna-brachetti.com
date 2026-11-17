@@ -6,7 +6,7 @@ noindex: true
 
 ## Angaben gemaess ss 5 TMG
 
-**Gianna Brachetti-Truskawa**
+**Gianna Brachetti**
 Duesseldorfer Str. 147
 51063 Koeln
 Deutschland
@@ -16,7 +16,7 @@ E-Mail: hello@gianna-brachetti.com
 
 ## Verantwortlich fuer den Inhalt nach ss 18 Abs. 2 MStV
 
-Gianna Brachetti-Truskawa
+Gianna Brachetti
 (Anschrift wie oben)
 
 ## Haftungsausschluss

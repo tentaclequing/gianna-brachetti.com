@@ -6,7 +6,7 @@ noindex: true
 
 ## 1. Verantwortlicher
 
-Gianna Brachetti-Truskawa
+Gianna Brachetti
 Düsseldorfer Str. 147
 51063 Köln, Deutschland
 E-Mail: hello@gianna-brachetti.com

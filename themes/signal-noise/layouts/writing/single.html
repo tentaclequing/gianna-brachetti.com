@@ -17,13 +17,13 @@
   "author": {
     "@type": "Person",
     "@id": "{{ $siteURL }}/#person",
-    "name": "Gianna Brachetti-Truskawa",
+    "name": "Gianna Brachetti",
     "url": "{{ "about/" | absURL }}"
   },
   "publisher": {
     "@type": "Person",
     "@id": "{{ $siteURL }}/#person",
-    "name": "Gianna Brachetti-Truskawa"
+    "name": "Gianna Brachetti"
   },
   "isPartOf": {
     "@id": "{{ $siteURL }}/#website"
@@ -109,6 +109,8 @@
       {{ end }}
     </nav>
   </footer>
+
+  {{- partial "found-survey.html" . -}}
 
 </div>
 

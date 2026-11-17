@@ -8,7 +8,7 @@ noindex: true
 
 ## Legal notice pursuant to TMG ss 5
 
-**Gianna Brachetti-Truskawa**
+**Gianna Brachetti**
 Düsseldorfer Str. 147
 51063 Köln
 Germany
@@ -18,7 +18,7 @@ Email: hello@gianna-brachetti.com
 
 ## Responsible for content pursuant to ss 18(2) MStV
 
-Gianna Brachetti-Truskawa
+Gianna Brachetti
 (address as above)
 
 ## Disclaimer

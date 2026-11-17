@@ -1,4 +1,4 @@
-"""Generate CV PDF for Gianna Brachetti-Truskawa in signal-noise theme."""
+"""Generate CV PDF for Gianna Brachetti in signal-noise theme."""
 
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
@@ -44,7 +44,7 @@ def draw_dark_header(c, y):
     # Name
     c.setFillColor(WHITE)
     c.setFont("Georgia", 28)
-    c.drawString(LEFT, H - 24 * mm, "Gianna Brachetti-Truskawa")
+    c.drawString(LEFT, H - 24 * mm, "Gianna Brachetti")
 
     # Roles line (PDF-specific: tailored for search experience roles)
     c.setFont("Consolas", 8.5)
@@ -247,8 +247,8 @@ def draw_page_bg(c):
 
 def generate_cv():
     c = canvas.Canvas(OUTPUT, pagesize=A4)
-    c.setTitle("Gianna Brachetti-Truskawa - CV")
-    c.setAuthor("Gianna Brachetti-Truskawa")
+    c.setTitle("Gianna Brachetti - CV")
+    c.setAuthor("Gianna Brachetti")
     c.setSubject("Search & AI Product Lead")
 
     page_num = 1
