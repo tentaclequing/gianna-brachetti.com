@@ -1,5 +1,5 @@
 {{ define "main" }}
-{{- $writing := where .Site.RegularPages "Section" "writing" -}}
+{{- $writing := where (where .Site.RegularPages "Section" "writing") ".Title" "!=" "" -}}
 {{- $notes := where .Site.RegularPages "Section" "notes" -}}
 
 {{- /* ── Structured Data: WebSite + Person ─────────── */ -}}

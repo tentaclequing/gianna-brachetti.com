@@ -17,7 +17,7 @@
     <p class="empty-text">This website has just been relaunched, so this space is empty for now.<br>Enjoy the silence while it lasts.</p>
   </div>
   {{ end }}
-  {{ range .Pages.GroupByDate "2006" }}
+  {{ range (where .Pages ".Title" "!=" "").GroupByDate "2006" }}
   <div class="year-group">
     <p class="year-label" aria-hidden="true">{{ .Key }}</p>
 

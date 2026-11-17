@@ -28,6 +28,8 @@
 
 {{- /* Canonical - use frontmatter canonical if set, otherwise self */ -}}
 <link rel="canonical" href="{{ with .Params.canonical }}{{ . }}{{ else }}{{ .Permalink }}{{ end }}">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
 {{- /* Open Graph */ -}}
 <meta property="og:title" content="{{ $title }}">
