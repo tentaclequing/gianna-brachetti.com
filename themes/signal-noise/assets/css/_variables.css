@@ -11,6 +11,7 @@
   --settled: #565650;
   --safe-bottom: env(safe-area-inset-bottom, 0px);
   --col: 1080px;
+  --col-narrow: 720px;
 
   --text-2xs: 0.944rem;
   --text-xs: 1.056rem;

@@ -219,7 +219,7 @@
   font-size: var(--text-base);
   color: var(--muted);
   line-height: 1.95;
-  max-width: 520px;
+  max-width: var(--col);
   margin-bottom: 32px;
 }
 .work-body p {
@@ -738,7 +738,6 @@
 /* ── Speaking page ────────────────────────────────── */
 
 .speaking-wrap {
-  --col: 720px;
 }
 
 .page-wrap {
@@ -780,7 +779,7 @@
   font-size: var(--text-md);
   color: var(--muted);
   line-height: 1.9;
-  max-width: 480px;
+  max-width: var(--col-narrow);
 }
 
 /* Section label row */
@@ -995,7 +994,7 @@
   font-size: var(--text-md);
   color: var(--muted);
   line-height: 1.9;
-  max-width: 440px;
+  max-width: var(--col-narrow);
 }
 .sf-text a {
   color: var(--muted);
@@ -1049,7 +1048,7 @@
   font-size: var(--text-md);
   color: var(--muted);
   line-height: 1.75;
-  max-width: 520px;
+  max-width: var(--col-narrow);
 }
 .read-highlights {
   list-style: none;

@@ -828,6 +828,6 @@
   font-style: italic;
   line-height: 1.5;
   color: var(--muted);
-  max-width: 480px;
+  max-width: var(--col-narrow);
   margin: 0 auto;
 }

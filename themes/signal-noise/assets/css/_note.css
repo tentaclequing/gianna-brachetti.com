@@ -171,7 +171,7 @@
 /* ── Single note layout (fallback for direct URLs) ─────── */
 
 .note-wrap {
-  max-width: 640px;
+  max-width: var(--col);
   margin: 0 auto;
   padding: 0 28px;
 }

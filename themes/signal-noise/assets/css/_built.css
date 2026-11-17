@@ -1,10 +1,7 @@
 /* ── Built page ──────────────────────────────────── */
 
-.built-wrap {
-  --col: 820px;
-}
 .built-wrap .page-desc {
-  max-width: 580px;
+  max-width: var(--col-narrow);
 }
 .built-wrap .page-title em {
   color: var(--accent);
