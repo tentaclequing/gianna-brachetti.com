@@ -66,7 +66,7 @@
 }
 
 .note-entry-title {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-heading);
   font-size: clamp(1.111rem, 3vw, 1.444rem);
   font-weight: 400;
   color: var(--white);
@@ -135,7 +135,7 @@
   padding: 2px 7px;
 }
 .note-entry-body h2 {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-heading);
   font-size: clamp(1rem, 2.5vw, 1.222rem);
   font-weight: 400;
   color: var(--white);
@@ -205,7 +205,7 @@
 }
 
 .note-wrap .note-title {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-heading);
   font-weight: 300;
   font-size: clamp(1.778rem, 5.5vw, 3.111rem);
   line-height: 1.08;
@@ -249,7 +249,7 @@
   margin-bottom: 1.6em;
 }
 .note-body h2 {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-heading);
   font-size: clamp(1.111rem, 3vw, 1.444rem);
   font-weight: 400;
   color: var(--white);
@@ -335,7 +335,7 @@
   margin-bottom: 3px;
 }
 .source-title {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-heading);
   font-size: var(--text-lg);
   font-weight: 400;
   color: var(--white);
@@ -411,7 +411,7 @@
   flex-shrink: 0;
 }
 .bl-title {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-heading);
   font-size: var(--text-lg);
   font-weight: 400;
   color: var(--white);

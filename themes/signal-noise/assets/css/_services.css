@@ -76,7 +76,7 @@
   margin-bottom: 16px;
 }
 .svc-card-name {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-heading);
   font-size: clamp(1.111rem, 3.2vw, 1.444rem);
   font-weight: 400;
   color: var(--white);
@@ -161,7 +161,7 @@
   border-bottom: 1px solid var(--border);
 }
 .svc-interest-headline {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-heading);
   font-size: clamp(1.222rem, 3.5vw, 1.667rem);
   font-weight: 300;
   color: var(--white);
@@ -184,7 +184,7 @@
   font-size: var(--text-xs);
   color: var(--dim);
   font-style: italic;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-heading);
   font-size: var(--text-md);
   margin-top: 20px;
 }
@@ -196,7 +196,7 @@
 }
 .svc-footer-text {
   font-style: italic;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-heading);
   font-size: var(--text-base);
   color: var(--muted);
   line-height: 1.6;

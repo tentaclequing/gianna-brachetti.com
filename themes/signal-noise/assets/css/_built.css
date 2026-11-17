@@ -74,7 +74,7 @@
 }
 .built-footer-text {
   font-style: italic;
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-heading);
   font-size: var(--text-md);
   color: var(--dim);
 }

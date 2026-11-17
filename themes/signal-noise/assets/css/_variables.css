@@ -13,6 +13,9 @@
   --col: 1080px;
   --col-narrow: 720px;
 
+  --font-heading: "Bricolage Grotesque", sans-serif;
+  --font-body: "Fira Code", monospace;
+
   --text-2xs: 0.944rem;
   --text-xs: 1.056rem;
   --text-sm: 1.111rem;

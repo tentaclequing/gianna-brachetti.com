@@ -20,7 +20,7 @@
 }
 
 .found-question {
-  font-family: "Cormorant Garamond", serif;
+  font-family: var(--font-heading);
   font-size: clamp(1rem, 2.5vw, 1.222rem);
   font-weight: 400;
   color: var(--white);
