@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Octopus 404 - Test</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: #000;
+        color: #e4e4dc;
+        font-family: "Courier New", monospace;
+        overflow: hidden;
+      }
+      canvas {
+        display: block;
+      }
+      .start-screen,
+      .death-screen {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 20;
+        background: rgba(0, 0, 0, 0.9);
+        cursor: pointer;
+      }
+      .start-screen h1 {
+        font-size: clamp(32px, 6vw, 64px);
+        margin-bottom: 24px;
+      }
+      .start-screen .controls {
+        font-size: 16px;
+        color: #666;
+        margin-bottom: 20px;
+        text-align: center;
+        line-height: 2;
+        letter-spacing: 0.08em;
+      }
+      .start-screen .hint,
+      .death-screen .hint {
+        font-size: 13px;
+        color: #444;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        animation: blink 1.5s ease-in-out infinite;
+      }
+      .death-screen h2 {
+        font-size: clamp(20px, 4vw, 36px);
+        font-weight: 400;
+        margin-bottom: 8px;
+        color: #ff1f3d;
+      }
+      .death-screen .death-cause {
+        font-size: 13px;
+        color: #666;
+        margin-bottom: 16px;
+        letter-spacing: 0.08em;
+      }
+      .death-screen .final-score {
+        font-size: 16px;
+        color: #888;
+        margin-bottom: 8px;
+      }
+      .death-screen .final-zone {
+        font-size: 13px;
+        color: #444;
+        margin-bottom: 24px;
+      }
+      .hidden {
+        display: none !important;
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.3;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="start-screen" id="start-screen">
+      <h1>🐙</h1>
+      <div class="controls">
+        SPACE swim &middot; SHIFT sprint &middot; C camouflage<br />
+        E near pearl to clutch &middot; E again to throw<br />
+        DOWN dive
+      </div>
+      <p class="hint">click or press space</p>
+    </div>
+
+    <div class="death-screen hidden" id="death-screen">
+      <h2 id="death-msg">Ink.</h2>
+      <div class="death-cause" id="death-cause"></div>
+      <div class="final-score" id="final-score">0m</div>
+      <div class="final-zone" id="final-zone">the shallows</div>
+      <p class="hint">click or press space</p>
+    </div>
+
+    <canvas id="game"></canvas>
+
+    <script src="/js/404-game.js"></script>
+  </body>
+</html>

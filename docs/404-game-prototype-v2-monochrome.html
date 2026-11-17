@@ -1,0 +1,1078 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Octopus 404 - Prototype</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: #000;
+        color: #e4e4dc;
+        font-family: "Courier New", monospace;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        overflow: hidden;
+      }
+      canvas {
+        display: block;
+      }
+      .hud {
+        position: fixed;
+        top: 16px;
+        left: 16px;
+        font-size: 14px;
+        color: #444;
+        letter-spacing: 0.1em;
+        z-index: 10;
+      }
+      .hud .score {
+        color: #888;
+      }
+      .hud .zone {
+        color: #333;
+        margin-top: 4px;
+      }
+      .start-screen,
+      .death-screen {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 20;
+        background: rgba(0, 0, 0, 0.9);
+      }
+      .start-screen h1 {
+        font-size: clamp(24px, 5vw, 48px);
+        font-weight: 400;
+        margin-bottom: 24px;
+        color: #ccc;
+      }
+      .start-screen .hint,
+      .death-screen .hint {
+        font-size: 13px;
+        color: #444;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        animation: blink 1.5s ease-in-out infinite;
+      }
+      .death-screen h2 {
+        font-size: clamp(20px, 4vw, 36px);
+        font-weight: 400;
+        margin-bottom: 8px;
+        color: #ff1f3d;
+      }
+      .death-screen .final-score {
+        font-size: 16px;
+        color: #888;
+        margin-bottom: 8px;
+      }
+      .death-screen .final-zone {
+        font-size: 13px;
+        color: #444;
+        margin-bottom: 24px;
+      }
+      .hidden {
+        display: none !important;
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.3;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hud hidden" id="hud">
+      <div>DEPTH <span class="score" id="score-display">0</span>m</div>
+      <div class="zone" id="zone-display">the shallows</div>
+    </div>
+
+    <div class="start-screen" id="start-screen" style="cursor: pointer">
+      <h1>🐙</h1>
+      <p class="hint">click or space to start &middot; down to crawl</p>
+    </div>
+
+    <div class="death-screen hidden" id="death-screen">
+      <h2 id="death-msg">Ink.</h2>
+      <div class="final-score" id="final-score">0m</div>
+      <div class="final-zone" id="final-zone">the shallows</div>
+      <p class="hint">space to try again</p>
+    </div>
+
+    <canvas id="game"></canvas>
+
+    <script>
+      window.onerror = function (msg, url, line) {
+        var d = document.createElement("div");
+        d.style.cssText =
+          "position:fixed;bottom:0;left:0;right:0;background:red;color:white;padding:8px;z-index:999;font-size:14px";
+        d.textContent = msg + " (line " + line + ")";
+        document.body.appendChild(d);
+      };
+      // --- Constants and state (must come before any function that uses them) ---
+      const canvas = document.getElementById("game");
+      const ctx = canvas.getContext("2d");
+
+      const ACCENT = { r: 0, g: 170, b: 255 };
+      const DANGER = { r: 255, g: 31, b: 61 };
+      const FLOOR_Y_RATIO = 0.8;
+      const GRAVITY = 0.35;
+      const JET_FORCE = -6.5;
+      const CRAWL_SPEED = 3;
+      const SWIM_SPEED = 4.5;
+
+      const deathMessages = [
+        "Ink.",
+        "That stung.",
+        "Ouch.",
+        "Nope.",
+        "Not that way.",
+        "Bad idea.",
+        "Try left next time.",
+        "The ocean wins.",
+        "Splat.",
+        "You had one arm. Wait, eight.",
+      ];
+
+      let state = "start";
+      let score = 0;
+      let distance = 0;
+      let gameSpeed = CRAWL_SPEED;
+      let frameCount = 0;
+      let deathFlash = 0;
+      let sceneryLayers = [];
+
+      // --- Utility ---
+      function gray(v, a) {
+        if (a !== undefined) return `rgba(${v},${v},${v},${a})`;
+        return `rgb(${v},${v},${v})`;
+      }
+
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        initScenery();
+      }
+      window.addEventListener("resize", resize);
+
+      function initScenery() {
+        const floorY = canvas.height * FLOOR_Y_RATIO;
+        sceneryLayers = [];
+
+        // Layer 0: far background mountains/ridges (very slow)
+        const ridges = [];
+        for (let i = 0; i < 8; i++) {
+          ridges.push({
+            x: i * canvas.width * 0.4,
+            w: 100 + Math.random() * 200,
+            h: 40 + Math.random() * 80,
+          });
+        }
+        sceneryLayers.push({
+          items: ridges,
+          speed: 0.1,
+          shade: 10,
+          type: "ridge",
+        });
+
+        // Layer 1: mid-ground kelp forest (medium speed)
+        const kelps = [];
+        for (let i = 0; i < 25; i++) {
+          const segments = 4 + Math.floor(Math.random() * 6);
+          kelps.push({
+            x: Math.random() * canvas.width * 3,
+            segments,
+            segH: 12 + Math.random() * 8,
+            sway: Math.random() * Math.PI * 2,
+            swaySpeed: 0.01 + Math.random() * 0.02,
+            swayAmt: 3 + Math.random() * 5,
+            w: 2 + Math.random() * 3,
+          });
+        }
+        sceneryLayers.push({
+          items: kelps,
+          speed: 0.25,
+          shade: 18,
+          type: "kelp",
+        });
+
+        // Layer 2: near rocks and coral shapes (faster)
+        const rocks = [];
+        for (let i = 0; i < 15; i++) {
+          rocks.push({
+            x: Math.random() * canvas.width * 2.5,
+            w: 15 + Math.random() * 50,
+            h: 8 + Math.random() * 30,
+            shape: Math.random() > 0.5 ? "round" : "jagged",
+          });
+        }
+        sceneryLayers.push({
+          items: rocks,
+          speed: 0.4,
+          shade: 22,
+          type: "rock",
+        });
+
+        // Layer 3: foreground seagrass (fastest scenery)
+        const grass = [];
+        for (let i = 0; i < 40; i++) {
+          grass.push({
+            x: Math.random() * canvas.width * 2,
+            h: 6 + Math.random() * 18,
+            w: 1 + Math.random() * 1.5,
+            sway: Math.random() * Math.PI * 2,
+          });
+        }
+        sceneryLayers.push({
+          items: grass,
+          speed: 0.6,
+          shade: 28,
+          type: "grass",
+        });
+      }
+
+      function drawScenery() {
+        const floorY = canvas.height * FLOOR_Y_RATIO;
+
+        for (const layer of sceneryLayers) {
+          const c = gray(layer.shade);
+          ctx.fillStyle = c;
+          ctx.strokeStyle = c;
+
+          if (layer.type === "ridge") {
+            for (const r of layer.items) {
+              const sx = wrapX(r.x, layer.speed, canvas.width * 3);
+              ctx.beginPath();
+              ctx.moveTo(sx, floorY);
+              ctx.quadraticCurveTo(
+                sx + r.w * 0.5,
+                floorY - r.h,
+                sx + r.w,
+                floorY,
+              );
+              ctx.fill();
+            }
+          }
+
+          if (layer.type === "kelp") {
+            ctx.lineWidth = 2;
+            ctx.lineCap = "round";
+            for (const k of layer.items) {
+              const sx = wrapX(k.x, layer.speed, canvas.width * 3);
+              if (sx < -40 || sx > canvas.width + 40) continue;
+              let px = sx;
+              let py = floorY;
+              ctx.strokeStyle = gray(layer.shade, 0.6);
+              ctx.lineWidth = k.w;
+              ctx.beginPath();
+              ctx.moveTo(px, py);
+              for (let s = 0; s < k.segments; s++) {
+                const sway =
+                  Math.sin(frameCount * k.swaySpeed + k.sway + s * 0.5) *
+                  k.swayAmt;
+                px += sway;
+                py -= k.segH;
+                ctx.lineTo(px, py);
+              }
+              ctx.stroke();
+
+              // Leaf blobs at some segment tips
+              if (k.segments > 4) {
+                ctx.fillStyle = gray(layer.shade + 5, 0.4);
+                ctx.beginPath();
+                ctx.ellipse(px, py, 3, 5, 0, 0, Math.PI * 2);
+                ctx.fill();
+              }
+            }
+          }
+
+          if (layer.type === "rock") {
+            for (const r of layer.items) {
+              const sx = wrapX(r.x, layer.speed, canvas.width * 2.5);
+              if (r.shape === "round") {
+                ctx.fillStyle = gray(layer.shade);
+                ctx.beginPath();
+                ctx.ellipse(
+                  sx,
+                  floorY,
+                  r.w * 0.5,
+                  r.h * 0.5,
+                  0,
+                  Math.PI,
+                  Math.PI * 2,
+                );
+                ctx.fill();
+              } else {
+                ctx.fillStyle = gray(layer.shade);
+                ctx.beginPath();
+                ctx.moveTo(sx, floorY);
+                ctx.lineTo(sx + r.w * 0.3, floorY - r.h);
+                ctx.lineTo(sx + r.w * 0.6, floorY - r.h * 0.6);
+                ctx.lineTo(sx + r.w, floorY);
+                ctx.fill();
+              }
+            }
+          }
+
+          if (layer.type === "grass") {
+            for (const g of layer.items) {
+              const sx = wrapX(g.x, layer.speed, canvas.width * 2);
+              if (sx < -10 || sx > canvas.width + 10) continue;
+              const sway = Math.sin(frameCount * 0.03 + g.sway) * 3;
+              ctx.strokeStyle = gray(layer.shade, 0.5);
+              ctx.lineWidth = g.w;
+              ctx.beginPath();
+              ctx.moveTo(sx, floorY);
+              ctx.quadraticCurveTo(
+                sx + sway,
+                floorY - g.h * 0.6,
+                sx + sway * 1.5,
+                floorY - g.h,
+              );
+              ctx.stroke();
+            }
+          }
+        }
+      }
+
+      function wrapX(baseX, speed, wrapW) {
+        return (
+          ((((baseX - distance * speed) % wrapW) + wrapW) % wrapW) -
+          wrapW * 0.15
+        );
+      }
+
+      // --- Ambient particles (floating sediment, light shafts) ---
+      let ambientParticles = [];
+      function initAmbient() {
+        ambientParticles = [];
+        for (let i = 0; i < 30; i++) {
+          ambientParticles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height * FLOOR_Y_RATIO,
+            vx: -(0.1 + Math.random() * 0.3),
+            vy: -0.05 + Math.random() * 0.1,
+            r: 0.5 + Math.random() * 1.5,
+            alpha: 0.05 + Math.random() * 0.15,
+          });
+        }
+      }
+      initAmbient();
+
+      function drawAmbient() {
+        for (const p of ambientParticles) {
+          p.x += p.vx - gameSpeed * 0.1;
+          p.y += p.vy;
+          if (p.x < -5) p.x = canvas.width + 5;
+          if (p.y < 0 || p.y > canvas.height * FLOOR_Y_RATIO) p.vy *= -1;
+          ctx.fillStyle = gray(80, p.alpha);
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      // --- Light rays (subtle, from above) ---
+      function drawLightRays() {
+        const zoneProgress = Math.min(score / 1000, 1);
+        const rayAlpha = Math.max(0.03 - zoneProgress * 0.03, 0);
+        if (rayAlpha <= 0) return;
+
+        for (let i = 0; i < 3; i++) {
+          const baseX =
+            (((i * canvas.width * 0.4 - distance * 0.05) %
+              (canvas.width * 1.5)) +
+              canvas.width * 1.5) %
+            (canvas.width * 1.5);
+          const w = 40 + i * 20;
+          const grad = ctx.createLinearGradient(0, 0, 0, canvas.height * 0.7);
+          grad.addColorStop(0, `rgba(200,200,200,${rayAlpha})`);
+          grad.addColorStop(1, "rgba(200,200,200,0)");
+          ctx.fillStyle = grad;
+          ctx.beginPath();
+          ctx.moveTo(baseX, 0);
+          ctx.lineTo(baseX + w * 2, canvas.height * 0.7);
+          ctx.lineTo(baseX - w, canvas.height * 0.7);
+          ctx.fill();
+        }
+      }
+
+      // --- Octopus ---
+      let octo = {};
+      function resetOcto() {
+        const floorY = canvas.height * FLOOR_Y_RATIO;
+        octo = {
+          x: canvas.width * 0.15,
+          y: floorY - 20,
+          vy: 0,
+          w: 36,
+          h: 28,
+          crawling: true,
+          jetTimer: 0,
+          armPhase: 0,
+          squish: 1,
+          alive: true,
+        };
+      }
+
+      // --- Obstacles ---
+      let obstacles = [];
+      let spawnTimer = 0;
+      let spawnInterval = 90;
+
+      function spawnObstacle() {
+        const floorY = canvas.height * FLOOR_Y_RATIO;
+        const r = Math.random();
+
+        if (r < 0.5) {
+          const size = 14 + Math.random() * 10;
+          obstacles.push({
+            type: "urchin",
+            x: canvas.width + 40,
+            y: floorY - size * 0.5,
+            w: size,
+            h: size,
+            speed: gameSpeed,
+          });
+        } else {
+          const size = 18 + Math.random() * 12;
+          const minY = canvas.height * 0.15;
+          const maxY = floorY - 80;
+          obstacles.push({
+            type: "jelly",
+            x: canvas.width + 40,
+            y: minY + Math.random() * (maxY - minY),
+            w: size,
+            h: size * 1.4,
+            speed: gameSpeed * (0.7 + Math.random() * 0.3),
+            wobblePhase: Math.random() * Math.PI * 2,
+          });
+        }
+      }
+
+      // --- Collectibles ---
+      let collectibles = [];
+      let collectTimer = 0;
+
+      function spawnCollectible() {
+        const floorY = canvas.height * FLOOR_Y_RATIO;
+        const r = Math.random();
+
+        if (r < 0.6) {
+          // Plankton (small, water column)
+          collectibles.push({
+            type: "plankton",
+            x: canvas.width + 20,
+            y:
+              canvas.height * 0.2 +
+              Math.random() * (floorY - canvas.height * 0.3),
+            r: 3,
+            points: 5,
+            pulse: Math.random() * Math.PI * 2,
+          });
+        } else if (r < 0.85) {
+          // Crab (floor only)
+          collectibles.push({
+            type: "crab",
+            x: canvas.width + 20,
+            y: floorY - 6,
+            w: 10,
+            h: 7,
+            points: 15,
+            walkPhase: Math.random() * Math.PI * 2,
+          });
+        } else {
+          // Shrimp (bioluminescent, rare)
+          collectibles.push({
+            type: "shrimp",
+            x: canvas.width + 20,
+            y:
+              canvas.height * 0.3 +
+              Math.random() * (floorY - canvas.height * 0.5),
+            w: 12,
+            h: 5,
+            points: 25,
+            glowPhase: Math.random() * Math.PI * 2,
+          });
+        }
+      }
+
+      // --- Particles ---
+      let particles = [];
+      function addBubbles(x, y, count, colored) {
+        for (let i = 0; i < count; i++) {
+          particles.push({
+            x: x + (Math.random() - 0.5) * 10,
+            y: y + (Math.random() - 0.5) * 6,
+            vx: -(1 + Math.random() * 2),
+            vy: -(0.5 + Math.random() * 1.5),
+            life: 20 + Math.random() * 20,
+            maxLife: 40,
+            r: 1.5 + Math.random() * 2,
+            colored: colored || false,
+          });
+        }
+      }
+
+      function addCollectEffect(x, y) {
+        for (let i = 0; i < 8; i++) {
+          const angle = (i / 8) * Math.PI * 2;
+          particles.push({
+            x,
+            y,
+            vx: Math.cos(angle) * 2,
+            vy: Math.sin(angle) * 2,
+            life: 15 + Math.random() * 10,
+            maxLife: 25,
+            r: 2,
+            colored: true,
+          });
+        }
+      }
+
+      // --- Input ---
+      let keys = {};
+      window.addEventListener("keydown", (e) => {
+        keys[e.code] = true;
+        if (e.code === "Space") {
+          e.preventDefault();
+          if (state === "start") startGame();
+          else if (state === "dead") startGame();
+          else if (state === "playing") {
+            octo.crawling = false;
+            octo.vy = JET_FORCE;
+            octo.jetTimer = 8;
+            octo.squish = 0.7;
+            addBubbles(octo.x - 10, octo.y + octo.h, 5);
+          }
+        }
+        if (e.code === "ArrowDown" && state === "playing") {
+          e.preventDefault();
+          octo.vy += 3;
+        }
+      });
+      window.addEventListener("keyup", (e) => {
+        keys[e.code] = false;
+      });
+
+      document.addEventListener("click", () => {
+        if (state === "start" || state === "dead") startGame();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (
+          (e.code === "Space" || e.code === "Enter") &&
+          (state === "start" || state === "dead")
+        ) {
+          e.preventDefault();
+          startGame();
+        }
+      });
+
+      canvas.addEventListener(
+        "touchstart",
+        (e) => {
+          e.preventDefault();
+          if (state === "start" || state === "dead") startGame();
+          else if (state === "playing") {
+            octo.crawling = false;
+            octo.vy = JET_FORCE;
+            octo.jetTimer = 8;
+            octo.squish = 0.7;
+            addBubbles(octo.x - 10, octo.y + octo.h, 5);
+          }
+        },
+        { passive: false },
+      );
+
+      // --- Game control ---
+      function startGame() {
+        state = "playing";
+        score = 0;
+        distance = 0;
+        gameSpeed = CRAWL_SPEED;
+        frameCount = 0;
+        obstacles = [];
+        collectibles = [];
+        particles = [];
+        spawnTimer = 0;
+        collectTimer = 0;
+        spawnInterval = 90;
+        deathFlash = 0;
+        resetOcto();
+        initScenery();
+        initAmbient();
+        document.getElementById("start-screen").classList.add("hidden");
+        document.getElementById("death-screen").classList.add("hidden");
+        document.getElementById("hud").classList.remove("hidden");
+      }
+
+      function die() {
+        state = "dead";
+        octo.alive = false;
+        deathFlash = 12;
+        const msg =
+          deathMessages[Math.floor(Math.random() * deathMessages.length)];
+        document.getElementById("death-msg").textContent = msg;
+        document.getElementById("final-score").textContent =
+          Math.floor(score) + "m";
+        document.getElementById("final-zone").textContent = getZoneName(score);
+        document.getElementById("death-screen").classList.remove("hidden");
+        document.getElementById("hud").classList.add("hidden");
+      }
+
+      function getZoneName(s) {
+        if (s < 200) return "the shallows";
+        if (s < 500) return "the twilight zone";
+        if (s < 1000) return "the midnight zone";
+        return "the abyss";
+      }
+
+      // --- Collision ---
+      function collides(a, b) {
+        const shrink = 4;
+        return (
+          a.x - a.w / 2 + shrink < b.x + b.w / 2 - shrink &&
+          a.x + a.w / 2 - shrink > b.x - b.w / 2 + shrink &&
+          a.y - a.h / 2 + shrink < b.y + b.h / 2 - shrink &&
+          a.y + a.h / 2 - shrink > b.y - b.h / 2 + shrink
+        );
+      }
+
+      function collidesCircle(cx, cy, cr, bx, by, bw, bh) {
+        const nearX = Math.max(bx - bw / 2, Math.min(cx, bx + bw / 2));
+        const nearY = Math.max(by - bh / 2, Math.min(cy, by + bh / 2));
+        const dx = cx - nearX;
+        const dy = cy - nearY;
+        return dx * dx + dy * dy < cr * cr;
+      }
+
+      // --- Draw: Floor ---
+      function drawFloor() {
+        const floorY = canvas.height * FLOOR_Y_RATIO;
+
+        // Sandy floor gradient
+        const grad = ctx.createLinearGradient(0, floorY, 0, canvas.height);
+        grad.addColorStop(0, gray(14));
+        grad.addColorStop(0.3, gray(8));
+        grad.addColorStop(1, gray(3));
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, floorY, canvas.width, canvas.height - floorY);
+
+        // Floor edge line
+        ctx.strokeStyle = gray(25);
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(0, floorY);
+        ctx.lineTo(canvas.width, floorY);
+        ctx.stroke();
+
+        // Sand texture dots
+        ctx.fillStyle = gray(20, 0.3);
+        for (let i = 0; i < 50; i++) {
+          const sx = (i * 37 + distance * 0.5) % canvas.width;
+          const sy = floorY + 3 + ((i * 13) % 20);
+          ctx.fillRect(sx, sy, 1, 1);
+        }
+      }
+
+      // --- Draw: Octopus (monochrome) ---
+      function drawOcto() {
+        const floorY = canvas.height * FLOOR_Y_RATIO;
+        ctx.save();
+        ctx.translate(octo.x, octo.y);
+
+        const sq = octo.squish + (1 - octo.squish) * 0.1;
+        octo.squish = sq;
+        ctx.scale(1 / sq, sq);
+
+        // Body - light gray, the brightest thing on screen
+        ctx.fillStyle = gray(190);
+        ctx.beginPath();
+        ctx.ellipse(0, -6, 16, 12, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Mantle
+        ctx.fillStyle = gray(170);
+        ctx.beginPath();
+        ctx.ellipse(0, -12, 12, 8, 0, Math.PI, Math.PI * 2);
+        ctx.fill();
+
+        // Eyes - white with dark pupils
+        const lookX = octo.crawling ? 2 : 4;
+        const lookY = octo.crawling ? 0 : -2;
+
+        ctx.fillStyle = gray(240);
+        ctx.beginPath();
+        ctx.ellipse(-6, -8, 5, 5, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.ellipse(6, -8, 5, 5, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = gray(10);
+        ctx.beginPath();
+        ctx.ellipse(-6 + lookX, -8 + lookY, 2.5, 2.5, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.ellipse(6 + lookX, -8 + lookY, 2.5, 2.5, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Tiny highlight in pupils
+        ctx.fillStyle = gray(200);
+        ctx.beginPath();
+        ctx.arc(-5 + lookX, -9 + lookY, 0.8, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.arc(7 + lookX, -9 + lookY, 0.8, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Arms - monochrome
+        ctx.strokeStyle = gray(160);
+        ctx.lineWidth = 2.5;
+        ctx.lineCap = "round";
+
+        const phase = octo.armPhase;
+        for (let i = 0; i < 6; i++) {
+          const baseAngle = (i / 6) * Math.PI * 0.8 + Math.PI * 0.1;
+          const baseX = Math.cos(baseAngle) * 12;
+          const baseY = 4;
+          ctx.beginPath();
+          ctx.moveTo(baseX, baseY);
+
+          if (octo.crawling) {
+            const wave = Math.sin(phase + i * 1.2) * 6;
+            const extendX = baseX + (baseX > 0 ? 10 : -10) + wave;
+            const groundY = floorY - octo.y + 2;
+            ctx.quadraticCurveTo(
+              baseX + (baseX > 0 ? 5 : -5),
+              baseY + 8,
+              extendX,
+              groundY,
+            );
+          } else {
+            const trail = Math.sin(phase + i * 0.9) * 5;
+            ctx.quadraticCurveTo(
+              baseX - 6,
+              baseY + 10,
+              baseX - 18,
+              baseY + 8 + trail,
+            );
+          }
+          ctx.stroke();
+        }
+
+        // Jet propulsion - subtle white burst
+        if (octo.jetTimer > 0) {
+          ctx.fillStyle = gray(200, 0.2);
+          const jetSize = octo.jetTimer * 2;
+          ctx.beginPath();
+          ctx.ellipse(0, 10, jetSize * 0.6, jetSize, 0, 0, Math.PI * 2);
+          ctx.fill();
+          octo.jetTimer -= 0.5;
+        }
+
+        ctx.restore();
+      }
+
+      // --- Draw: Urchin (dark silhouette) ---
+      function drawUrchin(o) {
+        ctx.save();
+        ctx.translate(o.x, o.y);
+
+        ctx.fillStyle = gray(8);
+        ctx.beginPath();
+        ctx.arc(0, 0, o.w * 0.35, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.strokeStyle = gray(15);
+        ctx.lineWidth = 1.2;
+        for (let i = 0; i < 10; i++) {
+          const angle = (i / 10) * Math.PI * 2;
+          const len = o.w * 0.5 + Math.sin(frameCount * 0.1 + i) * 2;
+          ctx.beginPath();
+          ctx.moveTo(Math.cos(angle) * o.w * 0.3, Math.sin(angle) * o.w * 0.3);
+          ctx.lineTo(Math.cos(angle) * len, Math.sin(angle) * len);
+          ctx.stroke();
+        }
+
+        ctx.restore();
+      }
+
+      // --- Draw: Jellyfish (dark translucent silhouette) ---
+      function drawJelly(o) {
+        ctx.save();
+        const wobble = Math.sin(frameCount * 0.04 + o.wobblePhase) * 8;
+        ctx.translate(o.x, o.y + wobble);
+
+        ctx.fillStyle = gray(30, 0.5);
+        ctx.beginPath();
+        ctx.ellipse(0, 0, o.w * 0.5, o.w * 0.4, 0, Math.PI, Math.PI * 2);
+        ctx.fill();
+
+        // Inner detail
+        ctx.fillStyle = gray(40, 0.3);
+        ctx.beginPath();
+        ctx.ellipse(0, -2, o.w * 0.3, o.w * 0.2, 0, Math.PI, Math.PI * 2);
+        ctx.fill();
+
+        ctx.strokeStyle = gray(25, 0.4);
+        ctx.lineWidth = 1;
+        for (let i = 0; i < 5; i++) {
+          const tx = (i - 2) * (o.w * 0.2);
+          const wave = Math.sin(frameCount * 0.06 + i * 1.5) * 4;
+          ctx.beginPath();
+          ctx.moveTo(tx, 2);
+          ctx.quadraticCurveTo(
+            tx + wave,
+            o.h * 0.4,
+            tx + wave * 1.5,
+            o.h * 0.7,
+          );
+          ctx.stroke();
+        }
+
+        ctx.restore();
+      }
+
+      // --- Draw: Collectibles (THE ONLY COLOUR) ---
+      function drawCollectible(c) {
+        ctx.save();
+        ctx.translate(c.x, c.y);
+
+        if (c.type === "plankton") {
+          const pulse = Math.sin(frameCount * 0.08 + c.pulse) * 0.3 + 0.7;
+          const a = pulse * 0.8;
+          // Glow
+          ctx.fillStyle = `rgba(${ACCENT.r},${ACCENT.g},${ACCENT.b},${a * 0.15})`;
+          ctx.beginPath();
+          ctx.arc(0, 0, c.r * 3, 0, Math.PI * 2);
+          ctx.fill();
+          // Core
+          ctx.fillStyle = `rgba(${ACCENT.r},${ACCENT.g},${ACCENT.b},${a})`;
+          ctx.beginPath();
+          ctx.arc(0, 0, c.r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        if (c.type === "crab") {
+          const walk = Math.sin(frameCount * 0.15 + c.walkPhase) * 2;
+          // Body
+          ctx.fillStyle = `rgba(${ACCENT.r},${ACCENT.g},${ACCENT.b},0.7)`;
+          ctx.beginPath();
+          ctx.ellipse(0, 0, c.w * 0.5, c.h * 0.4, 0, 0, Math.PI * 2);
+          ctx.fill();
+          // Legs
+          ctx.strokeStyle = `rgba(${ACCENT.r},${ACCENT.g},${ACCENT.b},0.5)`;
+          ctx.lineWidth = 1;
+          for (let i = 0; i < 3; i++) {
+            const lx = (i - 1) * 4;
+            ctx.beginPath();
+            ctx.moveTo(lx, 2);
+            ctx.lineTo(lx + walk, 5);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(-lx, 2);
+            ctx.lineTo(-lx - walk, 5);
+            ctx.stroke();
+          }
+        }
+
+        if (c.type === "shrimp") {
+          const glow = Math.sin(frameCount * 0.06 + c.glowPhase) * 0.3 + 0.7;
+          // Large glow aura
+          ctx.fillStyle = `rgba(${ACCENT.r},${ACCENT.g},${ACCENT.b},${glow * 0.08})`;
+          ctx.beginPath();
+          ctx.arc(0, 0, 18, 0, Math.PI * 2);
+          ctx.fill();
+          // Medium glow
+          ctx.fillStyle = `rgba(${ACCENT.r},${ACCENT.g},${ACCENT.b},${glow * 0.2})`;
+          ctx.beginPath();
+          ctx.arc(0, 0, 10, 0, Math.PI * 2);
+          ctx.fill();
+          // Body
+          ctx.fillStyle = `rgba(${ACCENT.r},${ACCENT.g},${ACCENT.b},${glow * 0.9})`;
+          ctx.beginPath();
+          ctx.ellipse(0, 0, c.w * 0.5, c.h * 0.4, 0, 0, Math.PI * 2);
+          ctx.fill();
+          // Tail
+          ctx.strokeStyle = `rgba(${ACCENT.r},${ACCENT.g},${ACCENT.b},${glow * 0.6})`;
+          ctx.lineWidth = 1.5;
+          ctx.beginPath();
+          ctx.moveTo(-c.w * 0.4, 0);
+          ctx.quadraticCurveTo(-c.w * 0.6, -3, -c.w * 0.8, 1);
+          ctx.stroke();
+        }
+
+        ctx.restore();
+      }
+
+      // --- Draw: Particles ---
+      function drawParticles() {
+        for (const p of particles) {
+          const alpha = p.life / p.maxLife;
+          if (p.colored) {
+            ctx.fillStyle = `rgba(${ACCENT.r},${ACCENT.g},${ACCENT.b},${alpha * 0.6})`;
+          } else {
+            ctx.fillStyle = gray(120, alpha * 0.3);
+          }
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      // --- Draw: Death flash (red, the only time red appears) ---
+      function drawDeathFlash() {
+        if (deathFlash <= 0) return;
+        const a = (deathFlash / 12) * 0.3;
+        ctx.fillStyle = `rgba(${DANGER.r},${DANGER.g},${DANGER.b},${a})`;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        deathFlash--;
+      }
+
+      // --- Update ---
+      function update() {
+        if (state !== "playing") return;
+
+        frameCount++;
+        distance += gameSpeed;
+        score = Math.floor(distance / 10);
+
+        gameSpeed = CRAWL_SPEED + Math.min(distance / 3000, 3);
+        if (!octo.crawling) gameSpeed = Math.max(gameSpeed, SWIM_SPEED);
+
+        spawnInterval = Math.max(40, 90 - distance / 200);
+
+        const floorY = canvas.height * FLOOR_Y_RATIO;
+
+        // Octopus physics
+        octo.vy += GRAVITY;
+        octo.y += octo.vy;
+        octo.armPhase += octo.crawling ? 0.12 : 0.08;
+
+        if (octo.y >= floorY - 20) {
+          octo.y = floorY - 20;
+          octo.vy = 0;
+          octo.crawling = true;
+          if (frameCount % 20 === 0) addBubbles(octo.x - 15, octo.y + 5, 1);
+        } else {
+          octo.crawling = false;
+        }
+
+        if (octo.y < 30) {
+          octo.y = 30;
+          octo.vy = 0;
+        }
+
+        // Spawn obstacles
+        spawnTimer++;
+        if (spawnTimer >= spawnInterval) {
+          spawnObstacle();
+          spawnTimer = 0;
+        }
+
+        // Spawn collectibles
+        collectTimer++;
+        if (collectTimer >= 50 + Math.random() * 40) {
+          spawnCollectible();
+          collectTimer = 0;
+        }
+
+        // Update obstacles
+        for (const o of obstacles) o.x -= o.speed || gameSpeed;
+        obstacles = obstacles.filter((o) => o.x > -60);
+
+        // Update collectibles
+        for (const c of collectibles) c.x -= gameSpeed * 0.9;
+        collectibles = collectibles.filter((c) => c.x > -30);
+
+        // Obstacle collision
+        for (const o of obstacles) {
+          const octoBox = { x: octo.x, y: octo.y - 6, w: 28, h: 24 };
+          if (collides(octoBox, o)) {
+            die();
+            return;
+          }
+        }
+
+        // Collectible pickup
+        for (let i = collectibles.length - 1; i >= 0; i--) {
+          const c = collectibles[i];
+          const dist = Math.hypot(octo.x - c.x, octo.y - 6 - c.y);
+          if (dist < 20) {
+            score += c.points;
+            addCollectEffect(c.x, c.y);
+            collectibles.splice(i, 1);
+          }
+        }
+
+        // Update particles
+        for (const p of particles) {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.life--;
+        }
+        particles = particles.filter((p) => p.life > 0);
+
+        // HUD
+        document.getElementById("score-display").textContent = score;
+        document.getElementById("zone-display").textContent =
+          getZoneName(score);
+      }
+
+      // --- Render ---
+      function render() {
+        // Background - subtle gradient that darkens with depth
+        const zoneProgress = Math.min(score / 1000, 1);
+        const bgTop = Math.max(5 - zoneProgress * 4, 1);
+        const bgBot = Math.max(2 - zoneProgress * 2, 0);
+        const grad = ctx.createLinearGradient(0, 0, 0, canvas.height);
+        grad.addColorStop(0, gray(bgTop));
+        grad.addColorStop(1, gray(bgBot));
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        drawLightRays();
+        drawAmbient();
+        drawScenery();
+        drawFloor();
+        drawParticles();
+
+        for (const c of collectibles) drawCollectible(c);
+        for (const o of obstacles) {
+          if (o.type === "urchin") drawUrchin(o);
+          else if (o.type === "jelly") drawJelly(o);
+        }
+
+        if (octo.alive) drawOcto();
+        drawDeathFlash();
+      }
+
+      // --- Loop ---
+      function loop() {
+        update();
+        render();
+        requestAnimationFrame(loop);
+      }
+
+      resize();
+      resetOcto();
+      initAmbient();
+      loop();
+    </script>
+  </body>
+</html>
